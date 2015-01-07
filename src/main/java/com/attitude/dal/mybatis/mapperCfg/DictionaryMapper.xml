@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.attitude.dal.mybatis.dao.DictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.attitude.dal.mybatis.entity.Dictionary" >
+    <id column="Dic_Code" property="dicCode" jdbcType="VARCHAR" />
+    <result column="Up_Code" property="upCode" jdbcType="VARCHAR" />
+    <result column="Dic_Name" property="dicName" jdbcType="VARCHAR" />
+    <result column="Dic_Level" property="dicLevel" jdbcType="INTEGER" />
+    <result column="Dic_Type_ID" property="dicTypeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Dic_Code, Up_Code, Dic_Name, Dic_Level, Dic_Type_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.DictionaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dic
+    where Dic_Code = #{dicCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_dic
+    where Dic_Code = #{dicCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.attitude.dal.mybatis.entity.DictionaryExample" >
+    delete from t_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Dictionary" >
+    insert into t_dic (Dic_Code, Up_Code, Dic_Name, 
+      Dic_Level, Dic_Type_ID)
+    values (#{dicCode,jdbcType=VARCHAR}, #{upCode,jdbcType=VARCHAR}, #{dicName,jdbcType=VARCHAR}, 
+      #{dicLevel,jdbcType=INTEGER}, #{dicTypeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Dictionary" >
+    insert into t_dic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dicCode != null" >
+        Dic_Code,
+      </if>
+      <if test="upCode != null" >
+        Up_Code,
+      </if>
+      <if test="dicName != null" >
+        Dic_Name,
+      </if>
+      <if test="dicLevel != null" >
+        Dic_Level,
+      </if>
+      <if test="dicTypeId != null" >
+        Dic_Type_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dicCode != null" >
+        #{dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upCode != null" >
+        #{upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null" >
+        #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicLevel != null" >
+        #{dicLevel,jdbcType=INTEGER},
+      </if>
+      <if test="dicTypeId != null" >
+        #{dicTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.attitude.dal.mybatis.entity.DictionaryExample" resultType="java.lang.Integer" >
+    select count(*) from t_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_dic
+    <set >
+      <if test="record.dicCode != null" >
+        Dic_Code = #{record.dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upCode != null" >
+        Up_Code = #{record.upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicName != null" >
+        Dic_Name = #{record.dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicLevel != null" >
+        Dic_Level = #{record.dicLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.dicTypeId != null" >
+        Dic_Type_ID = #{record.dicTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_dic
+    set Dic_Code = #{record.dicCode,jdbcType=VARCHAR},
+      Up_Code = #{record.upCode,jdbcType=VARCHAR},
+      Dic_Name = #{record.dicName,jdbcType=VARCHAR},
+      Dic_Level = #{record.dicLevel,jdbcType=INTEGER},
+      Dic_Type_ID = #{record.dicTypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.attitude.dal.mybatis.entity.Dictionary" >
+    update t_dic
+    <set >
+      <if test="upCode != null" >
+        Up_Code = #{upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null" >
+        Dic_Name = #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicLevel != null" >
+        Dic_Level = #{dicLevel,jdbcType=INTEGER},
+      </if>
+      <if test="dicTypeId != null" >
+        Dic_Type_ID = #{dicTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Dic_Code = #{dicCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.Dictionary" >
+    update t_dic
+    set Up_Code = #{upCode,jdbcType=VARCHAR},
+      Dic_Name = #{dicName,jdbcType=VARCHAR},
+      Dic_Level = #{dicLevel,jdbcType=INTEGER},
+      Dic_Type_ID = #{dicTypeId,jdbcType=INTEGER}
+    where Dic_Code = #{dicCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

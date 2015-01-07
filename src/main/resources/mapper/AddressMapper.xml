@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.attitude.dal.mybatis.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.attitude.dal.mybatis.entity.Address" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="U_ID" property="uId" jdbcType="INTEGER" />
+    <result column="Consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="Contract_Phone" property="contractPhone" jdbcType="VARCHAR" />
+    <result column="Province_Code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="City_Code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="District_Code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Is_Default" property="isDefault" jdbcType="BIT" />
+    <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="Update_Date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, U_ID, Consignee, Contract_Phone, Province_Code, City_Code, District_Code, Address, 
+    Is_Default, Create_Date, Update_Date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_address
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_address
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.attitude.dal.mybatis.entity.AddressExample" >
+    delete from t_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Address" >
+    insert into t_address (ID, U_ID, Consignee, 
+      Contract_Phone, Province_Code, City_Code, 
+      District_Code, Address, Is_Default, 
+      Create_Date, Update_Date)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, 
+      #{contractPhone,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Address" >
+    insert into t_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="consignee != null" >
+        Consignee,
+      </if>
+      <if test="contractPhone != null" >
+        Contract_Phone,
+      </if>
+      <if test="provinceCode != null" >
+        Province_Code,
+      </if>
+      <if test="cityCode != null" >
+        City_Code,
+      </if>
+      <if test="districtCode != null" >
+        District_Code,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="isDefault != null" >
+        Is_Default,
+      </if>
+      <if test="createDate != null" >
+        Create_Date,
+      </if>
+      <if test="updateDate != null" >
+        Update_Date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.attitude.dal.mybatis.entity.AddressExample" resultType="java.lang.Integer" >
+    select count(*) from t_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_address
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null" >
+        U_ID = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.consignee != null" >
+        Consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractPhone != null" >
+        Contract_Phone = #{record.contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        Province_Code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        City_Code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        District_Code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefault != null" >
+        Is_Default = #{record.isDefault,jdbcType=BIT},
+      </if>
+      <if test="record.createDate != null" >
+        Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_address
+    set ID = #{record.id,jdbcType=INTEGER},
+      U_ID = #{record.uId,jdbcType=INTEGER},
+      Consignee = #{record.consignee,jdbcType=VARCHAR},
+      Contract_Phone = #{record.contractPhone,jdbcType=VARCHAR},
+      Province_Code = #{record.provinceCode,jdbcType=VARCHAR},
+      City_Code = #{record.cityCode,jdbcType=VARCHAR},
+      District_Code = #{record.districtCode,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Is_Default = #{record.isDefault,jdbcType=BIT},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.attitude.dal.mybatis.entity.Address" >
+    update t_address
+    <set >
+      <if test="uId != null" >
+        U_ID = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null" >
+        Consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        Contract_Phone = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        Province_Code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        City_Code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        District_Code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        Is_Default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.Address" >
+    update t_address
+    set U_ID = #{uId,jdbcType=INTEGER},
+      Consignee = #{consignee,jdbcType=VARCHAR},
+      Contract_Phone = #{contractPhone,jdbcType=VARCHAR},
+      Province_Code = #{provinceCode,jdbcType=VARCHAR},
+      City_Code = #{cityCode,jdbcType=VARCHAR},
+      District_Code = #{districtCode,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Is_Default = #{isDefault,jdbcType=BIT},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

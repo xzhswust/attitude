@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.attitude.dal.mybatis.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.attitude.dal.mybatis.entity.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="User_Name" property="userName" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="Mobile_Phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="Real_Name" property="realName" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="Update_Date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.attitude.dal.mybatis.entity.User" extends="BaseResultMap" >
+    <result column="Picture" property="picture" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, User_Name, Password, Mobile_Phone, Real_Name, Sex, Create_Date, Update_Date
+  </sql>
+  <sql id="Blob_Column_List" >
+    Picture
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.attitude.dal.mybatis.entity.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.attitude.dal.mybatis.entity.UserExample" >
+    delete from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.User" >
+    insert into t_user (ID, User_Name, Password, 
+      Mobile_Phone, Real_Name, Sex, 
+      Create_Date, Update_Date, Picture
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{picture,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userName != null" >
+        User_Name,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="mobilePhone != null" >
+        Mobile_Phone,
+      </if>
+      <if test="realName != null" >
+        Real_Name,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="createDate != null" >
+        Create_Date,
+      </if>
+      <if test="updateDate != null" >
+        Update_Date,
+      </if>
+      <if test="picture != null" >
+        Picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.attitude.dal.mybatis.entity.UserExample" resultType="java.lang.Integer" >
+    select count(*) from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        User_Name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        Password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilePhone != null" >
+        Mobile_Phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        Real_Name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        Sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.picture != null" >
+        Picture = #{record.picture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_user
+    set ID = #{record.id,jdbcType=INTEGER},
+      User_Name = #{record.userName,jdbcType=VARCHAR},
+      Password = #{record.password,jdbcType=VARCHAR},
+      Mobile_Phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      Real_Name = #{record.realName,jdbcType=VARCHAR},
+      Sex = #{record.sex,jdbcType=VARCHAR},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      Picture = #{record.picture,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user
+    set ID = #{record.id,jdbcType=INTEGER},
+      User_Name = #{record.userName,jdbcType=VARCHAR},
+      Password = #{record.password,jdbcType=VARCHAR},
+      Mobile_Phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      Real_Name = #{record.realName,jdbcType=VARCHAR},
+      Sex = #{record.sex,jdbcType=VARCHAR},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.attitude.dal.mybatis.entity.User" >
+    update t_user
+    <set >
+      <if test="userName != null" >
+        User_Name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        Mobile_Phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        Real_Name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null" >
+        Picture = #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.attitude.dal.mybatis.entity.User" >
+    update t_user
+    set User_Name = #{userName,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Mobile_Phone = #{mobilePhone,jdbcType=VARCHAR},
+      Real_Name = #{realName,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      Picture = #{picture,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.User" >
+    update t_user
+    set User_Name = #{userName,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Mobile_Phone = #{mobilePhone,jdbcType=VARCHAR},
+      Real_Name = #{realName,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

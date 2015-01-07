@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Attitude:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="FinancingPlatform.war">
+      <element id="artifact" artifact-name="Attitude:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decorators defaultdir="/WEB-INF/decorators/">
+    <!-- 此处用来定义不需要过滤的页面 -->
+    <excludes>
+        <pattern></pattern>
+    </excludes>
+
+    <!-- 用来定义装饰器要过滤的页面 -->
+    <decorator name="default" page="default.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <!--定义不使用装饰器的页面-->
+    <decorator name="un-decorator-pages">
+        <pattern>/WEB-INF/pages/login/*</pattern>
+        <pattern>/WEB-INF/pages/undecoratepages/*</pattern>
+    </decorator>
+</decorators>

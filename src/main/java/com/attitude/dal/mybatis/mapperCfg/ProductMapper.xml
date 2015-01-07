@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.attitude.dal.mybatis.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.attitude.dal.mybatis.entity.Product" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="P_Name" property="pName" jdbcType="VARCHAR" />
+    <result column="Product_Type_Code" property="productTypeCode" jdbcType="VARCHAR" />
+    <result column="Summary" property="summary" jdbcType="VARCHAR" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+    <result column="Price" property="price" jdbcType="DECIMAL" />
+    <result column="Member_Price" property="memberPrice" jdbcType="DECIMAL" />
+    <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="Update_Date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.attitude.dal.mybatis.entity.Product" extends="BaseResultMap" >
+    <result column="Pic" property="pic" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, P_Name, Product_Type_Code, Summary, Description, Price, Member_Price, Create_Date, 
+    Update_Date
+  </sql>
+  <sql id="Blob_Column_List" >
+    Pic
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.attitude.dal.mybatis.entity.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.attitude.dal.mybatis.entity.ProductExample" >
+    delete from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Product" >
+    insert into t_product (ID, P_Name, Product_Type_Code, 
+      Summary, Description, Price, 
+      Member_Price, Create_Date, Update_Date, 
+      Pic)
+    values (#{id,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{productTypeCode,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{memberPrice,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{pic,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Product" >
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pName != null" >
+        P_Name,
+      </if>
+      <if test="productTypeCode != null" >
+        Product_Type_Code,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="memberPrice != null" >
+        Member_Price,
+      </if>
+      <if test="createDate != null" >
+        Create_Date,
+      </if>
+      <if test="updateDate != null" >
+        Update_Date,
+      </if>
+      <if test="pic != null" >
+        Pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeCode != null" >
+        #{productTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="memberPrice != null" >
+        #{memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.attitude.dal.mybatis.entity.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_product
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pName != null" >
+        P_Name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productTypeCode != null" >
+        Product_Type_Code = #{record.productTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summary != null" >
+        Summary = #{record.summary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        Description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        Price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memberPrice != null" >
+        Member_Price = #{record.memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createDate != null" >
+        Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pic != null" >
+        Pic = #{record.pic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_product
+    set ID = #{record.id,jdbcType=INTEGER},
+      P_Name = #{record.pName,jdbcType=VARCHAR},
+      Product_Type_Code = #{record.productTypeCode,jdbcType=VARCHAR},
+      Summary = #{record.summary,jdbcType=VARCHAR},
+      Description = #{record.description,jdbcType=VARCHAR},
+      Price = #{record.price,jdbcType=DECIMAL},
+      Member_Price = #{record.memberPrice,jdbcType=DECIMAL},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      Pic = #{record.pic,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_product
+    set ID = #{record.id,jdbcType=INTEGER},
+      P_Name = #{record.pName,jdbcType=VARCHAR},
+      Product_Type_Code = #{record.productTypeCode,jdbcType=VARCHAR},
+      Summary = #{record.summary,jdbcType=VARCHAR},
+      Description = #{record.description,jdbcType=VARCHAR},
+      Price = #{record.price,jdbcType=DECIMAL},
+      Member_Price = #{record.memberPrice,jdbcType=DECIMAL},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.attitude.dal.mybatis.entity.Product" >
+    update t_product
+    <set >
+      <if test="pName != null" >
+        P_Name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeCode != null" >
+        Product_Type_Code = #{productTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        Summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        Price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="memberPrice != null" >
+        Member_Price = #{memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pic != null" >
+        Pic = #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.attitude.dal.mybatis.entity.Product" >
+    update t_product
+    set P_Name = #{pName,jdbcType=VARCHAR},
+      Product_Type_Code = #{productTypeCode,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=VARCHAR},
+      Price = #{price,jdbcType=DECIMAL},
+      Member_Price = #{memberPrice,jdbcType=DECIMAL},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      Pic = #{pic,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.Product" >
+    update t_product
+    set P_Name = #{pName,jdbcType=VARCHAR},
+      Product_Type_Code = #{productTypeCode,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=VARCHAR},
+      Price = #{price,jdbcType=DECIMAL},
+      Member_Price = #{memberPrice,jdbcType=DECIMAL},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

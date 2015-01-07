@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.attitude.dal.mybatis.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.attitude.dal.mybatis.entity.Order" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="U_ID" property="uId" jdbcType="INTEGER" />
+    <result column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="Count" property="count" jdbcType="INTEGER" />
+    <result column="A_ID" property="aId" jdbcType="INTEGER" />
+    <result column="Amount" property="amount" jdbcType="DECIMAL" />
+    <result column="Payment" property="payment" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, U_ID, P_ID, Count, A_ID, Amount, Payment, State, Create_Date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_order
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.attitude.dal.mybatis.entity.OrderExample" >
+    delete from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Order" >
+    insert into t_order (ID, U_ID, P_ID, 
+      Count, A_ID, Amount, 
+      Payment, State, Create_Date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{payment,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Order" >
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="count != null" >
+        Count,
+      </if>
+      <if test="aId != null" >
+        A_ID,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="payment != null" >
+        Payment,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="createDate != null" >
+        Create_Date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.attitude.dal.mybatis.entity.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null" >
+        U_ID = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pId != null" >
+        P_ID = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.count != null" >
+        Count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.aId != null" >
+        A_ID = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payment != null" >
+        Payment = #{record.payment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order
+    set ID = #{record.id,jdbcType=INTEGER},
+      U_ID = #{record.uId,jdbcType=INTEGER},
+      P_ID = #{record.pId,jdbcType=INTEGER},
+      Count = #{record.count,jdbcType=INTEGER},
+      A_ID = #{record.aId,jdbcType=INTEGER},
+      Amount = #{record.amount,jdbcType=DECIMAL},
+      Payment = #{record.payment,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=VARCHAR},
+      Create_Date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.attitude.dal.mybatis.entity.Order" >
+    update t_order
+    <set >
+      <if test="uId != null" >
+        U_ID = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        Count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null" >
+        A_ID = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        Payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        Create_Date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.Order" >
+    update t_order
+    set U_ID = #{uId,jdbcType=INTEGER},
+      P_ID = #{pId,jdbcType=INTEGER},
+      Count = #{count,jdbcType=INTEGER},
+      A_ID = #{aId,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=DECIMAL},
+      Payment = #{payment,jdbcType=VARCHAR},
+      State = #{state,jdbcType=VARCHAR},
+      Create_Date = #{createDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
