@@ -14,6 +14,7 @@ public class CommonUtil {
             int x = r.nextInt(10);
             code += String.valueOf(x);
         }
+        //git
         return code;
     }
 }
