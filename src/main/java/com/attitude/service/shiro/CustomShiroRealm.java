@@ -4,10 +4,19 @@ package com.attitude.service.shiro;
  * Created by zh.xu on 14-3-23.
  */
 
+import com.attitude.common.utils.MapperServiceUtil;
+import com.attitude.dal.mybatis.dao.UserMapper;
+import com.attitude.dal.mybatis.entity.User;
+import com.attitude.dal.mybatis.entity.UserExample;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
+
+import java.util.List;
 
 /**
  * 自定义的指定Shiro验证用户登录的类
@@ -23,8 +32,24 @@ public class CustomShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals){
-
-        return null;
+        String userName = (String) super.getAvailablePrincipal(principals);
+        SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
+        try {
+            UserMapper userMapper = MapperServiceUtil.getUserMapperService();
+            UserExample userExample = new UserExample();
+            userExample.createCriteria().andUserNameEqualTo(userName);
+            List<User> users = userMapper.selectByExample(userExample);
+            if (null != users && users.size() == 1) {
+                //simpleAuthorInfo.addRole(users.get(0).getUserrole());
+                return simpleAuthorInfo;
+            }else{
+                //throw new UnknownAccountException();
+                return null;
+            }
+        } catch (Exception ex) {
+            //throw new AuthenticationException(ex.getMessage());
+            return null;
+        }
     }
 
 
@@ -36,6 +61,35 @@ public class CustomShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
             throws AuthenticationException {
 
-        return null;
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken; //获取基于用户名和密码的令牌
+        String userName = token.getUsername();
+        List<User> users = null;
+        try {
+            UserMapper userMapper = MapperServiceUtil.getUserMapperService();
+            UserExample userExample = new UserExample();
+            userExample.createCriteria().andUserNameEqualTo(userName);
+            users = userMapper.selectByExample(userExample);
+        }catch (Exception ex){
+            throw new AuthenticationException(ex.getMessage());
+        }
+        if (null == users || users.size() == 0) {
+            throw new UnknownAccountException();
+        }
+
+        if (null != token && null != token.getPassword()) {
+            String password = String.valueOf(users.get(0).getPassword());
+
+            if (String.valueOf(token.getPassword()).equals(password)) {
+                AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(token.getUsername(), token.getPassword(), token.getUsername());
+
+                Subject user = SecurityUtils.getSubject();
+                user.getSession().setAttribute("currUser", userName);  //记录登录用户名
+                user.getSession().setAttribute("realName", users.get(0).getRealName());   //记录用户真实姓名
+
+                return authcInfo;
+            }
+        }
+
+        throw new IncorrectCredentialsException();
     }
 }
