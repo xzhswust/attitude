@@ -63,25 +63,6 @@
         <!--这里用的方法是把图片加在样式上面当做背景图来兼容所有屏幕分辨率该图片分辨率为1920宽 所以屏幕为1920的电脑看起来都是全屏的-->
     </div>
 </div>
-<div class="clear"></div>
-<div class="mainbottom">
-    <div class="bottombox"></div>
-    <div class="footer">
-        <div class="leftmenu">
-            <ul>
-                <li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
-            </ul>
-        </div>
-        <div class="rightdesc">
-            <ul>
-                <li>市场联络：SLKFDJLSKFJS</li>
-                <li>京ICP备149594940</li>
-                <li>YITAIDIET@163.COM</li>
-            </ul>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>

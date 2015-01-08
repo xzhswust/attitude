@@ -50,25 +50,6 @@
         </div>
     </div>
 </div>
-<div class="clear"></div>
-<div class="mainbottom">
-    <div class="bottombox"></div>
-    <div class="footer">
-        <div class="leftmenu">
-            <ul>
-                <li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
-            </ul>
-        </div>
-        <div class="rightdesc">
-            <ul>
-                <li>市场联络：SLKFDJLSKFJS</li>
-                <li>京ICP备149594940</li>
-                <li>YITAIDIET@163.COM</li>
-            </ul>
-        </div>
-    </div>
 </div>
 </body>
 </html>
