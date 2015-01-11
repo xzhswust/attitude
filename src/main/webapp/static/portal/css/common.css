@@ -656,11 +656,15 @@ margin-top: 69px;
 	right:65px;
 	bottom:5px;
 }
+/*.gukeshuo{*/
+	/*position:relative;*/
+	/*height: 491px;*/
+	/*margin:150px auto;*/
+	/*overflow:hidden;*/
+/*}*/
 .gukeshuo{
 	position:relative;
-	height: 491px;
-	margin:150px auto;
-	overflow:hidden;
+	margin:30px auto;
 }
 .gukeshuo .headwall{
 	float:left;
@@ -1004,4 +1008,63 @@ top: 460px;
 	background: url(../images/btnbg.png) no-repeat;
 	text-align: center;
 	color:white;
+}
+
+/* wrapper css - 顾客说 */
+#wrapper{
+	margin-top:70px;
+	width:100%;
+}
+
+#container{
+	position:relative;
+	width:1100px;
+	margin:0 auto;
+}
+.block{
+	padding: 15px;
+	background:#fff;
+	margin-bottom:10px;
+	line-height:1.7;
+	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-moz-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+
+	transition: box-shadow 1s;
+	-moz-transition: -moz-box-shadow 1s;
+	-webkit-transition: -webkit-box-shadow 1s;
+}
+.block:hover {
+	box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-moz-box-shadow: 0 1px 13px rgba(34,25,25,1);
+	-webkit-box-shadow: 0 1px 13px rgba(34,25,25,1);
+}
+.block h2{
+	font-size:17px;
+}
+.block img{
+	max-width:100%;
+}
+.block .u_name{
+	color:#A9CE2C;
+	font-weight:bold;
+	font-size:13px;
+}
+.wxtc{
+	position: fixed;
+	top:50%;
+	left:50%;
+	width:336px;
+	height:295px;
+	margin-left:-168px;
+	margin-top:-147.5px;
+	display: none;
+}
+.is_close{
+	position: absolute;
+	top:0px;
+	right:0px;
+	width:35px;
+	height:35px;
+	cursor: pointer;
 }

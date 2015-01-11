@@ -28,6 +28,8 @@
     <!-- 对话框核心JS文件和对应的CSS文件-->
     <SCRIPT src="/static/alert/jquery.alerts.js" type=text/javascript></SCRIPT>
     <LINK media=screen href="/static/alert/jquery.alerts.css" type=text/css rel=stylesheet>
+
+    <script src="/static/portal/js/blocksit.min.js"></script>
 </head>
 <body class="">
 <div class="headerbox white nobg">

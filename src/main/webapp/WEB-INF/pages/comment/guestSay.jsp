@@ -5,858 +5,100 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>顾客说</title>
     <%--<meta name="decorator" content="un-decorator-pages"/>--%>
-    <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
-    <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
-    <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
-    <script src="/static/portal/js/common.js" type="application/javascript"></script>
+    <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
+    <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/common.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/blocksit.min.js"></script>--%>
 </head>
 <body>
-
+<script type="text/javascript">
+    $(function () {
+        $(window).load(function () {
+            $('#container').BlocksIt({
+                numOfCol: 4,
+                offsetX: 8,
+                offsetY: 8
+            });
+        });
+    })
+</script>
 <div class="bodybox nobg">
     <div class="gukeshuo">
-        <ul>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
+        <div id="container">
+            <div class="block">
+                <h2>效果很好,下次还会继续来买的</h2>
+
+                <p>
+                    <a>
+                        <img src="/static/temp/img15.jpg" alt=""/>
+                    </a>
+
+                <div class="u_name">用户名</div>
+                这里的卖的营养套餐真的很好吃
+                </p>
+            </div>
+            <div class="block">
+                <h2>效果很好,下次还会继续来买的</h2>
+
+                <p>
+                    <a>
+                        <img src="/static/temp/img19.jpg" alt=""/>
+                    </a>
+
+                <div class="u_name">用户名</div>
+                这里的卖的营养套餐真的很好吃
+                </p>
+            </div>
+            <div class="block">
+                <h2>效果很好,下次还会继续来买的</h2>
+
+                <p>
+                    <a>
+                        <img src="/static/temp/img2.jpg" alt=""/>
+                    </a>
+
+                <div class="u_name">用户名</div>
+                这里的卖的营养套餐真的很好吃
+                </p>
+            </div>
+            <div class="block">
+                <h2>感觉很不错</h2>
+
+                <p>
+                    <a>
+                        <img src="/static/temp/img20.jpg" alt=""/>
+                    </a>
+
+                <div class="u_name">用户名</div>
+                这里的卖的营养套餐真的很好吃
+                </p>
+            </div>
+            <div class="block">
+                <h2>这里是标题</h2>
+
+                <p>
+                    <a>
+                        <img src="/static/temp/img25.jpg" alt=""/>
+                    </a>
+
+                <div class="u_name">用户名</div>
+                这个是内容
+                </p>
+            </div>
+
+        </div>
 
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li class="headwall"><img src="/static/portal/images/maomi.png" width="100" height="100"/>
-
-                <div class="yonghuliuyan">
-                    <img src="/static/portal/images/maomi.png" class="fl" width="200" height="200"/>
-                    <ul class="right fl">
-                        <li>姓名：测试猫咪</li>
-                        <li>壹态感受：</li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </li>
-
-        </ul>
-        <img src="/static/portal/images/dobest.png" width="645" height="216" class="dobest"/>
-
-        <div class="zhezhaoceng"></div>
     </div>
 </div>
+<script>
+    $('.wxgx').click(function(){
+        $('.wxtc').fadeIn();
+        return false;
+    })
+    $('.is_close').click(function(){
+        $('.wxtc').fadeOut();
+    })
+</script>
 </body>
 </html>
