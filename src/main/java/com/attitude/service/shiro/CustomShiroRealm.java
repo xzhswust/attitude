@@ -5,6 +5,7 @@ package com.attitude.service.shiro;
  */
 
 import com.attitude.common.utils.MapperServiceUtil;
+import com.attitude.common.utils.Md5Util;
 import com.attitude.dal.mybatis.dao.UserMapper;
 import com.attitude.dal.mybatis.entity.User;
 import com.attitude.dal.mybatis.entity.UserExample;
@@ -79,7 +80,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
         if (null != token && null != token.getPassword()) {
             String password = String.valueOf(users.get(0).getPassword());
 
-            if (String.valueOf(token.getPassword()).equals(password)) {
+            if (Md5Util.getMd5Password(String.valueOf(token.getPassword())).equals(password)) {
                 AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(token.getUsername(), token.getPassword(), token.getUsername());
 
                 Subject user = SecurityUtils.getSubject();

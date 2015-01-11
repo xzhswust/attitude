@@ -47,9 +47,16 @@
                 </a>
                 <a style="padding-top:41px;margin:0 5px;float: left">|</a>
                 <div style="float: left;">
-                    <img src="/static/portal/images/user.png" alt="登陆/注册" title="登陆/注册" width="28" height="28"/>
+                    <%--<img src="/static/portal/images/user.png" alt="登陆/注册" title="登陆/注册" width="28" height="28"/>--%>
 
-                    <p><a href="/Login">登陆</a><a>/</a><a href="/Register">注册</a></p>
+                    <%--<p><a href="/Login">登陆</a><a>/</a><a href="/Register">注册</a></p>--%>
+                    <img id="userPic" src="/static/portal/images/user.png" alt="登陆/注册" title="登陆/注册" width="28"
+                         height="28"/>
+
+                    <p id="un_login_state"><a href="/Login">登陆</a><a>/</a><a href="/Register">注册</a></p>
+
+                    <p id="login_state" style="display: none"><a id="userTitle"
+                                                                 href="/Customer/GetUserInfo">${userTitle}</a></p>
                 </div>
             </strong>
         </div>
@@ -80,6 +87,11 @@
 </body>
 <script>
     $(document).ready(function () {
+        if ($('#userTitle').text() != '') {
+            $('#login_state').show();
+            $('#un_login_state').hide();
+        }
+
         var url = window.location.href;
         $("#product").removeClass("on");
         $("#comment").removeClass("on");

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class OrderController {
     @RequestMapping(value = "/AddReceiver", method = RequestMethod.GET)
     public String AddReceiver(Model model, HttpServletRequest request) {
+
         return "indexold";
     }
 

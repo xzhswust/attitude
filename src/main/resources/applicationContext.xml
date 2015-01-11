@@ -28,6 +28,7 @@
     <!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
+        <!--<property name="rememberMeManager" ref="rememberMeManager"/>-->
     </bean>
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
@@ -37,7 +38,7 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- 要求登录的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
         <!--若用户未登录，直接输入url访问某个页面时，迫使其跳转到登录页面-->
-        <property name="loginUrl" value="/"/>
+        <property name="loginUrl" value="/Login"/>
         <!-- 登录成功后要跳转的连接 -->
         <!-- <property name="successUrl" value="/system/main"/> -->
         <!-- 用户访问未对其授权的资源时,所显示的连接 -->
@@ -50,16 +51,36 @@
         <property name="filterChainDefinitions">
             <value>
                 /=anon
-                /meetingPlan=authc
-                /meetingControl/**=authc
-                /meetingManage/**=authc
-                /systemSetting/**=authc
+                /Order=authc
+                /Order/**=authc
             </value>
         </property>
     </bean>
 
+    <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+        <property name="rememberMeParam" value="rememberMe"/>
+    </bean>
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!--sessionIdCookie：maxAge=-1表示浏览器关闭时失效此Cookie；-->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+    <!--rememberMeCookie：即记住我的Cookie，保存时长30天；-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+
+    <!-- rememberMe管理器，cipherKey是加密rememberMe Cookie的密钥；默认AES算法； -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
 
     <!--shiro 配置 end-->
 
@@ -68,7 +89,6 @@
     <context:component-scan base-package="com.attitude.dal.mybatis.dao.service" />
     <context:property-placeholder location="classpath:/jdbc.properties"/>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-
         <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1/db_attitude"/>
         <property name="username" value="root"/>
