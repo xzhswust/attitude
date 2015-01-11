@@ -6,10 +6,10 @@
     <title>欢迎登录壹态</title>
     <!--标识该页面不被sitemesh装饰-->
     <%--<meta name="decorator" content="un-decorator-pages"/>--%>
-    <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
-    <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
-    <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
-    <script src="/static/portal/js/common.js" type="application/javascript"></script>
+    <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
+    <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/common.js" type="application/javascript"></script>--%>
 </head>
 <body>
 <div class="bodybox">
@@ -63,11 +63,19 @@
 
     function login(){
         if ($('#username').val() == null || $('#username').val().length == 0) {
-            alert('请输入手机号码。');
+            //alert('请输入手机号码。');
+            $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+            jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">温馨提示</div><div>请填写手机号码</div>', '', function() {
+                $.alerts.dialogClass = null; // 重置到默认值
+            });
             return;
         }
         if ($('#password').val() == null || $('#password').val().length == 0) {
-            alert('请输入用户密码。');
+            //alert('请输入用户密码。');
+            $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+            jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">温馨提示</div><div>请填写用户密码</div>', '', function() {
+                $.alerts.dialogClass = null; // 重置到默认值
+            });
             return;
         }
 

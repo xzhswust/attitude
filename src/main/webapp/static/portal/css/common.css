@@ -949,3 +949,59 @@ top: 460px;
 	width:905px;
 	height: 5px;
 }
+
+/*alert样式*/
+.style_1#popup_container {
+	BACKGROUND: white;FONT-FAMILY: Georgia, serif;border:1px solid #9ac83b;
+}
+.style_1#popup_container #popup_title {
+	display: none;
+	BORDER-RIGHT: #005294 1px solid; BORDER-TOP: #005294 1px solid; PADDING-LEFT: 1em; FONT-WEIGHT: normal; BACKGROUND: #76a5cc; BORDER-LEFT: #005294 1px solid; COLOR: #fff; BORDER-BOTTOM: #005294 1px solid; TEXT-ALIGN: left
+}
+.style_1#popup_container #popup_content {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.style_1#popup_container #popup_message {
+	PADDING-LEFT: 0em
+}
+.style_1#popup_container INPUT[type='button'] {
+	padding:0px;
+	outline: none;
+	text-indent: -10000px;
+	width: 35px;
+	height:35px;
+	overflow: hidden;
+	border:none;
+	background:url(../images/close.png) no-repeat;
+	display:block;
+	position: absolute;
+	right: 1px;
+	top:1px;
+}
+/*confirm样式*/
+.style_2#popup_container {
+	BACKGROUND: white;FONT-FAMILY: Georgia, serif;border:1px solid #9ac83b;
+}
+.style_2#popup_container #popup_title {
+	display: none;
+	BORDER-RIGHT: #005294 1px solid; BORDER-TOP: #005294 1px solid; PADDING-LEFT: 1em; FONT-WEIGHT: normal; BACKGROUND: #76a5cc; BORDER-LEFT: #005294 1px solid; COLOR: #fff; BORDER-BOTTOM: #005294 1px solid; TEXT-ALIGN: left
+}
+.style_2#popup_container #popup_content {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.style_2#popup_container #popup_message {
+	PADDING-LEFT: 0em
+}
+.style_2#popup_container INPUT[type='button'] {
+	border:none;
+	width: 109px;
+	height: 33px;
+	line-height: 33px;
+	outline: none;
+	display: inline-block;
+	*display:inline;
+	zoom:1;
+	background: url(../images/btnbg.png) no-repeat;
+	text-align: center;
+	color:white;
+}

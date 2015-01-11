@@ -21,6 +21,13 @@
     <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
     <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
     <script src="/static/portal/js/common.js" type="application/javascript"></script>
+
+    <%--自定义弹出框--%>
+    <SCRIPT src="/static/alert/m.js" type=text/javascript></SCRIPT>
+    <SCRIPT src="/static/alert/jquery.ui.draggable.js" type=text/javascript></SCRIPT>
+    <!-- 对话框核心JS文件和对应的CSS文件-->
+    <SCRIPT src="/static/alert/jquery.alerts.js" type=text/javascript></SCRIPT>
+    <LINK media=screen href="/static/alert/jquery.alerts.css" type=text/css rel=stylesheet>
 </head>
 <body class="">
 <div class="headerbox white nobg">
