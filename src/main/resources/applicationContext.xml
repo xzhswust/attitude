@@ -22,13 +22,13 @@
     <!--shiro 配置 start-->
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的CustomShiroRealm.java -->
     <bean id="myRealm" class="com.attitude.service.shiro.CustomShiroRealm"/>
-
+    <!--<bean id="rememberAuthFilter" class="com.attitude.service.shiro.RememberAuthenticationFilter" ></bean>-->
     <!-- Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session -->
     <!-- 即<property name="sessionMode" value="native"/>,详细说明见官方文档 -->
     <!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
-        <!--<property name="rememberMeManager" ref="rememberMeManager"/>-->
+        <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
@@ -53,6 +53,12 @@
                 /=anon
                 /Order=authc
                 /Order/**=authc
+                /Product=user
+                /Comment=user
+                /Delivery=user
+                /QA=user
+                /About=user
+                /ComDesc=user
             </value>
         </property>
     </bean>
@@ -67,7 +73,7 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="-1"/>
+        <property name="maxAge" value="2592000"/>
     </bean>
     <!--rememberMeCookie：即记住我的Cookie，保存时长30天；-->
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
