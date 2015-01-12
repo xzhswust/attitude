@@ -115,7 +115,7 @@
             $("#delivery").addClass("on");
         }else if(url.indexOf('/QA') > 0) {
             $("#qa").addClass("on");
-        }else if(url.indexOf('About') > 0) {
+        }else if(url.indexOf('About') > 0 || url.indexOf('ComDesc') > 0) {
             $("#about").addClass("on");
         }else{
             $("#product").addClass("on");
