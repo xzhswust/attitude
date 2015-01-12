@@ -102,10 +102,12 @@ public class CustomerController {
             User user = users.get(0);
             if (Md5Util.getMd5Password(pwd).equals(user.getPassword())) {
                 Subject subject = SecurityUtils.getSubject();
-                UsernamePasswordToken token = new UsernamePasswordToken(mobile, pwd);
+                boolean rememberMe = false;
+
                 if(null != remember && remember.equals("remember")){
-                    token.setRememberMe(true);
+                    rememberMe = true;
                 }
+                UsernamePasswordToken token = new UsernamePasswordToken(mobile, pwd, rememberMe);
                 try{
                     subject.login(token);
                 }catch (IncorrectCredentialsException ice){
