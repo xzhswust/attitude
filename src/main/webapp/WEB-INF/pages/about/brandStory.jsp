@@ -10,20 +10,31 @@
     <script src="/static/portal/js/common.js" type="application/javascript"></script>
 </head>
 <body class="wu">
-<div class="cnav">
+<%--<div class="cnav">--%>
 
-    <div class="cnavrq">
-        <div class="cnavbox">
-            <ul>
-                <li class="on">
-                    <a href="/About">品牌故事</a>
-                </li>
-                <li>
-                    <a href="/ComDesc">公司介绍</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%--<div class="cnavrq">--%>
+        <%--<div class="cnavbox">--%>
+            <%--<ul>--%>
+                <%--<li class="on">--%>
+                    <%--<a href="/About">品牌故事</a>--%>
+                <%--</li>--%>
+                <%--<li>--%>
+                    <%--<a href="/ComDesc">公司介绍</a>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<div class="maincnav">
+    <ul style="float:left">
+        <li class="on">
+        <a href="/About">品牌故事</a>
+        </li>
+        <li>
+        <a href="/ComDesc">公司介绍</a>
+        </li>
+        <div class="clear"></div>
+    </ul>
 </div>
 <div class="clear"></div>
 <div class="bodybox nobg">

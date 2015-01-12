@@ -6,6 +6,14 @@
     <title>壹态套餐</title>
 </head>
 <body class="wu2">
+<link href="/static/rocket/css/lrtk.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/rocket/js/lrtk.js"></script>
+
+<!-- 火箭升空 -->
+<div style="display:none;" id="rocket-to-top">
+    <div style="opacity:0;display:block;" class="level-2"></div>
+    <div class="level-3"></div>
+</div>
 
 <div class="maincnav">
     <ul style="float:left">

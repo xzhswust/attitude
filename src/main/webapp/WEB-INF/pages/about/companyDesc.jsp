@@ -4,28 +4,39 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>公司介绍</title>
-    <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
-    <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
-    <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
-    <script src="/static/portal/js/common.js" type="application/javascript"></script>
+    <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
+    <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/common.js" type="application/javascript"></script>--%>
 </head>
 <body class="wu">
-<div class="cnav">
+<%--<div class="cnav">--%>
 
-    <div class="cnavrq">
-        <div class="cnavbox">
-            <ul>
-                <ul>
-                    <li>
-                        <a href="/About">品牌故事</a>
-                    </li>
-                    <li class="on">
-                        <a href="/ComDesc">公司介绍</a>
-                    </li>
-                </ul>
-            </ul>
-        </div>
-    </div>
+    <%--<div class="cnavrq">--%>
+        <%--<div class="cnavbox">--%>
+            <%--<ul>--%>
+                <%--<ul>--%>
+                    <%--<li>--%>
+                        <%--<a href="/About">品牌故事</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="on">--%>
+                        <%--<a href="/ComDesc">公司介绍</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<div class="maincnav">
+    <ul style="float:left">
+        <li>
+            <a href="/About">品牌故事</a>
+        </li>
+        <li class="on">
+            <a href="/ComDesc">公司介绍</a>
+        </li>
+        <div class="clear"></div>
+    </ul>
 </div>
 
 <div class="bodybox nobg">

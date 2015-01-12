@@ -725,6 +725,14 @@ font-size:13px;
 	border-right:1px solid #A9CE2C;
 	color:#838282;
 }
+.maincnav li.on a{
+	color:#9ac83b;
+	font-weight:bold;
+}
+.maincnav li a{
+	color:#838282;
+}
+
 .topone{
 	background:url(../images/top1bg.png);
 	height:710px;
