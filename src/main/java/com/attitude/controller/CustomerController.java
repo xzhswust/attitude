@@ -35,51 +35,55 @@ public class CustomerController {
     //注册提交
     @RequestMapping(value = "/RegisterSubmit", method = RequestMethod.POST)
     public ModelAndView RegisterSubmit(Model model, HttpServletRequest request, HttpServletResponse response) {
-        AsyncResponseJson responseJson = new AsyncResponseJson(true, "");
+        try {
+            AsyncResponseJson responseJson = new AsyncResponseJson(true, "");
 
-        // 检验验证码是否正确
-        String verificationCode = request.getParameter("validNum");
-        Object code = request.getSession().getAttribute("validNum");
-        String verifyCode = null;
-        if (null != code) {
-            verifyCode = String.valueOf(code);
-        }
-        if (!StringUtils.equalsIgnoreCase(verifyCode, verificationCode)) {
-            responseJson.setSuccess(false);
-            responseJson.setMessage("验证码输入错误");
-            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+            // 检验验证码是否正确
+            String verificationCode = request.getParameter("validNum");
+            Object code = request.getSession().getAttribute("validNum");
+            String verifyCode = null;
+            if (null != code) {
+                verifyCode = String.valueOf(code);
+            }
+            if (!StringUtils.equalsIgnoreCase(verifyCode, verificationCode)) {
+                responseJson.setSuccess(false);
+                responseJson.setMessage("验证码输入错误");
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
 
-            return null;
-        }
+                return null;
+            }
 
-        String mobile = request.getParameter("mobile");
+            String mobile = request.getParameter("mobile");
 
-        // 检查手机是否已经注册
-        UserExample example = new UserExample();
-        example.createCriteria().andMobilePhoneEqualTo(mobile);
-        List<User> userInfoList = MapperServiceUtil.getUserMapperService().selectByExample(example);
-        if (null != userInfoList && userInfoList.size() > 0) {
-            responseJson.setSuccess(false);
-            responseJson.setMessage("该手机号已被注册。");
-            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+            // 检查手机是否已经注册
+            UserExample example = new UserExample();
+            example.createCriteria().andMobilePhoneEqualTo(mobile);
+            List<User> userInfoList = MapperServiceUtil.getUserMapperService().selectByExample(example);
+            if (null != userInfoList && userInfoList.size() > 0) {
+                responseJson.setSuccess(false);
+                responseJson.setMessage("该手机号已被注册。");
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
 
-            return null;
-        }
+                return null;
+            }
 
-        String password = request.getParameter("password");
+            String password = request.getParameter("password");
 
-        String md5Pwd = Md5Util.getMd5Password(password);
-        User userInfo = new User();
-        userInfo.setMobilePhone(mobile);
-        userInfo.setPassword(md5Pwd);
-        userInfo.setCreateDate(new Date());
-        userInfo.setUserName(mobile);
+            String md5Pwd = Md5Util.getMd5Password(password);
+            User userInfo = new User();
+            userInfo.setMobilePhone(mobile);
+            userInfo.setPassword(md5Pwd);
+            userInfo.setCreateDate(new Date());
+            userInfo.setUserName(mobile);
 
-        int ret = MapperServiceUtil.getUserMapperService().insert(userInfo);
-        if (ret == 1) {
-            responseJson.setSuccess(true);
-            responseJson.setMessage("恭喜您，注册成功。");
-            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+            int ret = MapperServiceUtil.getUserMapperService().insert(userInfo);
+            if (ret == 1) {
+                responseJson.setSuccess(true);
+                responseJson.setMessage("恭喜您，注册成功。");
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+            }
+        } catch (Exception ex) {
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
         return null;
     }
@@ -87,39 +91,40 @@ public class CustomerController {
     //用户登录
     @RequestMapping(value = "/UserLogin", method = RequestMethod.POST)
     public ModelAndView UserLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
-        String mobile = request.getParameter("username");
-        String pwd = request.getParameter("password");
-        String remember = request.getParameter("rememberMe");
-        UserExample example = new UserExample();
-        example.createCriteria().andMobilePhoneEqualTo(mobile);
-        List<User> users = MapperServiceUtil.getUserMapperService().selectByExample(example);
-        AsyncResponseJson responseJson = new AsyncResponseJson(true, "登陆成功");
-        if (users == null || users.size() == 0) {
-            //用户不存在
-            responseJson.setSuccess(false);
-            responseJson.setMessage("该手机号未注册。");
-        } else {
-            User user = users.get(0);
-            if (Md5Util.getMd5Password(pwd).equals(user.getPassword())) {
-                Subject subject = SecurityUtils.getSubject();
-                boolean rememberMe = false;
+        try {
+            String mobile = request.getParameter("username");
+            String pwd = request.getParameter("password");
+            String remember = request.getParameter("rememberMe");
+            UserExample example = new UserExample();
+            example.createCriteria().andMobilePhoneEqualTo(mobile);
+            List<User> users = MapperServiceUtil.getUserMapperService().selectByExample(example);
+            AsyncResponseJson responseJson = new AsyncResponseJson(true, "登陆成功");
+            if (users == null || users.size() == 0) {
+                //用户不存在
+                responseJson.setSuccess(false);
+                responseJson.setMessage("该手机号未注册。");
+            } else {
+                User user = users.get(0);
+                if (Md5Util.getMd5Password(pwd).equals(user.getPassword())) {
+                    Subject subject = SecurityUtils.getSubject();
+                    boolean rememberMe = false;
 
-                if(null != remember && remember.equals("remember")){
-                    rememberMe = true;
-                }
-                UsernamePasswordToken token = new UsernamePasswordToken(mobile, pwd, rememberMe);
-                try{
-                    subject.login(token);
-                }catch (IncorrectCredentialsException ice){
-                    responseJson.setMessage("密码错误。");
-                    return null;
-                }catch (Exception ex){
-                    responseJson.setMessage(ex.getMessage());
-                    return null;
-                }
-                // 记录用户名
-                subject.getSession().setAttribute("user_mobile", mobile);
-                subject.getSession().setAttribute("user_id", user.getId());
+                    if (null != remember && remember.equals("remember")) {
+                        rememberMe = true;
+                    }
+                    UsernamePasswordToken token = new UsernamePasswordToken(mobile, pwd, rememberMe);
+                    try {
+                        subject.login(token);
+                    } catch (IncorrectCredentialsException ice) {
+                        responseJson.setMessage("密码错误。");
+                        return null;
+                    } catch (Exception ex) {
+                        responseJson.setMessage(ex.getMessage());
+                        return null;
+                    }
+                    // 记录用户名
+                    subject.getSession().setAttribute("user_mobile", mobile);
+                    subject.getSession().setAttribute("user_id", user.getId());
 
 //                HttpSession session = request.getSession();
 //                session.setAttribute("user_mobile", mobile);
@@ -163,13 +168,16 @@ public class CustomerController {
 //                    }
 //                }
 
-            } else {
-                responseJson.setSuccess(false);
-                responseJson.setMessage("密码错误。");
-            }
+                } else {
+                    responseJson.setSuccess(false);
+                    responseJson.setMessage("密码错误。");
+                }
 
+            }
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+        } catch (Exception ex) {
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
-        HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
         return null;
     }
 
@@ -177,24 +185,24 @@ public class CustomerController {
     @RequestMapping(value = "/GetUserInfo", method = RequestMethod.GET)
     public String GetUserInfo(Model model, HttpServletRequest request) {
         String currUserName = ShiroUtil.getCurrLoginUserName();
-        if(null == currUserName || currUserName.isEmpty()){
+        if (null == currUserName || currUserName.isEmpty()) {
             return "/login";
         }
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(currUserName);
         List<User> users = MapperServiceUtil.getUserMapperService().selectByExample(userExample);
-        if(null != users && users.size() == 1){
+        if (null != users && users.size() == 1) {
             User user = users.get(0);
-            if(null == user.getRealName() || user.getRealName().isEmpty()) {
+            if (null == user.getRealName() || user.getRealName().isEmpty()) {
                 model.addAttribute("userTitle", user.getUserName());
-            }else{
+            } else {
                 model.addAttribute("userTitle", user.getRealName());
             }
 
-            model.addAttribute("realName",user.getRealName());
-            model.addAttribute("mobile",user.getUserName());
-            model.addAttribute("sex",user.getSex());
-            if(user.getBirthday() != null) {
+            model.addAttribute("realName", user.getRealName());
+            model.addAttribute("mobile", user.getUserName());
+            model.addAttribute("sex", user.getSex());
+            if (user.getBirthday() != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String dateStr = sdf.format(user.getBirthday());
                 model.addAttribute("birthday", dateStr);
@@ -207,21 +215,21 @@ public class CustomerController {
     //编辑资料
     @RequestMapping(value = "/EditUserInfo", method = RequestMethod.GET)
     public String EditUserInfo(Model model, HttpServletRequest request) {
-        if(ShiroUtil.getCurrLoginUserID() == null){
+        if (ShiroUtil.getCurrLoginUserID() == null) {
             return "login";
         }
         int uid = Integer.parseInt(ShiroUtil.getCurrLoginUserID());
         User user = MapperServiceUtil.getUserMapperService().selectByPrimaryKey(uid);
 
-        if(null == user.getRealName() || user.getRealName().isEmpty()) {
+        if (null == user.getRealName() || user.getRealName().isEmpty()) {
             model.addAttribute("userTitle", user.getUserName());
-        }else{
+        } else {
             model.addAttribute("userTitle", user.getRealName());
         }
-        model.addAttribute("realName",user.getRealName());
-        model.addAttribute("mobile",user.getUserName());
-        model.addAttribute("sex",user.getSex());
-        if(user.getBirthday() != null) {
+        model.addAttribute("realName", user.getRealName());
+        model.addAttribute("mobile", user.getUserName());
+        model.addAttribute("sex", user.getSex());
+        if (user.getBirthday() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String dateStr = sdf.format(user.getBirthday());
             model.addAttribute("birthday", dateStr);
@@ -231,10 +239,10 @@ public class CustomerController {
 
     //提交用户资料编辑
     @RequestMapping(value = "/SubmitEditUserInfo", method = RequestMethod.POST)
-    public ModelAndView SubmitEditUserInfo(Model model, HttpServletRequest request,HttpServletResponse response) {
+    public ModelAndView SubmitEditUserInfo(Model model, HttpServletRequest request, HttpServletResponse response) {
 
         AsyncResponseJson responseJson = new AsyncResponseJson(false, "");
-        if(ShiroUtil.getCurrLoginUserID() == null){
+        if (ShiroUtil.getCurrLoginUserID() == null) {
             responseJson.setSuccess(false);
             responseJson.setMessage("用户未登录，请先登录。");
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
@@ -249,7 +257,7 @@ public class CustomerController {
         user.setSex(request.getParameter("sex"));
         user.setUpdateDate(new Date());
         String birthdayStr = request.getParameter("birthday");
-        if(birthdayStr != null && !birthdayStr.isEmpty()){
+        if (birthdayStr != null && !birthdayStr.isEmpty()) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 user.setBirthday(sdf.parse(birthdayStr));
@@ -262,7 +270,7 @@ public class CustomerController {
         }
         try {
             int ret = MapperServiceUtil.getUserMapperService().updateByPrimaryKeySelective(user);
-            if(ret != 1){
+            if (ret != 1) {
                 responseJson.setSuccess(false);
                 responseJson.setMessage("更新用户资料失败。");
                 HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
@@ -271,7 +279,7 @@ public class CustomerController {
             responseJson.setSuccess(true);
             responseJson.setMessage("更新用户资料成功。");
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
-        }catch (Exception e){
+        } catch (Exception e) {
             responseJson.setSuccess(false);
             responseJson.setMessage("更新用户资料失败。");
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
@@ -293,12 +301,12 @@ public class CustomerController {
 
     //找回密码/修改密码界面
     @RequestMapping(value = "/FindPwd", method = RequestMethod.GET)
-    public String FindPwd(Model model, HttpServletRequest request){
+    public String FindPwd(Model model, HttpServletRequest request) {
 
-        if(ShiroUtil.getCurrLoginUserID() != null) {
+        if (ShiroUtil.getCurrLoginUserID() != null) {
             int uid = Integer.parseInt(ShiroUtil.getCurrLoginUserID());
             User user = MapperServiceUtil.getUserMapperService().selectByPrimaryKey(uid);
-            model.addAttribute("mobile",user.getMobilePhone());
+            model.addAttribute("mobile", user.getMobilePhone());
             if (null == user.getRealName() || user.getRealName().isEmpty()) {
                 model.addAttribute("userTitle", user.getUserName());
             } else {
@@ -309,7 +317,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/PwdModifySubmit", method = RequestMethod.POST)
-    public ModelAndView PwdModifySubmit(Model model, HttpServletRequest request,HttpServletResponse response){
+    public ModelAndView PwdModifySubmit(Model model, HttpServletRequest request, HttpServletResponse response) {
         AsyncResponseJson responseJson = new AsyncResponseJson(true, "");
 
         // 检验验证码是否正确
