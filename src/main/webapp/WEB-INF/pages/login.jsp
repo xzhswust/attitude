@@ -92,11 +92,11 @@
 
                 } else {
                     //$.messager.alert('提示', json.message, 'error');
-                    alert(json.message);
+                    jAlert(json.message);
                 }
             },
             error: function (data) {
-                alert(data);
+                jAlert(data);
             }
         });
     }
