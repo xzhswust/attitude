@@ -1,9 +1,6 @@
 package com.attitude.controller;
 
-import com.attitude.common.utils.AsyncResponseJson;
-import com.attitude.common.utils.HttpResponseUtil;
-import com.attitude.common.utils.MapperServiceUtil;
-import com.attitude.common.utils.ShiroUtil;
+import com.attitude.common.utils.*;
 import com.attitude.dal.mybatis.entity.Address;
 import com.attitude.dal.mybatis.entity.AddressExample;
 import com.attitude.dal.mybatis.entity.User;
@@ -69,6 +66,24 @@ public class DeliveryController {
         return null;
     }
 
+    @RequestMapping(value = "/getDeliveriy", method = RequestMethod.POST)
+    public ModelAndView getDeliveriy(Model model, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String id = request.getParameter("id");
+
+            Address address = MapperServiceUtil.getAddressMapperService().selectByPrimaryKey(Integer.parseInt(id));
+            if(null == address){
+                throw new Exception("未查询到该收货地址信息");
+            }
+            String json = JsonUtil.toJson(address);
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, json));
+        }catch (Exception ex){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
+        }
+
+        return null;
+    }
+
     @RequestMapping(value = "/addDelivery", method = RequestMethod.POST)
     public ModelAndView addDelivery(Model model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -124,7 +139,56 @@ public class DeliveryController {
 
     @RequestMapping(value = "/editDelivery", method = RequestMethod.POST)
     public ModelAndView editDelivery(Model model, HttpServletRequest request, HttpServletResponse response) {
+        String province = request.getParameter("province");
+        String city = request.getParameter("city");
+        String area = request.getParameter("area");
+        String consignee = request.getParameter("consignee");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        try {
+            if(null == consignee || consignee.isEmpty()){
+                throw new Exception("请填写收货人");
+            }
+            if(null == phone || phone.isEmpty()){
+                throw new Exception("请填写收货人手机号码");
+            }
+            if(null == province || province.isEmpty() || province.equals("-1") || province.equals("请选择")){
+                throw new Exception("请选择收货地址所在的省");
+            }
+            if(null == city || city.isEmpty() || city.equals("-1") || city.equals("请选择")){
+                throw new Exception("请选择收货地址所在的城市");
+            }
+            if(null == area || area.isEmpty() || area.equals("-1") || area.equals("请选择")){
+                throw new Exception("请选择收货地址所在的地区");
+            }
+            if(null == address || address.isEmpty()){
+                throw new Exception("请填写具体收货地址");
+            }
 
+            String id = request.getParameter("id");
+            Address tAddress = new Address();
+            tAddress.setuId(Integer.parseInt(id));
+            tAddress.setConsignee(consignee);
+            tAddress.setContractPhone(phone);
+            tAddress.setProvinceCode(province);
+            tAddress.setCityCode(city);
+            tAddress.setDistrictCode(area);
+            tAddress.setAddress(address);
+            tAddress.setIsDefault(false);
+
+            int userID = this.getUserID(ShiroUtil.getCurrLoginUserName());
+            tAddress.setuId(userID);
+
+            tAddress.setUpdateDate(new Date());
+            tAddress.setCreateDate(new Date());
+            AddressExample addressExample = new AddressExample();
+            addressExample.createCriteria().andUIdEqualTo(Integer.parseInt(id));
+            MapperServiceUtil.getAddressMapperService().updateByPrimaryKey(tAddress);
+
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, "编辑收货地址成功"));
+        }catch (Exception ex){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
+        }
         return null;
     }
 
