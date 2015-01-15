@@ -540,7 +540,7 @@ margin-top: 69px;
 	margin-left:70px;
 }
 .mainbox .shouhuo li{
-	padding:13px 0px;
+	padding:8px 0px;
 	color:#676767;
 }
 .addmore{
@@ -553,7 +553,7 @@ margin-top: 69px;
 	background: url(../images/addmoreup.png) no-repeat !important;
 }
 .addmorebox{
-	display: none;
+	/*display: none;*/
 	margin-top:11px;
 	margin-left:40px;
 	width: 911px;
