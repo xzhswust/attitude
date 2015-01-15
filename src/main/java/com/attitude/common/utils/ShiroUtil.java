@@ -14,6 +14,11 @@ import java.util.List;
 public class ShiroUtil {
     public static String getCurrLoginUserName(){
         Subject subject = SecurityUtils.getSubject();
+        boolean isRemenberMe = subject.isRemembered();
+        if(isRemenberMe) {
+            String userName = String.valueOf(subject.getPrincipal());
+            return userName;
+        }
         if(null != subject.getSession()) {
             return String.valueOf(subject.getSession().getAttribute("user_mobile"));
         }else{
