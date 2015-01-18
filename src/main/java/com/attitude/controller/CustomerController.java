@@ -98,7 +98,7 @@ public class CustomerController {
             UserExample example = new UserExample();
             example.createCriteria().andMobilePhoneEqualTo(mobile);
             List<User> users = MapperServiceUtil.getUserMapperService().selectByExample(example);
-            AsyncResponseJson responseJson = new AsyncResponseJson(true, "登陆成功");
+            AsyncResponseJson responseJson = new AsyncResponseJson(true, "登录成功");
             if (users == null || users.size() == 0) {
                 //用户不存在
                 responseJson.setSuccess(false);

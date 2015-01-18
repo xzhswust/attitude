@@ -17,8 +17,8 @@
         $(window).load(function () {
             $('#container').BlocksIt({
                 numOfCol: 4,
-                offsetX: 8,
-                offsetY: 8
+                offsetX: 5,
+                offsetY: 5
             });
         });
     })
