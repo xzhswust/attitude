@@ -98,10 +98,14 @@
                     </tr>
                     <tr>
                         <td>壹态纤体瘦身套餐（2周）</td>
-                        <td>1380</td>
-                        <td>1套</td>
+                        <td><span id="jiage">1380</span></td>
+                        <td style="position:relative">
+                            <span id="countnum">1</span>套
+                            <div class="count">+</div>
+                            <div class="count">-</div>
+                        </td>
                         <td>0</td>
-                        <td>1380</td>
+                        <td><span id="jieguo">1380</span></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -112,6 +116,25 @@
 
 
                 </table>
+                <script>
+                    $('.count').eq(0).click(function(){
+                        var countnum=$('#countnum').text();
+                        var jiage=$('#jiage').text();
+                        countnum++;
+                        $('#jieguo').text(jiage*countnum);
+                        $('#countnum').text(countnum);
+                    })
+                    $('.count').eq(1).click(function(){
+                        var countnum=$('#countnum').text();
+                        var jiage=$('#jiage').text();
+                        countnum--;
+                        if (countnum<1){
+                            countnum=1
+                        }
+                        $('#jieguo').text(jiage*countnum);
+                        $('#countnum').text(countnum);
+                    })
+                </script>
                 <div class="formbottom"></div>
             </div>
 

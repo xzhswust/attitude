@@ -51,8 +51,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /=anon
-                /Order=authc
-                /Order/**=authc
+                /Order=anon
+                /Order/**=anon
                 /Product=anon
                 /Comment=anon
                 /Delivery=anon

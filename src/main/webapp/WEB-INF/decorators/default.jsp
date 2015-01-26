@@ -86,7 +86,12 @@
                 <li><a class="wxgx" href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
                 <li><a href="http://wpa.qq.com/msgrd?v=3&uin=344013224&site=qq&menu=yes"><img src="/static/portal/images/qq.png" alt=""/></a></li>
                 <li><a href="#" onclick="window.open('http://weibo.com/u/5275387413');"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
+                <div class="clear"></div>
             </ul>
+            <div class="phoneinfo">
+                <img src="/static/portal/images/pico.png" alt=""/>
+                4000-160-167 <span>（9:00-22:00）</span>
+            </div>
         </div>
         <script>
             $('.wxgx').click(function () {
@@ -99,9 +104,11 @@
         </script>
         <div class="rightdesc">
             <ul>
-                <li>市场联络：SLKFDJLSKFJS</li>
-                <li>京ICP备149594940</li>
-                <li><a href="mailto:yitaidiet0815@163.com">yitaidiet0815@163.com</a></li>
+                <li>市场联络：marketing@yitaidiet.com</li>
+                <li>职位问询：hr@yitaidiet.com</li>
+                <br />
+                <li>京ICP备14009743号</li>
+                <li>做追舒服的自己，Live Yourself Comfortably！</li>
             </ul>
         </div>
     </div>
@@ -109,6 +116,26 @@
 </body>
 <script>
     $(document).ready(function () {
+        if ($(".block").length<0){
+            var dd=$('html').height();
+            var screenheight=$(window).height();
+            var topheight=$('.headerbox').height();
+            var bottomheight=$('.mainbottom').height();
+//  		$('.headerbox').append('文档高度'+dd+'<br>');
+//  		$('.headerbox').append('屏幕高度'+screenheight+'<br>');
+            if (dd<screenheight){
+                var wdd=(screenheight-dd);
+                var bheight=$('.bodybox').height();
+                bheight=bheight+wdd;
+                $('.bodybox').height(bheight);
+            }
+        }
+
+        if ($('#userTitle').text() != '') {
+            $('#login_state').show();
+            $('#un_login_state').hide();
+        }
+
         if ($('#userTitle').text() != '') {
             $('#login_state').show();
             $('#un_login_state').hide();

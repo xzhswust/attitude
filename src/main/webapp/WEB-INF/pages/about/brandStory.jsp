@@ -25,6 +25,7 @@
         <%--</div>--%>
     <%--</div>--%>
 <%--</div>--%>
+<div class="cnavbg">
 <div class="maincnav">
     <ul style="float:left">
         <li class="on">
@@ -35,6 +36,7 @@
         </li>
         <div class="clear"></div>
     </ul>
+</div>
 </div>
 <div class="clear"></div>
 <div class="bodybox nobg">

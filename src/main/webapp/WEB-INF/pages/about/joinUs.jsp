@@ -27,6 +27,7 @@
         <%--</div>--%>
     <%--</div>--%>
 <%--</div>--%>
+<div class="cnavbg">
 <div class="maincnav">
     <ul style="float:left">
         <li>
@@ -38,7 +39,7 @@
         <div class="clear"></div>
     </ul>
 </div>
-
+</div>
 <div class="bodybox nobg">
     <div class="articlebox about">
         <h1>加入我们</h1>
