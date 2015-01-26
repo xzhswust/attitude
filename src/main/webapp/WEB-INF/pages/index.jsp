@@ -18,12 +18,12 @@
             <li><a href="/"
                    style="display:block;width:100%;height:100%;background:url(/static/portal/images/banner.png) no-repeat center top"></a>
             </li>
-            <li><a href="/"
-                   style="display:block;width:100%;height:100%;background:url(/static/portal/images/banner.png) no-repeat center top"></a>
-            </li>
-            <li><a href="/"
-                   style="display:block;width:100%;height:100%;background:url(/static/portal/images/banner.png) no-repeat center top"></a>
-            </li>
+            <%--<li><a href="/"--%>
+                   <%--style="display:block;width:100%;height:100%;background:url(/static/portal/images/banner.png) no-repeat center top"></a>--%>
+            <%--</li>--%>
+            <%--<li><a href="/"--%>
+                   <%--style="display:block;width:100%;height:100%;background:url(/static/portal/images/banner.png) no-repeat center top"></a>--%>
+            <%--</li>--%>
         </ul>
     </div>
 </div>

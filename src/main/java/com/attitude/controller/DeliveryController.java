@@ -20,12 +20,12 @@ import java.util.List;
  * Created by zh.xu on 2015/1/13.
  */
 @Controller
-@RequestMapping(value = "/Delivery")
+@RequestMapping(value = "/Customer")
 public class DeliveryController {
     @RequestMapping(value = "/DeliveryAddrMan", method = RequestMethod.GET)
     public String delivery(Model model, HttpServletRequest request) {
-
-        return "delivery/DeliveryAddrMan";
+        ShiroUtil.setModelUserTitle(model);
+        return "myAttitude/DeliveryAddrMan";
     }
 
     @RequestMapping(value = "/getDeliveries", method = RequestMethod.GET)

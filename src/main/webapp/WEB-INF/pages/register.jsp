@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>欢迎注册壹态用户</title>
+    <title>壹态Diet</title>
     <%--<meta name="decorator" content="un-decorator-pages"/>--%>
     <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
     <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>

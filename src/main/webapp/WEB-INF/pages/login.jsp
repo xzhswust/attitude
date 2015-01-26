@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>欢迎登录壹态</title>
+    <title>壹态Diet</title>
     <!--标识该页面不被sitemesh装饰-->
     <%--<meta name="decorator" content="un-decorator-pages"/>--%>
     <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>

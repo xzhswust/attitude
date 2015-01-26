@@ -9,6 +9,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>壹态Diet</title>
 </head>
 <body>
@@ -191,7 +192,7 @@
 
     function saveShdz(){
         $.ajax({
-            url: '/Delivery/addDelivery',
+            url: '/Customer/addDelivery',
             type: 'POST',
             data: $('#shdz').serialize(),
             dataType: 'json',
@@ -203,7 +204,7 @@
                         $.alerts.dialogClass = null; // 重置到默认值
                     });
                     closeWindow();
-                    window.location.href="/Delivery/DeliveryAddrMan";
+                    window.location.href="/Customer/DeliveryAddrMan";
                 } else {
 //                    jAlert(json.message);
                     $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
@@ -225,7 +226,7 @@
 
     function doEditShdz(id){
         $.ajax({
-            url: '/Delivery/editDelivery?id=' + $("#deliveryID").html(),
+            url: '/Customer/editDelivery?id=' + $("#deliveryID").html(),
             type: 'POST',
             async:false,
             data: $('#shdz').serialize(),
@@ -239,7 +240,7 @@
                         $.alerts.dialogClass = null; // 重置到默认值
                     });
                     closeWindow();
-                    window.location.href="/Delivery/DeliveryAddrMan";
+                    window.location.href="/Customer/DeliveryAddrMan";
                 } else {
                     //$.messager.alert('提示', json.message, 'error');
 //                    jAlert(json.message);
@@ -263,7 +264,7 @@
     function editShdz(id){
         $("#deliveryID").html(id);
         $.ajax({
-            url: '/Delivery/getDeliveriy?id=' + id,
+            url: '/Customer/getDeliveriy?id=' + id,
             type: 'POST',
             data: null,
             async:false,
@@ -302,7 +303,7 @@
 
     function deleteShdz(id){
         if(confirm("确认要删除该收货地址？")){
-            var url = "/Delivery/deleteDelivery?id=" + id;
+            var url = "/Customer/deleteDelivery?id=" + id;
 //            alert(url);
             $.ajax({
                 url: url,
@@ -311,7 +312,7 @@
                 dataType: 'json',
                 success: function (json) {
                     if (json.success) {
-                        window.location.href="/Delivery/DeliveryAddrMan";
+                        window.location.href="/Customer/DeliveryAddrMan";
                     } else {
 //                        jAlert(json.message);
                         $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
@@ -335,7 +336,7 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: '/Delivery/getDeliveries',
+            url: '/Customer/getDeliveries',
             type: 'GET',
             data: null,
             dataType: 'json',
