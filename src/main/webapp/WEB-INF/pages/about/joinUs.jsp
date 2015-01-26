@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>公司介绍</title>
+    <title>壹态Diet</title>
     <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
     <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
     <%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
@@ -33,7 +33,7 @@
             <a href="/About">品牌故事</a>
         </li>
         <li class="on">
-            <a href="/ComDesc">公司介绍</a>
+            <a href="/JoinUs">加入我们</a>
         </li>
         <div class="clear"></div>
     </ul>
@@ -41,7 +41,7 @@
 
 <div class="bodybox nobg">
     <div class="articlebox about">
-        <h1>壹态公司介绍</h1>
+        <h1>加入我们</h1>
         <strong class="c1">公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</strong>
 
         <div class="hr"></div>

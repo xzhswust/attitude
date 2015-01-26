@@ -9,14 +9,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>收货地址管理</title>
+    <title>壹态Diet</title>
 </head>
 <body>
-<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
+<%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
 <link rel="stylesheet" type="text/css" href="/static/portal/css/jquery.inputbox.css"/>
-<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
-<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
-<script src="/static/portal/js/common.js" type="application/javascript"></script>
+<%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
+<%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
+<%--<script src="/static/portal/js/common.js" type="application/javascript"></script>--%>
 <script src="/static/portal/js/jquery.inputbox.js" type="text/javascript"></script>
 <script src="/static/portal/js/jquery.ganged.js" type="text/javascript"></script>
 <script src="/static/portal/js/diqu.js" type="text/javascript"></script>
@@ -197,15 +197,27 @@
             dataType: 'json',
             success: function (json) {
                 if (json.success) {
-                    alert(json.message);
+//                    alert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">恭喜你</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                     closeWindow();
                     window.location.href="/Delivery/DeliveryAddrMan";
                 } else {
-                    jAlert(json.message);
+//                    jAlert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                 }
             },
             error: function (data) {
-                jAlert(data);
+//                jAlert(data);
+                $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+data+'</div>', '', function() {
+                    $.alerts.dialogClass = null; // 重置到默认值
+                });
                 closeWindow();
             }
         });
@@ -221,16 +233,28 @@
             success: function (json) {
                 //var json = (new Function("return " + data))();
                 if (json.success) { //申报成功
-                    alert(json.message);
+//                    alert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">恭喜你</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                     closeWindow();
                     window.location.href="/Delivery/DeliveryAddrMan";
                 } else {
                     //$.messager.alert('提示', json.message, 'error');
-                    jAlert(json.message);
+//                    jAlert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                 }
             },
             error: function (data) {
-                jAlert(data);
+//                jAlert(data);
+                $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+data+'</div>', '', function() {
+                    $.alerts.dialogClass = null; // 重置到默认值
+                });
                 closeWindow();
             }
         });
@@ -279,7 +303,7 @@
     function deleteShdz(id){
         if(confirm("确认要删除该收货地址？")){
             var url = "/Delivery/deleteDelivery?id=" + id;
-            alert(url);
+//            alert(url);
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -289,11 +313,19 @@
                     if (json.success) {
                         window.location.href="/Delivery/DeliveryAddrMan";
                     } else {
-                        jAlert(json.message);
+//                        jAlert(json.message);
+                        $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                        jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+json.message+'</div>', '', function() {
+                            $.alerts.dialogClass = null; // 重置到默认值
+                        });
                     }
                 },
                 error: function (data) {
-                    jAlert(data);
+//                    jAlert(data);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+data+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                     closeWindow();
                 }
             });

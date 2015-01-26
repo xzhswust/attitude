@@ -77,18 +77,31 @@
 <div class="mainbottom">
     <div class="bottombox"></div>
     <div class="footer">
+        <div class="wxtc">
+            <div class="is_close"></div>
+            <img src="/static/portal/images/yytt.png" width="336" height="295">
+        </div>
         <div class="leftmenu">
             <ul>
-                <li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
+                <li><a class="wxgx" href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=344013224&site=qq&menu=yes"><img src="/static/portal/images/qq.png" alt=""/></a></li>
+                <li><a href="#" onclick="window.open('http://weibo.com/u/5275387413');"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
             </ul>
         </div>
+        <script>
+            $('.wxgx').click(function () {
+                $('.wxtc').fadeIn();
+                return false;
+            })
+            $('.is_close').click(function () {
+                $('.wxtc').fadeOut();
+            })
+        </script>
         <div class="rightdesc">
             <ul>
                 <li>市场联络：SLKFDJLSKFJS</li>
                 <li>京ICP备149594940</li>
-                <li>YITAIDIET@163.COM</li>
+                <li><a href="mailto:yitaidiet0815@163.com">yitaidiet0815@163.com</a></li>
             </ul>
         </div>
     </div>
@@ -115,8 +128,10 @@
             $("#delivery").addClass("on");
         }else if(url.indexOf('/QA') > 0) {
             $("#qa").addClass("on");
-        }else if(url.indexOf('About') > 0 || url.indexOf('ComDesc') > 0) {
+        }else if(url.indexOf('About') > 0 || url.indexOf('JoinUs') > 0) {
             $("#about").addClass("on");
+        }else if(url.indexOf('Customer') > 0 || url.indexOf('Login') > 0 || url.indexOf('Register') > 0){
+
         }else{
             $("#product").addClass("on");
         }

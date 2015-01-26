@@ -87,12 +87,20 @@
             success: function (json) {
                 //var json = (new Function("return " + data))();
                 if (json.success) { //申报成功
-                    alert(json.message);
-                    window.location.href = "/Customer/GetUserInfo";
+                    //alert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">恭喜你</div><div>登录成功</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
+                    window.location.href = "/Product";
 
                 } else {
                     //$.messager.alert('提示', json.message, 'error');
-                    jAlert(json.message);
+                    //jAlert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">登录失败</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                 }
             },
             error: function (data) {

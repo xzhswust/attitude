@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>填写订单</title>
+    <title>壹态Diet</title>
 </head>
 <body>
 <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 <script src="/static/portal/js/jquery.ganged.js" type="text/javascript"></script>
 <script src="/static/portal/js/diqu.js" type="text/javascript"></script>
 
-<div class="cnav"></div>
+<%--<div class="cnav"></div>--%>
 <div class="bodybox">
     <div class="bodymain2" style="height:auto;">
         <div class="usernav">
@@ -119,24 +119,24 @@
         </div>
     </div>
 </div>
-<div class="mainbottom">
-    <div class="bottombox"></div>
-    <div class="footer">
-        <div class="leftmenu">
-            <ul>
-                <li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
-            </ul>
-        </div>
-        <div class="rightdesc">
-            <ul>
-                <li>市场联络：SLKFDJLSKFJS</li>
-                <li>京ICP备149594940</li>
-                <li>YITAIDIET@163.COM</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<%--<div class="mainbottom">--%>
+    <%--<div class="bottombox"></div>--%>
+    <%--<div class="footer">--%>
+        <%--<div class="leftmenu">--%>
+            <%--<ul>--%>
+                <%--<li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>--%>
+                <%--<li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>--%>
+                <%--<li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+        <%--<div class="rightdesc">--%>
+            <%--<ul>--%>
+                <%--<li>市场联络：SLKFDJLSKFJS</li>--%>
+                <%--<li>京ICP备149594940</li>--%>
+                <%--<li>YITAIDIET@163.COM</li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 </html>

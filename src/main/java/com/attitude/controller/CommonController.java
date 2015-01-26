@@ -23,12 +23,13 @@ public class CommonController {
     public ModelAndView SendMsgValid(HttpServletRequest request, HttpServletResponse response) {
         String mobile = request.getParameter("mobile");
         String validNum = CommonUtil.GetVerificationCode();
-        String content = "壹态网欢迎您，用户手机验证码为【" + validNum + "】";
+        String content = "壹态网欢迎您，用户手机验证码为:" + validNum;
         SmsClientInterface.sendSms(mobile,content);
 
         //发送成功
         HttpSession session = request.getSession();
         session.setAttribute("validNum",validNum);
+        session.setAttribute("mobile",mobile);
         HttpResponseUtil.writeAsyncResponseJsonToResponse(response,new AsyncResponseJson(true,"手机验证码已成功发送。"));
         return null;
     }

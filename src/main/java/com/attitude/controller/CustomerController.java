@@ -38,6 +38,21 @@ public class CustomerController {
         try {
             AsyncResponseJson responseJson = new AsyncResponseJson(true, "");
 
+            String mobile = request.getParameter("mobile");
+            //验证是否是同一个手机
+            Object m = request.getSession().getAttribute("mobile");
+            String moblieSession = null;
+            if(null != m){
+                moblieSession = String.valueOf(m);
+            }
+            if (!StringUtils.equalsIgnoreCase(mobile, moblieSession)) {
+                responseJson.setSuccess(false);
+                responseJson.setMessage("该注册手机尚未发送验证码，请先发送验证码并接收。");
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response, responseJson);
+
+                return null;
+            }
+
             // 检验验证码是否正确
             String verificationCode = request.getParameter("validNum");
             Object code = request.getSession().getAttribute("validNum");
@@ -53,7 +68,7 @@ public class CustomerController {
                 return null;
             }
 
-            String mobile = request.getParameter("mobile");
+
 
             // 检查手机是否已经注册
             UserExample example = new UserExample();

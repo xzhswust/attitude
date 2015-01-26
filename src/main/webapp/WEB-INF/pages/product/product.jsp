@@ -3,10 +3,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>壹态套餐</title>
+    <title>壹态Diet</title>
 </head>
 <body class="wu2">
-<link href="/static/rocket/css/lrtk.css" rel="stylesheet" type="text/css" />
+<link href="/static/rocket/css/lrtk.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="/static/rocket/js/lrtk.js"></script>
 
 <!-- 火箭升空 -->
@@ -40,6 +40,7 @@
             <a href="/Order" class="buybtn"><img src="/static/portal/images/buybtn.png"/></a>
         </div>
     </div>
+
     <div class="toptwo">
         <p class="p2">
             壹态营养瘦身是一款由专业的营养学家和西餐打出，高级面点师共同开发，以低油低盐低脂的浅加工的轻食理念，<br/>
@@ -61,10 +62,12 @@
     <div class="topthree" style="height:529px;background:url(/static/portal/images/chanp3.png) no-repeat center top;">
         <!--这里用的方法是把图片加在样式上面当做背景图来兼容所有屏幕分辨率该图片分辨率为1920宽 所以屏幕为1920的电脑看起来都是全屏的-->
     </div>
-    <div class="topthree gx" style="height:1077px;background:url(/static/portal/images/chanp4.png) no-repeat center top;">
+    <div class="topthree gx"
+         style="height:1077px;background:url(/static/portal/images/chanp4.png) no-repeat center top;">
         <!--这里用的方法是把图片加在样式上面当做背景图来兼容所有屏幕分辨率该图片分辨率为1920宽 所以屏幕为1920的电脑看起来都是全屏的-->
     </div>
-    <div class="topthree ts" style="height:1080px;background:url(/static/portal/images/chanp5.png) no-repeat center top;">
+    <div class="topthree ts"
+         style="height:1080px;background:url(/static/portal/images/chanp5.png) no-repeat center top;">
         <!--这里用的方法是把图片加在样式上面当做背景图来兼容所有屏幕分辨率该图片分辨率为1920宽 所以屏幕为1920的电脑看起来都是全屏的-->
     </div>
     <div class="topthree" style="height:906px;background:url(/static/portal/images/chanp6.png) no-repeat center top;">

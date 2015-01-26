@@ -3,54 +3,15 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>修改资料</title>
-    <meta name="decorator" content="un-decorator-pages"/>
-    <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
-    <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
-    <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
-    <script src="/static/portal/js/common.js" type="application/javascript"></script>
+    <title>壹态Diet</title>
+    <%--<meta name="decorator" content="un-decorator-pages"/>--%>
+    <%--<link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">--%>
+    <%--<script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>--%>
+    <%--<script src="/static/portal/js/common.js" type="application/javascript"></script>--%>
     <script src="/static/laydate/laydate.js" type="application/javascript"></script>
 </head>
 <body>
-<div class="headerbox white">
-    <div class="header">
-        <div class="logo">
-            <img src="/static/portal/images/logo2.png" width="230" height="51" alt="壹态" title="壹态">
-        </div>
-        <div class="nav">
-            <ul>
-                <li><a href="/">首页</a></li>
-                <li><a href="/Product">壹态套餐</a></li>
-                <li><a href="/Comment">顾客说</a></li>
-                <li><a href="/Delivery">配送服务</a></li>
-                <li><a href="/QA">常见问题</a></li>
-                <li><a href="/About">关于我们</a></li>
-            </ul>
-        </div>
-        <div class="login">
-            <strong>
-                <a style="float: left;" href="/Product">
-                    <img src="/static/portal/images/goumai.png" alt="立即购买" width="28" height="28" title="立即购买"/>
-
-                    <div>立刻购买</div>
-                </a>
-                <a style="padding-top:41px;margin:0 5px;float: left">|</a>
-
-                <div style="float: left;">
-                    <img id="userPic" src="/static/portal/images/user.png" alt="登陆/注册" title="登陆/注册" width="28"
-                         height="28"/>
-
-                    <p id="un_login_state"><a href="/Login">登陆</a><a>/</a><a href="/Register">注册</a></p>
-
-                    <p id="login_state" style="display: none"><a id="userTitle"
-                                                                 href="/Customer/GetUserInfo">${userTitle}</a></p>
-                </div>
-            </strong>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
-<div class="cnav"></div>
 <div class="bodybox">
     <div class="bodymain2">
         <div class="usernav">
@@ -120,25 +81,7 @@
         </div>
     </div>
 </div>
-<div class="mainbottom">
-    <div class="bottombox"></div>
-    <div class="footer">
-        <div class="leftmenu">
-            <ul>
-                <li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
-            </ul>
-        </div>
-        <div class="rightdesc">
-            <ul>
-                <li>市场联络：SLKFDJLSKFJS</li>
-                <li>京ICP备149594940</li>
-                <li>YITAIDIET@163.COM</li>
-            </ul>
-        </div>
-    </div>
-</div>
+
 <script>
     $(document).ready(function () {
         if($('#userTitle').text() != ''){
@@ -158,7 +101,11 @@
         var length = $("#mobile").val().length;
         var mobile = /^(((1[0-9]{2})|(15[0-9]{1}))+\d{8})$/;
         if (length != 11 || !mobile.test($("#mobile").val())) {
-            alert('请输入正确的手机号码!');
+//            alert('请输入正确的手机号码!');
+            $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+            jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">温馨提示</div><div>请输入正确的手机号码</div>', '', function() {
+                $.alerts.dialogClass = null; // 重置到默认值
+            });
             return false;
         }
         return true;
@@ -185,7 +132,11 @@
             success: function (json) {
                 //var json = (new Function("return " + data))();
                 if (json.success) { //申报成功
-                    alert(json.message);
+//                    alert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">恭喜你</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                     window.location.href = "/Customer/GetUserInfo";
                     //$.messager.defaults = { ok: "是", cancel: "否" };
 //                    var msg = "注册成功，您可以登录系统了，您的登录账号为：" + json.message;
@@ -197,7 +148,11 @@
 
                 } else {
                     //$.messager.alert('提示', json.message, 'error');
-                    alert(json.message);
+//                    alert(json.message);
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">抱歉</div><div>'+json.message+'</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
                 }
             },
             error: function (data) {

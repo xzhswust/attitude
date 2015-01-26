@@ -1,12 +1,6 @@
 package com.attitude.controller;
 
-import com.attitude.common.utils.MapperServiceUtil;
 import com.attitude.common.utils.ShiroUtil;
-import com.attitude.dal.mybatis.dao.UserMapper;
-import com.attitude.dal.mybatis.entity.User;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by Smomo on 14-11-20.
@@ -51,10 +44,10 @@ public class PortalController {
         return "/qa/qa";
     }
 
-    @RequestMapping(value = "/ComDesc", method = RequestMethod.GET)
+    @RequestMapping(value = "/JoinUs", method = RequestMethod.GET)
     public String ComDesc(Model model, HttpServletRequest request) {
         ShiroUtil.setModelUserTitle(model);
-        return "/about/companyDesc";
+        return "about/joinUs";
     }
 
     @RequestMapping(value = "/About", method = RequestMethod.GET)

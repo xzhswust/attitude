@@ -35,11 +35,18 @@ $(function(){
 		$('.fruitbox').hide();
 		return false;
 	})
+	//$('#gx').click(function(){
+	//	$("html,body").animate({scrollTop:$(".gx").offset().top},2000);
+	//});
+	//$('#ts').click(function(){
+	//	$("html,body").animate({scrollTop:$(".ts").offset().top},2000);
+	//});
+	//2015-1-24修改，将动画时间调整为1ms实现立即跳转
 	$('#gx').click(function(){
-		$("html,body").animate({scrollTop:$(".gx").offset().top},2000);
+		$("html,body").animate({scrollTop:$(".gx").offset().top},1);
 	});
 	$('#ts').click(function(){
-		$("html,body").animate({scrollTop:$(".ts").offset().top},2000);
+		$("html,body").animate({scrollTop:$(".ts").offset().top},1);
 	});
 	//
 	$(".mainbanner").slide({mainCell:".picbox ul",autoPlay:true,effect:'fade',interTime:5000});

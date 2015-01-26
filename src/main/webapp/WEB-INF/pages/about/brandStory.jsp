@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>关于我们</title>
+    <title>壹态Diet</title>
     <link href="/static/portal/css/common.css" rel="stylesheet" type="text/css">
     <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
     <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
@@ -31,7 +31,7 @@
         <a href="/About">品牌故事</a>
         </li>
         <li>
-        <a href="/ComDesc">公司介绍</a>
+        <a href="/JoinUs">加入我们</a>
         </li>
         <div class="clear"></div>
     </ul>
