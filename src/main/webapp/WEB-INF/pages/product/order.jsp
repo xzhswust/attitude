@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,7 @@
 <script src="/static/portal/js/jquery.ganged.js" type="text/javascript"></script>
 <script src="/static/portal/js/diqu.js" type="text/javascript"></script>
 
-<%--<div class="cnav"></div>--%>
+
 <div class="bodybox">
     <div class="bodymain2" style="height:auto;">
         <div class="usernav">
@@ -100,9 +100,12 @@
                         <td>壹态纤体瘦身套餐（2周）</td>
                         <td><span id="jiage">1380</span></td>
                         <td style="position:relative">
-                            <span id="countnum">1</span>套
-                            <div class="count">+</div>
-                            <div class="count">-</div>
+                        	<div class="count xdel"></div>
+                        	<span>
+                        	<span id="countnum">1</span>套 
+                        	</span>
+                        		<div class="count xadd"></div>
+                        	<div class="clear"></div>
                         </td>
                         <td>0</td>
                         <td><span id="jieguo">1380</span></td>
@@ -117,23 +120,23 @@
 
                 </table>
                 <script>
-                    $('.count').eq(0).click(function(){
-                        var countnum=$('#countnum').text();
-                        var jiage=$('#jiage').text();
-                        countnum++;
-                        $('#jieguo').text(jiage*countnum);
-                        $('#countnum').text(countnum);
-                    })
-                    $('.count').eq(1).click(function(){
-                        var countnum=$('#countnum').text();
-                        var jiage=$('#jiage').text();
-                        countnum--;
-                        if (countnum<1){
-                            countnum=1
-                        }
-                        $('#jieguo').text(jiage*countnum);
-                        $('#countnum').text(countnum);
-                    })
+                	$('.count').eq(1).click(function(){
+                		var countnum=$('#countnum').text();
+                		var jiage=$('#jiage').text();
+                		countnum++;
+                		$('#jieguo').text(jiage*countnum);
+                		$('#countnum').text(countnum);
+                	})
+                		$('.count').eq(0).click(function(){
+                		var countnum=$('#countnum').text();
+                		var jiage=$('#jiage').text();
+                		countnum--;
+                		if (countnum<1){
+                			countnum=1
+                		}
+                		$('#jieguo').text(jiage*countnum);
+                		$('#countnum').text(countnum);
+                	})
                 </script>
                 <div class="formbottom"></div>
             </div>
@@ -142,24 +145,5 @@
         </div>
     </div>
 </div>
-<%--<div class="mainbottom">--%>
-    <%--<div class="bottombox"></div>--%>
-    <%--<div class="footer">--%>
-        <%--<div class="leftmenu">--%>
-            <%--<ul>--%>
-                <%--<li><a href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>--%>
-                <%--<li><a href="#"><img src="/static/portal/images/qq.png" alt=""/></a></li>--%>
-                <%--<li><a href="#"><img src="/static/portal/images/weibo.png" alt=""/></a></li>--%>
-            <%--</ul>--%>
-        <%--</div>--%>
-        <%--<div class="rightdesc">--%>
-            <%--<ul>--%>
-                <%--<li>市场联络：SLKFDJLSKFJS</li>--%>
-                <%--<li>京ICP备149594940</li>--%>
-                <%--<li>YITAIDIET@163.COM</li>--%>
-            <%--</ul>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
 </body>
 </html>

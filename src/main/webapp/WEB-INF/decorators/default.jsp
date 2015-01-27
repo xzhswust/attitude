@@ -83,9 +83,9 @@
         </div>
         <div class="leftmenu">
             <ul>
-                <li><a class="wxgx" href="#"><img src="/static/portal/images/wx.png" alt=""/></a></li>
-                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=344013224&site=qq&menu=yes"><img src="/static/portal/images/qq.png" alt=""/></a></li>
-                <li><a href="#" onclick="window.open('http://weibo.com/u/5275387413');"><img src="/static/portal/images/weibo.png" alt=""/></a></li>
+                <li><a class="wxgx" href="#"><img src="/static/portal/images/wx.png" alt="" height="33"/></a></li>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=344013224&site=qq&menu=yes"><img src="/static/portal/images/qq.png" alt=""  height="33"/></a></li>
+                <li><a href="#" onclick="window.open('http://weibo.com/u/5275387413');"><img src="/static/portal/images/weibo.png" alt=""  height="33"/></a></li>
                 <div class="clear"></div>
             </ul>
             <div class="phoneinfo">
@@ -106,11 +106,11 @@
             <ul>
                 <li>市场联络：marketing@yitaidiet.com</li>
                 <li>职位问询：hr@yitaidiet.com</li>
-                <br />
                 <li>京ICP备14009743号</li>
-                <li>做追舒服的自己，Live Yourself Comfortably！</li>
+                <li>做最舒服的自己，Live Yourself Comfortably！</li>
             </ul>
         </div>
+        <div class="clear"></div>
     </div>
 </div>
 </body>

@@ -1,10 +1,4 @@
-/*html{color:#000;background:#FFF;font-family:arial, helvetica, sans-serif;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}*/
-/*a{*/
-/*text-decoration:none;*/
-/*}*/
-/* 2015-1-24 */
-
-html {
+﻿html {
 	color: #000;
 	background: #FFF;
 	font-family: Microsoft YaHei, helvetica, sans-serif;
@@ -12,8 +6,6 @@ html {
 .articlebox {
 	font-size: 12px;
 }
-/* 修改字体为微软雅黑 文章内容为12PX字*/
-
 body,
 div,
 dl,
@@ -312,7 +304,7 @@ a {
 .nav li.on {
 	border-bottom: 2px solid #A9CE2C;
 }
-.nav li.on a{
+.nav li.on a {
 	font-weight: bold;
 	color: #A9CE2C;
 }
@@ -322,8 +314,8 @@ a {
 
 .mainbottom {
 	width: 100%;
-	height: 200px;
 	background: #95c754;
+	padding-bottom: 40px;
 }
 .mainbanner li {
 	width: 100%;
@@ -396,36 +388,37 @@ a {
 	text-align: left;
 	color: white;
 	font-size: 12px;
-	height: 200px;
 	line-height: 24px;
 }
 .leftmenu {
 	float: left;
-	margin-top: 64px;
-	margin-left: 194px;
-	border-right:1px solid white;
+margin-top: 50px;
+margin-left: 194px;
+padding-right: 30px;
+border-right: 1px solid white;
 }
-.phoneinfo{
-	margin-top:36px;
-	font-size:15px;
+.phoneinfo {
+	margin-top: 13px;
+	font-size: 15px;
 }
-.phoneinfo span{
-	font-size:12px;
+.phoneinfo span {
+	font-size: 12px;
 }
 .leftmenu li {
 	float: left;
-	margin-right: 75px;
+	margin-right: 50px;
 }
 .rightdesc {
 	float: left;
 	margin-left: 77px;
-	margin-top: 65px;
-	font-size:14px;
+	margin-top: 48px;
+	font-size: 14px;
+	line-height:24px;
 }
 .bodybox {
 	/*background:#fdfedd;*/
 
-	background:#f9fbf0;
+	background: #f9fbf0;
 }
 .bodymain {
 	width: 980px;
@@ -797,8 +790,9 @@ a {
 /*}*/
 
 .gukeshuo {
+	padding: 30px;
 	position: relative;
-	margin: 30px auto;
+	margin: auto;
 }
 .gukeshuo .headwall {
 	float: left;
@@ -852,11 +846,11 @@ a {
 }
 .maincnav li {
 	float: left;
-	margin-top: 13px;
+	margin-top: 5px;
 	padding: 0px 28px;
 	height: 24px;
 	line-height: 24px;
-	font-size: 14px;
+	font-size: 12px;
 	border-right: 1px solid #A9CE2C;
 	color: #838282;
 	cursor: pointer;
@@ -1182,7 +1176,7 @@ input[type=radio]:active {
 }
 .block {
 	width: 265px;
-	float:left;
+	float: left;
 	background: #fff;
 	margin-bottom: 10px;
 	line-height: 1.7;
@@ -1208,11 +1202,11 @@ input[type=radio]:active {
 	color: #A9CE2C;
 	font-weight: bold;
 	font-size: 13px;
-	margin:10px;
+	margin: 10px;
 }
 .block .u_cont {
 	font-size: 12px;
-	margin:10px;
+	margin: 10px;
 }
 .wxtc {
 	position: fixed;
@@ -1241,49 +1235,60 @@ input[type=radio]:active {
 	height: 710px;
 }
 .cnavbg {
-	height: 50px;
+	height: 35px;
 	background: #f6f6f6;
 }
-.shbox{
-	width:1200px;
+.shbox {
+	width: 1200px;
 	margin: auto;
 	position: relative;
 }
-.titleCell{
+.titleCell {
 	position: absolute;
-	left:50%;
-	margin-left:-50px;
-	bottom:50px;
+	left: 50%;
+	margin-left: -50px;
+	bottom: 50px;
 }
-.titleCell ul{
-	margin-left:30px;
+.titleCell ul {
+	margin-left: 30px;
 }
-.titleCell li{
-	height:15px;
-	width:15px;
+.titleCell li {
+	height: 15px;
+	width: 15px;
 	display: block;
-	background:#dcdfd9;
+	background: #dcdfd9;
 	border-radius: 100%;
-	font-size:0px;
-	line-height:0px;
+	font-size: 0px;
+	line-height: 0px;
 	overflow: hidden;
-	float:left;
-	margin-right:15px;
+	float: left;
+	margin-right: 15px;
 }
-.titleCell li.on{
-	background:#b0dd7c;
+.titleCell li.on {
+	background: #b0dd7c;
 }
-.count{
-	display:inline-block;
-	border:1px solid #ccc;
-	font-size:10px;
+.count {
+	cursor: pointer;
+	background:url(../images/add.png) no-repeat;
+	display: inline-block;
+	font-size: 10px;
 	clear: both;
 	*display: inline;
-	zoom:1;
-	width:10px;
-	font-size:10px;
-	height:10px;
+	zoom: 1;
+	width: 15px;
+	font-size: 15px;
+	height: 15px;
 	line-height: 10px;
 	text-align: center;
+	margin-right: 5px;
+	background-size:15px 15px;
+	margin-top:1px;
+}
+.xdel{
 	margin-left:5px;
+	background:url(../images/add2.png) no-repeat;
+	background-size:15px 15px;
+}
+.xadd{
+	margin-left:3px;
 }
