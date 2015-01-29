@@ -39,7 +39,7 @@
 </div>
 </div>
 <div class="clear"></div>
-<div class="bodybox nobg">
+<div class="bodybox nobg" style="background:#f9fbf0 !important;">
     <div class="articlebox about">
         <h2>壹态品牌故事</h2>
 
@@ -51,7 +51,7 @@
 
         <h2>壹态公司介绍</h2>
 
-        <p class="p1" style="margin-bottom:87px">公司介绍故意的示范和低速范德萨护肤IDS把大撒把浮动撒布范德萨与范德萨范德萨法规和健康日体育ibnmfghjvbnmfghjkfgh
+        <p class="p1" style="padding-bottom:87px">公司介绍故意的示范和低速范德萨护肤IDS把大撒把浮动撒布范德萨与范德萨范德萨法规和健康日体育ibnmfghjvbnmfghjkfgh
             公司介绍故意的示范和低速范德萨护肤IDS把大撒把浮动撒布范德萨与范德萨范德萨法规和健康日体育ibnmfghjvbnmfghjkfgh
             公司介绍故意的示范和低速范德萨护肤IDS把大撒把浮动撒布范德萨与范德萨范德萨法规和健康日体育ibnmfghjvbnmfghjkfgh
             公司介绍故意的示范和低速范德萨护肤IDS把大撒把浮动撒布范德萨与范德萨范德萨法规和健康日体育ibnmfghjvbnmfghjkfgh

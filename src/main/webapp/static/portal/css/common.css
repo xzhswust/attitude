@@ -181,7 +181,7 @@ a {
 	margin: auto;
 }
 .about h1 {
-	margin-top: 49px;
+	padding-top: 49px;
 	text-align: center;
 	font-size: 22px;
 	color: #A9CE2C;
@@ -190,7 +190,7 @@ a {
 	font-size: 22px;
 	color: #A9CE2C;
 	text-align: left;
-	margin-top: 93px;
+	padding-top: 93px;
 	margin-bottom: 39px;
 }
 .about .p1 {
