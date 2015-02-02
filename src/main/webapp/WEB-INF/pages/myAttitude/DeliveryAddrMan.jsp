@@ -275,18 +275,27 @@
                     $("#addDelivery").attr("style", "display:none");
                     $("#editDelivery").attr("style", "");
                     var address = (new Function("return " + json.message))();
-                    $("#provinceID").val(address.provinceCode);
-                    //$(this).parent().find('.city').val(address.cityCode);
-                    $("#cityID").val(address.cityCode);
-                    //$(this).parent().find('.area').val(address.districtCode);
-                    $("#areaID").val(address.districtCode);
+//                    $("#provinceID").val(address.provinceCode);
+//                    $("#cityID").val(address.cityCode);
+//                    $("#areaID").val(address.districtCode);
+                    $('div[name="province"] .selected').html(address.provinceCode);
+                    $('input[name="province"]').val(address.provinceCode);
+                    setTimeout(function(){
+                        $('div[name="city"] .selected').html(address.cityCode);
+                        $('input[name="city"]').val(address.cityCode);
+                    },50);
+                    setTimeout(function(){
+                        $('div[name="area"] .selected').html(address.districtCode);
+                        $('input[name="area"]').val(address.districtCode);
+                    },100);
+
                     $("#consignee").val(address.consignee);
                     $("#phone").val(address.contractPhone);
                     $("#address").val(address.address);
 
-                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
-                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
-                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
+//                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
+//                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
+//                    $('#sel3').ganged({ 'data': data, 'width': 100, 'height': 30 });
                 } else {
                     jAlert(json.message);
                     return;

@@ -3,9 +3,15 @@
 
 	var pcData = {'provinces':[]},//省市数据
 		caData = {'cities':[]};//市区数据
-	var defaultStr = '<a href="javascript:void(0);" val="-1">请选择</a>',
+	var defaultStr = '<a href="javascript:void(0);" val="-1">请选择省份</a>',
 		defaultId = -1,
 		defaultName = '请选择';
+	var defaultStr2 = '<a href="javascript:void(0);" val="-1">请选择城市</a>',
+		defaultId2 = -1,
+		defaultName2 = '请选择';
+	var defaultStr3 = '<a href="javascript:void(0);" val="-1">请选择地区</a>',
+		defaultId3 = -1,
+		defaultName3 = '请选择';
 	//处理取回的数据
 	function handleData(datas){
 		var tempArr = [];
@@ -77,9 +83,9 @@
 		return _cities;
 	};
 	function showCity(obj, cities, selectCId){
-		var tempStr = defaultStr;
-		var tempId = defaultId;
-		var tempName = defaultName;
+		var tempStr = defaultStr2;
+		var tempId = defaultId2;
+		var tempName = defaultName2;
 		var _cities = cities? cities : [];
 		var _areas = [];
 
@@ -102,9 +108,9 @@
 		return _areas;
 	};
 	function showArea(obj, areas, selectAId){
-		var tempStr = defaultStr;
-		var tempId = defaultId;
-		var tempName = defaultName
+		var tempStr = defaultStr3;
+		var tempId = defaultId3;
+		var tempName = defaultName3
 		var _areas = areas? areas : [];
 		var _towns = [];
 

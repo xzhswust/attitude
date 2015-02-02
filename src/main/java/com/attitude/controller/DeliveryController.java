@@ -36,9 +36,9 @@ public class DeliveryController {
 
             List<Address> addresses = MapperServiceUtil.getAddressMapperService().selectByExample(addressExample);
             String shdzHtml = "";
-            for(Address address : addresses){
-                if((address.getConsignee() == null || address.getConsignee().isEmpty()) ||
-                        (address.getAddress() == null || address.getAddress().isEmpty())){
+            for (Address address : addresses) {
+                if ((address.getConsignee() == null || address.getConsignee().isEmpty()) ||
+                        (address.getAddress() == null || address.getAddress().isEmpty())) {
                     continue;
                 }
                 String shdz = address.getProvinceCode() + address.getCityCode() + address.getDistrictCode() + address.getAddress();
@@ -59,9 +59,26 @@ public class DeliveryController {
             }
 
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, shdzHtml));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
+
+        return null;
+    }
+
+    @RequestMapping(value = "/getDeliveryListJson", method = RequestMethod.GET)
+    public ModelAndView getDeliveryListJson(Model model, HttpServletRequest request, HttpServletResponse response) {
+
+        AddressExample addressExample = new AddressExample();
+        try {
+            addressExample.createCriteria().andUIdEqualTo(this.getUserID(ShiroUtil.getCurrLoginUserName()));
+            List<Address> addresses = MapperServiceUtil.getAddressMapperService().selectByExample(addressExample);
+            HttpResponseUtil.writeTextToResponse(response,JsonUtil.toJson(addresses));
+        } catch (Exception e) {
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, e.getMessage()));
+        }
+
+
 
         return null;
     }
@@ -72,12 +89,12 @@ public class DeliveryController {
             String id = request.getParameter("id");
 
             Address address = MapperServiceUtil.getAddressMapperService().selectByPrimaryKey(Integer.parseInt(id));
-            if(null == address){
+            if (null == address) {
                 throw new Exception("未查询到该收货地址信息");
             }
             String json = JsonUtil.toJson(address);
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, json));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
 
@@ -94,22 +111,22 @@ public class DeliveryController {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         try {
-            if(null == consignee || consignee.isEmpty()){
+            if (null == consignee || consignee.isEmpty()) {
                 throw new Exception("请填写收货人");
             }
-            if(null == phone || phone.isEmpty()){
+            if (null == phone || phone.isEmpty()) {
                 throw new Exception("请填写收货人手机号码");
             }
-            if(null == province || province.isEmpty() || province.equals("-1") || province.equals("请选择")){
+            if (null == province || province.isEmpty() || province.equals("-1") || province.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的省");
             }
-            if(null == city || city.isEmpty() || city.equals("-1") || city.equals("请选择")){
+            if (null == city || city.isEmpty() || city.equals("-1") || city.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的城市");
             }
-            if(null == area || area.isEmpty() || area.equals("-1") || area.equals("请选择")){
+            if (null == area || area.isEmpty() || area.equals("-1") || area.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的地区");
             }
-            if(null == address || address.isEmpty()){
+            if (null == address || address.isEmpty()) {
                 throw new Exception("请填写具体收货地址");
             }
 
@@ -130,7 +147,7 @@ public class DeliveryController {
             MapperServiceUtil.getAddressMapperService().insert(tAddress);
 
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, "添加收货地址成功"));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
 
@@ -146,28 +163,28 @@ public class DeliveryController {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         try {
-            if(null == consignee || consignee.isEmpty()){
+            if (null == consignee || consignee.isEmpty()) {
                 throw new Exception("请填写收货人");
             }
-            if(null == phone || phone.isEmpty()){
+            if (null == phone || phone.isEmpty()) {
                 throw new Exception("请填写收货人手机号码");
             }
-            if(null == province || province.isEmpty() || province.equals("-1") || province.equals("请选择")){
+            if (null == province || province.isEmpty() || province.equals("-1") || province.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的省");
             }
-            if(null == city || city.isEmpty() || city.equals("-1") || city.equals("请选择")){
+            if (null == city || city.isEmpty() || city.equals("-1") || city.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的城市");
             }
-            if(null == area || area.isEmpty() || area.equals("-1") || area.equals("请选择")){
+            if (null == area || area.isEmpty() || area.equals("-1") || area.equals("请选择")) {
                 throw new Exception("请选择收货地址所在的地区");
             }
-            if(null == address || address.isEmpty()){
+            if (null == address || address.isEmpty()) {
                 throw new Exception("请填写具体收货地址");
             }
 
             String id = request.getParameter("id");
             Address tAddress = new Address();
-            tAddress.setuId(Integer.parseInt(id));
+            tAddress.setId(Integer.parseInt(id));
             tAddress.setConsignee(consignee);
             tAddress.setContractPhone(phone);
             tAddress.setProvinceCode(province);
@@ -182,11 +199,11 @@ public class DeliveryController {
             tAddress.setUpdateDate(new Date());
             tAddress.setCreateDate(new Date());
             AddressExample addressExample = new AddressExample();
-            addressExample.createCriteria().andUIdEqualTo(Integer.parseInt(id));
+            addressExample.createCriteria().andIdEqualTo(Integer.parseInt(id));
             MapperServiceUtil.getAddressMapperService().updateByPrimaryKey(tAddress);
 
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, "编辑收货地址成功"));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
         return null;
@@ -196,25 +213,25 @@ public class DeliveryController {
     public ModelAndView deleteDelivery(Model model, HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         try {
-            if(null == id || id.isEmpty()){
+            if (null == id || id.isEmpty()) {
                 throw new Exception("删除的收货地址ID为空");
             }
 
             MapperServiceUtil.getAddressMapperService().deleteByPrimaryKey(Integer.parseInt(id));
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, "删除收货地址成功"));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, ex.getMessage()));
         }
         return null;
     }
 
-    private int getUserID(String userName) throws Exception{
+    private int getUserID(String userName) throws Exception {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(ShiroUtil.getCurrLoginUserName());
         List<User> users = MapperServiceUtil.getUserMapperService().selectByExample(userExample);
-        if(users.size() == 1){
+        if (users.size() == 1) {
             return users.get(0).getId();
-        }else{
+        } else {
             throw new Exception(String.format("未查询到用户%s的信息", ShiroUtil.getCurrLoginUserName()));
         }
     }
