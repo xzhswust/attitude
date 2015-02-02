@@ -5,10 +5,17 @@
     <id column="ID" property="id" jdbcType="INTEGER" />
     <result column="U_ID" property="uId" jdbcType="INTEGER" />
     <result column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="Province" property="province" jdbcType="VARCHAR" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="District" property="district" jdbcType="VARCHAR" />
+    <result column="Consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
     <result column="Count" property="count" jdbcType="INTEGER" />
-    <result column="A_ID" property="aId" jdbcType="INTEGER" />
     <result column="Amount" property="amount" jdbcType="DECIMAL" />
     <result column="Payment" property="payment" jdbcType="VARCHAR" />
+    <result column="BeginDate" property="begindate" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
     <result column="State" property="state" jdbcType="VARCHAR" />
     <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -71,7 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, U_ID, P_ID, Count, A_ID, Amount, Payment, State, Create_Date
+    ID, U_ID, P_ID, Province, City, District, Consignee, Mobile, Address, Count, Amount, 
+    Payment, BeginDate, Remark, State, Create_Date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.attitude.dal.mybatis.entity.OrderExample" >
     select
@@ -105,13 +113,17 @@
   </delete>
   <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Order" >
     insert into t_order (ID, U_ID, P_ID, 
-      Count, A_ID, Amount, 
-      Payment, State, Create_Date
-      )
+      Province, City, District, 
+      Consignee, Mobile, Address, 
+      Count, Amount, Payment, 
+      BeginDate, Remark, State, 
+      Create_Date)
     values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, 
-      #{count,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
-      #{payment,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
-      )
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{consignee,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{payment,jdbcType=VARCHAR}, 
+      #{begindate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Order" >
     insert into t_order
@@ -125,17 +137,38 @@
       <if test="pId != null" >
         P_ID,
       </if>
+      <if test="province != null" >
+        Province,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="district != null" >
+        District,
+      </if>
+      <if test="consignee != null" >
+        Consignee,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
       <if test="count != null" >
         Count,
-      </if>
-      <if test="aId != null" >
-        A_ID,
       </if>
       <if test="amount != null" >
         Amount,
       </if>
       <if test="payment != null" >
         Payment,
+      </if>
+      <if test="begindate != null" >
+        BeginDate,
+      </if>
+      <if test="remark != null" >
+        Remark,
       </if>
       <if test="state != null" >
         State,
@@ -154,17 +187,38 @@
       <if test="pId != null" >
         #{pId,jdbcType=INTEGER},
       </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
       <if test="count != null" >
         #{count,jdbcType=INTEGER},
-      </if>
-      <if test="aId != null" >
-        #{aId,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
         #{amount,jdbcType=DECIMAL},
       </if>
       <if test="payment != null" >
         #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null" >
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
@@ -192,17 +246,38 @@
       <if test="record.pId != null" >
         P_ID = #{record.pId,jdbcType=INTEGER},
       </if>
+      <if test="record.province != null" >
+        Province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        City = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        District = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consignee != null" >
+        Consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
       <if test="record.count != null" >
         Count = #{record.count,jdbcType=INTEGER},
-      </if>
-      <if test="record.aId != null" >
-        A_ID = #{record.aId,jdbcType=INTEGER},
       </if>
       <if test="record.amount != null" >
         Amount = #{record.amount,jdbcType=DECIMAL},
       </if>
       <if test="record.payment != null" >
         Payment = #{record.payment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null" >
+        BeginDate = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null" >
         State = #{record.state,jdbcType=VARCHAR},
@@ -220,10 +295,17 @@
     set ID = #{record.id,jdbcType=INTEGER},
       U_ID = #{record.uId,jdbcType=INTEGER},
       P_ID = #{record.pId,jdbcType=INTEGER},
+      Province = #{record.province,jdbcType=VARCHAR},
+      City = #{record.city,jdbcType=VARCHAR},
+      District = #{record.district,jdbcType=VARCHAR},
+      Consignee = #{record.consignee,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
       Count = #{record.count,jdbcType=INTEGER},
-      A_ID = #{record.aId,jdbcType=INTEGER},
       Amount = #{record.amount,jdbcType=DECIMAL},
       Payment = #{record.payment,jdbcType=VARCHAR},
+      BeginDate = #{record.begindate,jdbcType=TIMESTAMP},
+      Remark = #{record.remark,jdbcType=VARCHAR},
       State = #{record.state,jdbcType=VARCHAR},
       Create_Date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -239,17 +321,38 @@
       <if test="pId != null" >
         P_ID = #{pId,jdbcType=INTEGER},
       </if>
+      <if test="province != null" >
+        Province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        District = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        Consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
       <if test="count != null" >
         Count = #{count,jdbcType=INTEGER},
-      </if>
-      <if test="aId != null" >
-        A_ID = #{aId,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
         Amount = #{amount,jdbcType=DECIMAL},
       </if>
       <if test="payment != null" >
         Payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null" >
+        BeginDate = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         State = #{state,jdbcType=VARCHAR},
@@ -264,10 +367,17 @@
     update t_order
     set U_ID = #{uId,jdbcType=INTEGER},
       P_ID = #{pId,jdbcType=INTEGER},
+      Province = #{province,jdbcType=VARCHAR},
+      City = #{city,jdbcType=VARCHAR},
+      District = #{district,jdbcType=VARCHAR},
+      Consignee = #{consignee,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
       Count = #{count,jdbcType=INTEGER},
-      A_ID = #{aId,jdbcType=INTEGER},
       Amount = #{amount,jdbcType=DECIMAL},
       Payment = #{payment,jdbcType=VARCHAR},
+      BeginDate = #{begindate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR},
       State = #{state,jdbcType=VARCHAR},
       Create_Date = #{createDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
