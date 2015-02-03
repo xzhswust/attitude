@@ -30,6 +30,9 @@
     <LINK media=screen href="/static/alert/jquery.alerts.css" type=text/css rel=stylesheet>
 
     <script src="/static/portal/js/blocksit.min.js"></script>
+
+    <link rel="shortcut icon" href="/static/portal/images/favicon.ico" />
+    <link rel="Bookmark" href="/static/portal/images/favicon.ico" />
 </head>
 <body class="">
 <div class="headerbox white nobg">
