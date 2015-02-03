@@ -7,6 +7,7 @@ import com.attitude.common.utils.ShiroUtil;
 import com.attitude.dal.mybatis.dao.OrderMapper;
 import com.attitude.dal.mybatis.entity.Order;
 import com.attitude.dal.mybatis.entity.OrderExample;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/Order")
 public class OrderController {
+    Logger logger = Logger.getLogger(OrderController.class);
     @Autowired
     private OrderMapper orderMapper;
 
@@ -43,6 +45,7 @@ public class OrderController {
     @RequestMapping(value = "/SubmitOrder", method = RequestMethod.POST)
     public ModelAndView SubmitOrder(Model model, HttpServletRequest request, HttpServletResponse response) {
         try {
+            logger.info("提交订单--------------");
             Order order = new Order();
             order.setuId(Integer.valueOf(ShiroUtil.getCurrLoginUserID()));
             order.setProvince(request.getParameter("province"));
@@ -69,10 +72,12 @@ public class OrderController {
                 List<Order> l =  orderMapper.selectByExample(example);
                 if(l != null && l.size() > 0) {
                     String busID = l.get(0).getId().toString();
+                    logger.info("提交订单成功");
                     HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(true, "订单提交成功。", busID));
                 }
             }
         } catch (Exception e) {
+            logger.error("提交订单异常",e);
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, "订单提交失败。"));
         }
         return null;

@@ -584,13 +584,13 @@ border-right: 1px solid white;
 	padding: 12px 0px;
 }
 .usernav {
-	margin-bottom: 62px;
+	margin-bottom: 40px;
 }
 .usernav h1 {
 	font-size: 30px;
-	padding-top: 50px;
+	padding-top: 30px;
 	color: #A9CE2C;
-	margin-bottom: 17px;
+	margin-bottom: 12px;
 }
 .usernav li {
 	margin: 0px 22px;
@@ -667,7 +667,7 @@ border-right: 1px solid white;
 	margin-left: 70px;
 }
 .mainbox .shouhuo li {
-	padding: 8px 0px;
+	padding: 4px 0px;
 	color: #676767;
 }
 .addmore {
@@ -685,7 +685,7 @@ border-right: 1px solid white;
 	margin-top: 11px;
 	margin-left: 40px;
 	width: 911px;
-	height: 124px;
+	height: 100px;
 	background: url(../images/addmorebox.png) no-repeat;
 }
 .mainbox .shouhuo .addmorebox ul {

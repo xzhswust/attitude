@@ -106,7 +106,7 @@
             <ul>
                 <li>市场联络：marketing@yitaidiet.com</li>
                 <li>职位问询：hr@yitaidiet.com</li>
-                <li>京ICP备14009743号</li>
+                <li>蜀ICP备14028674号-1</li>
                 <li>做最舒服的自己，Live Yourself Comfortably！</li>
             </ul>
         </div>
