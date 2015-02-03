@@ -195,14 +195,25 @@
 
     function pwdOnblur(target){
         if (target.val().length < 8) {
-//            alert('密码长度至少为8位。');
             $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
             jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">温馨提示</div><div>密码长度至少为8位</div>', '', function() {
                 $.alerts.dialogClass = null; // 重置到默认值
             });
             target.next().hide();
         }else{
-            target.next().show();
+            if(target.attr('id') == 'passwordre'){
+                if(target.val() != $('#password').val()){
+                    $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                    jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">温馨提示</div><div>两次密码输入不一致</div>', '', function() {
+                        $.alerts.dialogClass = null; // 重置到默认值
+                    });
+                    target.next().hide();
+                }else{
+                    target.next().show();
+                }
+            }else {
+                target.next().show();
+            }
         }
 
     }

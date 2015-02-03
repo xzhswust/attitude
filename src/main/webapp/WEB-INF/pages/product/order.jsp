@@ -302,7 +302,7 @@
                             jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">恭喜你</div><div>订单提交成功</div>', '', function () {
                                 $.alerts.dialogClass = null; // 重置到默认值
                             });
-                            window.location.href = "/Order/OrderAndPay";
+                            window.location.href = "/Order/OrderAndPay?busID=" + data.retStr;
                         }
                     },
                     error: function (data) {

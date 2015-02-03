@@ -10,6 +10,8 @@
     <script src="/static/portal/js/jquery-1.8.3.min.js" type="application/javascript"></script>
     <script src="/static/portal/js/jquery.SuperSlide.2.1.1.js" type="application/javascript"></script>
     <script src="/static/portal/js/common.js" type="application/javascript"></script>
+    <link rel="shortcut icon" href="/static/portal/images/favicon.ico" />
+    <link rel="Bookmark" href="/static/portal/images/favicon.ico" />
 </head>
 <body>
 <div class="mainbanner">
