@@ -17,7 +17,11 @@ public class User {
 
     private Date birthday;
 
+    private String birthdayStr;
+
     private Date createDate;
+
+    private String createDateStr;
 
     private Date updateDate;
 
@@ -101,5 +105,21 @@ public class User {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getBirthdayStr() {
+        return birthdayStr;
+    }
+
+    public void setBirthdayStr(String birthdayStr) {
+        this.birthdayStr = birthdayStr;
+    }
+
+    public String getCreateDateStr() {
+        return createDateStr;
+    }
+
+    public void setCreateDateStr(String createDateStr) {
+        this.createDateStr = createDateStr;
     }
 }

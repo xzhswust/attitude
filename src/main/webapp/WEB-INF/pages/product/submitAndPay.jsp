@@ -95,14 +95,14 @@
                     <div class="ct">
                         <table width="100%">
                             <tr>
-                                <td width="411">订单编号：${busID}</td>
+                                <td width="411">订单编号：<span id="busID">${busID}</span></td>
                                 <td width="258">下单时间:${createDate}</td>
                                 <td>订单状态：${status}</td>
                             </tr>
                             <tr>
-                                <td>商品信息：${productName}</td>
+                                <td>商品信息：<span id="subject">${productName}</span></td>
                                 <td>数量:${count}</td>
-                                <td>订单金额：¥ ${amount}</td>
+                                <td>订单金额：¥ <span id="amount">${amount}</span></td>
                             </tr>
                         </table>
                     </div>
@@ -153,6 +153,27 @@
             var t = window.prompt("请按Ctrl+C快捷键进行复制!", code);
         }
     };
+
+    function pay(){
+        $.alerts.dialogClass = "style_2";
+        jConfirm('您确定支付该订单?', '确认', function (r) {
+            if (r) {
+//                $.ajax({
+//                    url: '/Order/PayOrder',
+//                    type: 'POST',
+//                    data: {"busID":$('#busID').text(),"subject":$('#subject').text(),"amount":$('#amount').text()},
+//                    dataType: 'json',
+//                    success: function (data) {
+//
+//                    },
+//                    error: function (data) {
+//                        jAlert(data);
+//                    }
+//                });
+                window.open('/Order/PayOrder?busID=' + $('#busID').text());
+            }
+        });
+    }
 
 </script>
 

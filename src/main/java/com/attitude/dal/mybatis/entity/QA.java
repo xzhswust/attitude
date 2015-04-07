@@ -9,6 +9,8 @@ public class QA {
 
     private String typeId;
 
+    private String typeStr;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class QA {
 
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
+    }
+
+    public String getTypeStr() {
+        return typeStr;
+    }
+
+    public void setTypeStr(String typeStr) {
+        this.typeStr = typeStr;
     }
 }

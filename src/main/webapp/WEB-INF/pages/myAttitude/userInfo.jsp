@@ -19,7 +19,7 @@
             <ul>
                 <li class="on"><a href="/Customer/GetUserInfo">我的资料</a></li>
                 <li><a href="/Customer/DeliveryAddrMan">管理收货地址</a></li>
-                <li><a href="#">查询订单</a></li>
+                <li><a href="/Customer/MyOrder">查询订单</a></li>
                 <li><a href="#">我的抵用金</a></li>
             </ul>
         </div>

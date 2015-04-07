@@ -136,5 +136,57 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        initQA();
+        $('.fruitright a').click(function(){
+            //alert($(this).html());
+            $('.fruitboxcenter h2').html($(this).html());
+            $('.fruitboxcenter div').html($(this).next().html());
+            $('.fruitbox').show();
+            return false;
+        });
+    });
+
+    function initQA(){
+        $.ajax({
+            url: '/Admin/GetQATypeList',
+            type: "get",
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                if(data.length > 0){
+                    var html = '';
+                    for(var i=0;i<data.length;i++){
+                        var j = i+1;
+                        html += '<li class=\"flist\">';
+                        html += '<img src=\"/static/portal/images/shuiguo'+j+'.png\" />';
+                        html += '<div class=\"fruitright\"><h2>'+data[i].text+'</h2><ol>';
+                        $.ajax({
+                            url: '/Admin/GetQAList',
+                            data:{typeID:data[i].id},
+                            type: "get",
+                            async: false,
+                            dataType: "json",
+                            success: function (list) {
+                                if(list.length > 0){
+                                    for(var l=0;l<list.length;l++) {
+                                        html += '<li><a href=\"#\">' + list[l].question + '</a>';
+                                        html += '<p style=\"display: none\">' + list[l].answer + '</p></li>';
+                                    }
+                                }else{
+                                    html += '<li>暂无信息</li>';
+                                }
+                            }
+                        });
+                        html += '</ol></div></li>';
+                    }
+                    html += '<div class=\"clear\"></div>';
+                    $('.fruit').html(html);
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
