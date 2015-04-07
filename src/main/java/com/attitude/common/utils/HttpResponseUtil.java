@@ -69,4 +69,28 @@ public class HttpResponseUtil {
             System.out.println(ex.getMessage());
         }
     }
+
+    /**
+     * 向响应流中写入html页面
+     *
+     * @param response 响应流
+     * @param html 页面
+     */
+    public static void writeHtmlToResponse(HttpServletResponse response, String html){
+        try {
+            response.setCharacterEncoding("UTF-8");
+            StringBuilder builder = new StringBuilder();
+            builder.append("<html>");
+            builder.append("<head>");
+            builder.append("<body>");
+            builder.append(html);
+            builder.append("</body>");
+            builder.append("</html>");
+            response.getWriter().write(builder.toString());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }

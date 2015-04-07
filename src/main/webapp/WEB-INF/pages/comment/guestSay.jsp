@@ -87,6 +87,31 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        //$.messager.defaults = {ok: "确定", cancel: "取消"};
+        $.ajax({
+            url: '/Admin/GetCommentList',
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                //alert(JSON.stringify(data));
+                var html = '';
+                if (data.noData) {
+                    //$('#commentTable').datagrid('loadData', {total: 0, rows: []});
+                } else {
+                    //$('#commentTable').datagrid('loadData', data);
+                    for(var i=0;i<data.length;i++){
+                        html += '<div class=\"block\"><p><a><img src=\"/Admin/ViewCommentImg?id=' + data[i].id;
+                        html += '\"/></a><div class=\"u_name\">' + data[i].username;
+                        html += '</div><div class=\"u_cont\">' + data[i].comment;
+                        html += '</div></p></div>';
+                    }
+                    $('#container').html(html);
+                }
+            }
+        });
+    });
+
     $('.wxgx').click(function(){
         $('.wxtc').fadeIn();
         return false;

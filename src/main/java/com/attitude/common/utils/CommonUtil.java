@@ -1,5 +1,7 @@
 package com.attitude.common.utils;
 
+import com.attitude.dal.mybatis.dao.service.StaticService;
+
 import java.lang.Math;
 import java.util.Random;
 
@@ -16,5 +18,14 @@ public class CommonUtil {
         }
         //git
         return code;
+    }
+
+    public static StaticService GetStaticService(){
+        try{
+            return (StaticService)BeansManagerUtil.getBean("staticService");
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }
