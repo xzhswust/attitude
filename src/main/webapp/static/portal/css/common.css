@@ -742,13 +742,19 @@ border-right: 1px solid white;
 	font-size: 12px;
 }
 .mainbox .xiadan {
-	font-size: 12px;
-	padding-top: 31px;
+	padding-top: 10px;
 	background: white;
-	padding-left: 80px;
+	font-size: 13px;
 }
 .mainbox .xiadan td {
 	padding: 21px 0px;
+}
+.mainbox .xiadan ul {
+	margin-left: 70px;
+}
+.mainbox .xiadan li {
+	padding: 4px 0px;
+	color: #676767;
 }
 .mainbox .diyong {
 	background: white;
