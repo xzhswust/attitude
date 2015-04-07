@@ -303,7 +303,13 @@
                                 $.alerts.dialogClass = null; // 重置到默认值
                             });
                             window.location.href = "/Order/OrderAndPay?busID=" + data.retStr;
+                        }else{
+                            $.alerts.dialogClass = "style_1"; // 设置自定义样式的Class
+                            jAlert('<div style=\"font-size:15px;color:#a9cd2c;margin-bottom:10px\">提交失败</div><div>'+data.message+'</div>', '', function () {
+                                $.alerts.dialogClass = null; // 重置到默认值
+                            });
                         }
+
                     },
                     error: function (data) {
                         jAlert(data);

@@ -10,6 +10,8 @@ public class Order {
 
     private Integer pId;
 
+    private String productName;
+
     private String province;
 
     private String city;
@@ -30,11 +32,19 @@ public class Order {
 
     private Date begindate;
 
+    private String begindateStr;
+
     private String remark;
 
     private String state;
 
+    private String stateStr;
+
     private Date createDate;
+
+    private String createDateStr;
+
+    private String userAccount;
 
     public Integer getId() {
         return id;
@@ -162,5 +172,45 @@ public class Order {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getStateStr() {
+        return stateStr;
+    }
+
+    public void setStateStr(String stateStr) {
+        this.stateStr = stateStr;
+    }
+
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public String getBegindateStr() {
+        return begindateStr;
+    }
+
+    public void setBegindateStr(String begindateStr) {
+        this.begindateStr = begindateStr;
+    }
+
+    public String getCreateDateStr() {
+        return createDateStr;
+    }
+
+    public void setCreateDateStr(String createDateStr) {
+        this.createDateStr = createDateStr;
     }
 }
