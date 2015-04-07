@@ -27,7 +27,9 @@ public class AlipayConfig {
 	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
 	public static String partner = "2088711572320756";//壹态支付宝partnerID
 	// 商户的私钥
-	public static String key = "";
+	public static String key = "5a9dh3dkoouu5ght7ex54mjix9ocdwqs";
+	// 卖家账号
+	public static String sellerEmail = "yitaidietzfb@163.com";
 
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	

@@ -43,6 +43,8 @@
           <element id="library" level="project" name="Maven: org.apache.aries.transaction:org.apache.aries.transaction.manager:1.1.0" />
           <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.6" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.2" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.0.1" />
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
         </element>
