@@ -34,7 +34,7 @@
         <div class="error-page">
             <h2 class="color-red">Error 404</h2>
             <h2 class="color-red">未找到请求的页面</h2>
-            <a href="/meetingPlan" class="color-blue">返回主页</a>
+            <a href="/" class="color-blue">返回主页</a>
         </div>
     </div>
 </section>
