@@ -13,11 +13,23 @@
     <title>订单管理</title>
 </head>
 <body style="text-align: center">
-<div style="width: 1200px;padding: 10px;margin-right: 10px">
-    <div class="easyui-panel" title="订单列表" style="padding: 20px">
-        <table id="orderTable" class="easyui-datagrid"
-               style="height:400px"
-               data-options="
+<div class="bodybox">
+    <div class="bodymain2">
+        <div class="usernav">
+            <h1>后台管理</h1>
+            <ul>
+                <li><a href="/Admin/UserMng">用户管理</a></li>
+                <li><a href="/Admin/CommentMng">评论管理</a></li>
+                <li class="on"><a href="/Admin/OrderMng">订单管理</a></li>
+                <li><a href="/Admin/ProductMng">产品管理</a></li>
+                <li><a href="/Admin/QAMng">问题管理</a></li>
+            </ul>
+        </div>
+        <div class="mainbox">
+            <div class="easyui-panel" title="订单列表" style="padding: 20px">
+                <table id="orderTable" class="easyui-datagrid"
+                       style="height:400px"
+                       data-options="
                                     singleSelect: true,
                                     rownumbers:true,
                                     url: '',
@@ -29,65 +41,67 @@
                                     <%--onClickRow: onClickRow,--%>
                                     method: 'get'
                                     ">
-            <thead>
-            <tr>
-                <th data-options="field:'id',width:20,align:'center',hidden:true">ID</th>
+                    <thead>
+                    <tr>
+                        <th data-options="field:'id',width:20,align:'center',hidden:true">ID</th>
 
-                <th data-options="field:'userAccount',width:120,align:'center'">账号
-                </th>
-                <th data-options="field:'mobile',width:120,align:'center'">手机号
-                </th>
-                <th data-options="field:'consignee',width:80,align:'center'">收货人
-                </th>
-                <th data-options="field:'province',width:70,align:'center'">省
-                </th>
-                <th data-options="field:'city',width:70,align:'center'">市
-                </th>
-                <th data-options="field:'district',width:70,align:'center'">区
-                </th>
-                <th data-options="field:'address',width:200,align:'center'">地址
-                </th>
-                <th data-options="field:'productName',width:200,align:'center'">产品
-                </th>
-                <th data-options="field:'count',width:40,align:'center'">数量
-                </th>
-                <th data-options="field:'amount',width:100,align:'center'">金额
-                </th>
-                <th data-options="field:'begindateStr',width:120,align:'center'">开始食用日期
-                </th>
-                <th data-options="field:'payment',width:150,align:'center'">支付方式
-                </th>
-                <th data-options="field:'createDateStr',width:160,align:'center'">下单时间
-                </th>
-                <th data-options="field:'stateStr',width:100,align:'center'">状态
-                </th>
-                <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">--%>
-                <%--图片--%>
-                <%--</th>--%>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div id="toolbar1" style="height:auto; text-align: left;">
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-            <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
-            <%--&nbsp;&nbsp;--%>
-            <a href="javascript:void(0)" class="easyui-linkbutton" title=""
-               data-options="iconCls:'icon-edit',plain:true" onclick="deliver()">发货</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton" title=""
-               data-options="iconCls:'icon-ok',plain:true" onclick="finishOrder()">完成订单</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
-            &nbsp;&nbsp;
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-            <%--data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>--%>
-            <%--&nbsp;&nbsp;--%>
+                        <th data-options="field:'userAccount',width:120,align:'center'">账号
+                        </th>
+                        <th data-options="field:'mobile',width:120,align:'center'">手机号
+                        </th>
+                        <th data-options="field:'consignee',width:80,align:'center'">收货人
+                        </th>
+                        <th data-options="field:'province',width:70,align:'center'">省
+                        </th>
+                        <th data-options="field:'city',width:70,align:'center'">市
+                        </th>
+                        <th data-options="field:'district',width:70,align:'center'">区
+                        </th>
+                        <th data-options="field:'address',width:200,align:'center'">地址
+                        </th>
+                        <th data-options="field:'productName',width:200,align:'center'">产品
+                        </th>
+                        <th data-options="field:'count',width:40,align:'center'">数量
+                        </th>
+                        <th data-options="field:'amount',width:100,align:'center'">金额
+                        </th>
+                        <th data-options="field:'begindateStr',width:120,align:'center'">开始食用日期
+                        </th>
+                        <th data-options="field:'payment',width:150,align:'center'">支付方式
+                        </th>
+                        <th data-options="field:'createDateStr',width:160,align:'center'">下单时间
+                        </th>
+                        <th data-options="field:'stateStr',width:100,align:'center'">状态
+                        </th>
+                        <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">--%>
+                        <%--图片--%>
+                        <%--</th>--%>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="toolbar1" style="height:auto; text-align: left;">
+                    <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+                    <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
+                    <%--&nbsp;&nbsp;--%>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" title=""
+                       data-options="iconCls:'icon-edit',plain:true" onclick="deliver()">发货</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton" title=""
+                       data-options="iconCls:'icon-ok',plain:true" onclick="finishOrder()">完成订单</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
+                    &nbsp;&nbsp;
+                    <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+                    <%--data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>--%>
+                    <%--&nbsp;&nbsp;--%>
 
+                </div>
+
+            </div>
         </div>
-
     </div>
 </div>
 

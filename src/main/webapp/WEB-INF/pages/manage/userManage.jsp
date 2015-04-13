@@ -13,11 +13,23 @@
     <title>用户管理</title>
 </head>
 <body style="text-align: center">
-<div style="width: 1000px;padding: 10px;margin-right: 10px">
-    <div class="easyui-panel" title="用户列表" style="padding: 20px">
-        <table id="userTable" class="easyui-datagrid"
-               style="height:400px"
-               data-options="
+<div class="bodybox">
+    <div class="bodymain2">
+        <div class="usernav">
+            <h1>后台管理</h1>
+            <ul>
+                <li class="on"><a href="/Admin/UserMng">用户管理</a></li>
+                <li><a href="/Admin/CommentMng">评论管理</a></li>
+                <li><a href="/Admin/OrderMng">订单管理</a></li>
+                <li><a href="/Admin/ProductMng">产品管理</a></li>
+                <li><a href="/Admin/QAMng">问题管理</a></li>
+            </ul>
+        </div>
+        <div class="mainbox">
+            <div class="easyui-panel" title="用户列表" style="padding: 20px">
+                <table id="userTable" class="easyui-datagrid"
+                       style="height:400px"
+                       data-options="
                                     singleSelect: true,
                                     <%--rownumbers:true,--%>
                                     url: '',
@@ -29,45 +41,47 @@
                                     <%--onClickRow: onClickRow,--%>
                                     method: 'get'
                                     ">
-            <thead>
-            <tr>
-                <th data-options="field:'id',width:20,align:'center'">ID</th>
-                <th data-options="field:'userName',width:60,align:'center'">用户名
-                </th>
-                <th data-options="field:'mobilePhone',width:60,align:'center'">手机号
-                </th>
-                <th data-options="field:'realName',width:60,align:'center'">姓名
-                </th>
-                <th data-options="field:'sex',width:60,align:'center'">性别
-                </th>
-                <th data-options="field:'birthdayStr',width:200,align:'center'">生日
-                </th>
-                <th data-options="field:'createDateStr',width:200,align:'center'">注册日期
-                </th>
-                <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">--%>
-                <%--图片--%>
-                <%--</th>--%>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div id="toolbar1" style="height:auto; text-align: left;">
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-            <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
-            <%--&nbsp;&nbsp;--%>
-            <a href="javascript:void(0)" class="easyui-linkbutton" title="密码重置为12345678"
-               data-options="iconCls:'icon-edit',plain:true" onclick="resetPwd()">重置密码</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
-            &nbsp;&nbsp;
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-            <%--data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>--%>
-            <%--&nbsp;&nbsp;--%>
+                    <thead>
+                    <tr>
+                        <th data-options="field:'id',width:20,align:'center'">ID</th>
+                        <th data-options="field:'userName',width:60,align:'center'">用户名
+                        </th>
+                        <th data-options="field:'mobilePhone',width:60,align:'center'">手机号
+                        </th>
+                        <th data-options="field:'realName',width:60,align:'center'">姓名
+                        </th>
+                        <th data-options="field:'sex',width:60,align:'center'">性别
+                        </th>
+                        <th data-options="field:'birthdayStr',width:200,align:'center'">生日
+                        </th>
+                        <th data-options="field:'createDateStr',width:200,align:'center'">注册日期
+                        </th>
+                        <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">--%>
+                        <%--图片--%>
+                        <%--</th>--%>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="toolbar1" style="height:auto; text-align: left;">
+                    <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+                    <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
+                    <%--&nbsp;&nbsp;--%>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" title="密码重置为12345678"
+                       data-options="iconCls:'icon-edit',plain:true" onclick="resetPwd()">重置密码</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
+                    &nbsp;&nbsp;
+                    <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+                    <%--data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>--%>
+                    <%--&nbsp;&nbsp;--%>
 
+                </div>
+
+            </div>
         </div>
-
     </div>
 </div>
 

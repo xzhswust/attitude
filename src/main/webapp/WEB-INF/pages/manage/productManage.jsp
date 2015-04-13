@@ -13,11 +13,24 @@
     <title>产品管理</title>
 </head>
 <body style="text-align: center">
-<div style="width: 1200px;padding: 10px;margin-right: 10px">
-    <div class="easyui-panel" title="产品列表" style="padding: 20px">
-        <table id="productTable" class="easyui-datagrid"
-               style="height:400px"
-               data-options="
+
+<div class="bodybox">
+    <div class="bodymain2">
+        <div class="usernav">
+            <h1>后台管理</h1>
+            <ul>
+                <li><a href="/Admin/UserMng">用户管理</a></li>
+                <li><a href="/Admin/CommentMng">评论管理</a></li>
+                <li><a href="/Admin/OrderMng">订单管理</a></li>
+                <li class="on"><a href="/Admin/ProductMng">产品管理</a></li>
+                <li><a href="/Admin/QAMng">问题管理</a></li>
+            </ul>
+        </div>
+        <div class="mainbox">
+            <div class="easyui-panel" title="产品列表" style="padding: 20px">
+                <table id="productTable" class="easyui-datagrid"
+                       style="height:400px"
+                       data-options="
                                     singleSelect: true,
                                     <%--rownumbers:true,--%>
                                     url: '',
@@ -29,105 +42,216 @@
                                     onClickRow: onClickRow,
                                     method: 'get'
                                     ">
-            <thead>
-            <tr>
-                <th data-options="field:'id',width:20,align:'center'">ID</th>
-                <th data-options="field:'pName',width:150,align:'center',editor:{type: 'text', required: true}">产品名称
-                </th>
-                <th data-options="field:'description',width:200,align:'center',editor:{type: 'text', required: true}">产品描述
-                </th>
-                <th data-options="field:'price',width:100,align:'center',editor:{type: 'numberbox', required: true,options:{precision:2}}">价格
-                </th>
-                <th data-options="field:'memberPrice',width:100,align:'center',editor:{type: 'numberbox',options:{precision:2}}">会员价格
-                </th>
-                <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">
-                    产品图片
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div id="toolbar1" style="height:auto; text-align: left;">
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
-            &nbsp;&nbsp;
+                    <thead>
+                    <tr>
+                        <th data-options="field:'id',width:20,align:'center'">ID</th>
+                        <th data-options="field:'pName',width:150,align:'center',editor:{type: 'text', required: true}">
+                            产品名称
+                        </th>
+                        <th data-options="field:'description',width:200,align:'center',editor:{type: 'text', required: true}">
+                            产品描述
+                        </th>
+                        <th data-options="field:'price',width:100,align:'center',editor:{type: 'numberbox', required: true,options:{precision:2}}">
+                            价格
+                        </th>
+                        <th data-options="field:'memberPrice',width:100,align:'center',editor:{type: 'numberbox',options:{precision:2}}">
+                            会员价格
+                        </th>
+                        <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">
+                            产品图片
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="toolbar1" style="height:auto; text-align: left;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-add',plain:true" onclick="add()">新建</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
+                    &nbsp;&nbsp;
 
+                </div>
+            </div>
         </div>
+    </div>
 
+    <div id="dlg" class="easyui-dialog" style="width:320px;height:260px;padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">添加商品</div>
+        <form id="fm" action="/Admin/SubmitProduct" class="easyui-form" method="post"
+              enctype="multipart/form-data" data-options="novalidate:true">
+            <%--<div style="display: none;">--%>
+            <%--<input name="busID" class="easyui-textbox" value="${busID}">--%>
+            <%--</div>--%>
+            <div class="fitem">
+                产品名:
+                <input id="pName" name="pName" class="easyui-validatebox textbox" maxlength="50"
+                       required="true">
+            </div>
+            <div class="fitem">
+                说明:
+                <textarea id="description" name="description" class="easyui-validatebox" maxlength="200"
+                          required="true">
+                </textarea>
+            </div>
+            <div class="fitem">
+                单价:
+                <input id="price" name="price" class="easyui-numberbox easyui-validatebox" precision="2"
+                       required="true">
+            </div>
+            <div class="fitem">
+                会员价:
+                <input id="memberPrice" name="memberPrice" class="easyui-numberbox easyui-validatebox" precision="2"
+                       required="true">
+            </div>
+            <div class="fitem">
+                产品图片:
+                <input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">
+            </div>
+            <div class="fitem">
+                <span id="Tip" style="color: red;"></span>
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+           onclick="submit()" style="width:90px">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+           onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
     </div>
 </div>
-<div style="width: 100%;">
-    <form action="/Admin/SubmitProduct" id="form" method="post" enctype="multipart/form-data">
 
-        <table align="center">
-            <tr>
-                <td>
-                    添加产品
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    产品名
-                </td>
-                <td>
-                    <input id="pName" name="pName">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    说明
-                </td>
-                <td>
-                    <textarea id="description" name="description">
 
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    单价
-                </td>
-                <td>
-                    <input id="price" name="price" class="easyui-numberbox" precision="2">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    会员价
-                </td>
-                <td>
-                    <input id="memberPrice" name="memberPrice" class="easyui-numberbox" precision="2">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    产品图片
-                </td>
-                <td>
-                    <input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span id="Tip" style="color: red;"></span>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div style="text-align: center">
-        <button style="display: none" id="btn" onclick="submit();">提交</button>
-    </div>
-</div>
+<%--<div style="width: 1200px;padding: 10px;margin-right: 10px">--%>
+    <%--<div class="easyui-panel" title="产品列表" style="padding: 20px">--%>
+        <%--<table id="productTable" class="easyui-datagrid"--%>
+               <%--style="height:400px"--%>
+               <%--data-options="--%>
+                                    <%--singleSelect: true,--%>
+                                    <%--&lt;%&ndash;rownumbers:true,&ndash;%&gt;--%>
+                                    <%--url: '',--%>
+                                    <%--fitColumns:true,--%>
+                                    <%--toolbar: '#toolbar1',--%>
+                                    <%--pagination:true,--%>
+                                    <%--pageSize:50,--%>
+                                    <%--pageList: [50,100],--%>
+                                    <%--onClickRow: onClickRow,--%>
+                                    <%--method: 'get'--%>
+                                    <%--">--%>
+            <%--<thead>--%>
+            <%--<tr>--%>
+                <%--<th data-options="field:'id',width:20,align:'center'">ID</th>--%>
+                <%--<th data-options="field:'pName',width:150,align:'center',editor:{type: 'text', required: true}">产品名称--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'description',width:200,align:'center',editor:{type: 'text', required: true}">--%>
+                    <%--产品描述--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'price',width:100,align:'center',editor:{type: 'numberbox', required: true,options:{precision:2}}">--%>
+                    <%--价格--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'memberPrice',width:100,align:'center',editor:{type: 'numberbox',options:{precision:2}}">--%>
+                    <%--会员价格--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">--%>
+                    <%--产品图片--%>
+                <%--</th>--%>
+            <%--</tr>--%>
+            <%--</thead>--%>
+            <%--<tbody>--%>
+            <%--</tbody>--%>
+        <%--</table>--%>
+        <%--<div id="toolbar1" style="height:auto; text-align: left;">--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>--%>
+            <%--&nbsp;&nbsp;--%>
+
+        <%--</div>--%>
+
+    <%--</div>--%>
+<%--</div>--%>
+<%--<div style="width: 100%;">--%>
+    <%--<form action="/Admin/SubmitProduct" id="form" method="post" enctype="multipart/form-data">--%>
+
+        <%--<table align="center">--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--添加产品--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--产品名--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input id="pName" name="pName">--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--说明--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<textarea id="description" name="description">--%>
+
+                    <%--</textarea>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--单价--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input id="price" name="price" class="easyui-numberbox" precision="2">--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--会员价--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input id="memberPrice" name="memberPrice" class="easyui-numberbox" precision="2">--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--产品图片--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--<span id="Tip" style="color: red;"></span>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+    <%--</form>--%>
+    <%--<div style="text-align: center">--%>
+        <%--<button style="display: none" id="btn" onclick="submit();">提交</button>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/icon.css">
@@ -139,7 +263,9 @@
     var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
     var selectIndex = undefined;
     function submit() {
-        $('#form').submit();
+        if($('#fm').form('enableValidation').form('validate')) {
+            $('#fm').submit();
+        }
     }
 
     $(document).ready(function () {
@@ -164,7 +290,13 @@
         });
     }
 
-    //删除评论
+    //添加
+    function add(){
+        $('#dlg').dialog('open').dialog('setTitle', '添加商品');
+        $('#fm').form('clear');
+    }
+
+    //删除
     function del() {
         if ($('#productTable').datagrid('getSelected') == null) {
             $.messager.alert('提示', '请选择一条票据信息。');

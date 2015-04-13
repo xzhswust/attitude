@@ -50,21 +50,29 @@ public class AdminController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String Admin(Model model, HttpServletRequest request) {
-
-        return "manage/admin";
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        return "redirect:/Admin/UserMng";
     }
 
     //===========================评论管理===========================
 
     @RequestMapping(value = "/CommentMng", method = RequestMethod.GET)
     public String CommentMng(Model model, HttpServletRequest request) {
-
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        ShiroUtil.setModelUserTitle(model);
         return "manage/commentManage";
     }
 
     @RequestMapping(value = "/SubmitComment", method = RequestMethod.POST)
     public String SubmitComment(HttpServletRequest request, HttpServletResponse response
             , @RequestParam MultipartFile[] pic) {
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
         String name = request.getParameter("userName");
         String comment = request.getParameter("comment");
         MultipartFile file = pic[0];
@@ -94,6 +102,11 @@ public class AdminController {
 
     @RequestMapping(value = "/UpdateComment", method = RequestMethod.POST)
     public ModelAndView UpdateComment(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         String userName = request.getParameter("username");
         String comment = request.getParameter("comment");
@@ -116,6 +129,11 @@ public class AdminController {
 
     @RequestMapping(value = "/DeleteComment", method = RequestMethod.POST)
     public ModelAndView DeleteComment(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         int ret = userCommentMapper.deleteByPrimaryKey(Integer.valueOf(id));
         if (ret == 1) {
@@ -144,12 +162,18 @@ public class AdminController {
 
     @RequestMapping(value = "/UserMng", method = RequestMethod.GET)
     public String UserMng(Model model, HttpServletRequest request) {
-
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        ShiroUtil.setModelUserTitle(model);
         return "manage/userManage";
     }
 
     @RequestMapping(value = "/GetUserList", method = RequestMethod.GET)
     public ModelAndView GetUserList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            return null;
+        }
         UserExample example = new UserExample();
         example.setOrderByClause("Create_Date DESC");
         List<User> list = userMapper.selectByExample(example);
@@ -170,6 +194,11 @@ public class AdminController {
     //重置密码
     @RequestMapping(value = "/ResetPwd", method = RequestMethod.GET)
     public ModelAndView ResetPwd(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String uid = request.getParameter("uid");
         User user = new User();
         user.setPassword(Md5Util.getMd5Password("12345678"));
@@ -195,12 +224,18 @@ public class AdminController {
 
     @RequestMapping(value = "/OrderMng", method = RequestMethod.GET)
     public String OrderMng(Model model, HttpServletRequest request) {
-
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        ShiroUtil.setModelUserTitle(model);
         return "manage/orderManage";
     }
 
     @RequestMapping(value = "/GetOrderList", method = RequestMethod.GET)
     public ModelAndView GetOrderList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            return null;
+        }
         OrderExample example = new OrderExample();
         example.setOrderByClause("Create_Date Desc");
         List<Order> list = orderMapper.selectByExample(example);
@@ -222,6 +257,11 @@ public class AdminController {
     //发货
     @RequestMapping(value = "/Deliver", method = RequestMethod.GET)
     public ModelAndView Deliver(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("oid");
         Order order = orderMapper.selectByPrimaryKey(Integer.valueOf(id));
         if (order.getState().equals("2")) {//支付才可发货
@@ -246,6 +286,11 @@ public class AdminController {
     //完成
     @RequestMapping(value = "/Finish", method = RequestMethod.GET)
     public ModelAndView Finish(Model model, HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("oid");
         Order order = orderMapper.selectByPrimaryKey(Integer.valueOf(id));
         if (order.getState().equals("3")) {//配送中的订单才可完成
@@ -271,7 +316,10 @@ public class AdminController {
 
     @RequestMapping(value = "/ProductMng", method = RequestMethod.GET)
     public String ProductMng(Model model, HttpServletRequest request) {
-
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        ShiroUtil.setModelUserTitle(model);
         return "manage/productManage";
     }
 
@@ -299,6 +347,11 @@ public class AdminController {
     @RequestMapping(value = "/SubmitProduct", method = RequestMethod.POST)
     public String SubmitProduct(HttpServletRequest request, HttpServletResponse response
             , @RequestParam MultipartFile[] pic) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return "redirect:/Product";
+        }
         String pName = request.getParameter("pName");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
@@ -326,6 +379,11 @@ public class AdminController {
 
     @RequestMapping(value = "/UpdateProduct", method = RequestMethod.POST)
     public ModelAndView UpdateProduct(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         String pName = request.getParameter("pName");
         String description = request.getParameter("description");
@@ -356,6 +414,11 @@ public class AdminController {
 
     @RequestMapping(value = "/DeleteProduct", method = RequestMethod.POST)
     public ModelAndView DeleteProduct(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         int ret = productMapper.deleteByPrimaryKey(Integer.valueOf(id));
         if (ret == 1) {
@@ -372,7 +435,10 @@ public class AdminController {
 
     @RequestMapping(value = "/QAMng", method = RequestMethod.GET)
     public String QAMng(Model model, HttpServletRequest request) {
-
+        if(!validateAdmin()){
+            return "redirect:/Product";
+        }
+        ShiroUtil.setModelUserTitle(model);
         return "manage/qaManage";
     }
 
@@ -389,6 +455,11 @@ public class AdminController {
 
     @RequestMapping(value = "/AddQAType", method = RequestMethod.POST)
     public ModelAndView AddQAType(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         Dictionary dictionary = new Dictionary();
         dictionary.setDicCode(request.getParameter("typeID"));
         dictionary.setDicName(request.getParameter("typeName"));
@@ -415,6 +486,11 @@ public class AdminController {
 
     @RequestMapping(value = "/DeleteQAType", method = RequestMethod.POST)
     public ModelAndView DeleteQAType(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String idStr = request.getParameter("qaType");
         if (!idStr.isEmpty()) {
             try {
@@ -438,6 +514,11 @@ public class AdminController {
 
     @RequestMapping(value = "/SubmitQA", method = RequestMethod.POST)
     public String SubmitProduct(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return "redirect:/Product";
+        }
         String qaType = request.getParameter("qaType");
         String question = request.getParameter("question");
         String answer = request.getParameter("answer");
@@ -469,6 +550,11 @@ public class AdminController {
 
     @RequestMapping(value = "/UpdateQA", method = RequestMethod.POST)
     public ModelAndView UpdateQA(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         String question = request.getParameter("question");
         String answer = request.getParameter("answer");
@@ -490,6 +576,11 @@ public class AdminController {
 
     @RequestMapping(value = "/DeleteQA", method = RequestMethod.POST)
     public ModelAndView DeleteQA(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
         String id = request.getParameter("id");
         int ret = qaMapper.deleteByPrimaryKey(Integer.valueOf(id));
         if (ret == 1) {
@@ -500,5 +591,15 @@ public class AdminController {
                     new AsyncResponseJson(false, "删除问题信息失败。"));
         }
         return null;
+    }
+
+    //判断是否为管理员
+    private boolean validateAdmin(){
+        String userName = ShiroUtil.getCurrLoginUserName();
+        if(userName.toLowerCase().equals("admin")){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

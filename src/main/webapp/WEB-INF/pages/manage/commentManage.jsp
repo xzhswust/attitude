@@ -11,13 +11,44 @@
 <html>
 <head>
     <title>评论管理</title>
+    <style>
+        .ftitle {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #fm {
+            margin: 0;
+            padding: 10px 30px;
+        }
+
+        .fitem {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body style="text-align: center">
-<div style="width: 1000px;padding: 10px;margin-right: 10px">
-    <div class="easyui-panel" title="评论列表" style="padding: 20px">
-        <table id="commentTable" class="easyui-datagrid"
-               style="height:400px"
-               data-options="
+
+<div class="bodybox">
+    <div class="bodymain2">
+        <div class="usernav">
+            <h1>后台管理</h1>
+            <ul>
+                <li><a href="/Admin/UserMng">用户管理</a></li>
+                <li class="on"><a href="/Admin/CommentMng">评论管理</a></li>
+                <li><a href="/Admin/OrderMng">订单管理</a></li>
+                <li><a href="/Admin/ProductMng">产品管理</a></li>
+                <li><a href="/Admin/QAMng">问题管理</a></li>
+            </ul>
+        </div>
+        <div class="mainbox">
+            <div class="easyui-panel" title="评论列表" style="padding: 20px">
+                <table id="commentTable" class="easyui-datagrid"
+                       style="height:400px"
+                       data-options="
                                     singleSelect: true,
                                     <%--rownumbers:true,--%>
                                     url: '',
@@ -29,83 +60,76 @@
                                     onClickRow: onClickRow,
                                     method: 'get'
                                     ">
-            <thead>
-            <tr>
-                <th data-options="field:'id',width:20,align:'center'">ID</th>
-                <th data-options="field:'username',width:60,align:'center',editor:{type: 'text', required: true}">用户名
-                </th>
-                <th data-options="field:'comment',width:200,align:'center',editor:{type: 'text', required: true}">评论
-                </th>
-                <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">
-                    图片
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div id="toolbar1" style="height:auto; text-align: left;">
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-reload',plain:true" onclick="refreshComment()">刷新</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>
-            &nbsp;&nbsp;
+                    <thead>
+                    <tr>
+                        <th data-options="field:'id',width:20,align:'center'">ID</th>
+                        <th data-options="field:'username',width:60,align:'center',editor:{type: 'text', required: true}">用户名
+                        </th>
+                        <th data-options="field:'comment',width:200,align:'center',editor:{type: 'text', required: true}">评论
+                        </th>
+                        <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">
+                            图片
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="toolbar1" style="height:auto; text-align: left;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-add',plain:true" onclick="add()">新建</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-reload',plain:true" onclick="refreshComment()">刷新</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok',plain:true" onclick="updateComment()">确认修改</a>
+                    &nbsp;&nbsp;
 
+                </div>
+            </div>
         </div>
-
     </div>
-</div>
-<div style="width: 100%;">
-    <form action="/Admin/SubmitComment" id="form" method="post" enctype="multipart/form-data">
 
-        <table align="center">
-            <tr>
-                <td>
-                    添加评论
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    用户名
-                </td>
-                <td>
-                    <input id="userName" name="userName">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    评论
-                </td>
-                <td>
-                    <textarea id="comment" name="comment">
-
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    图片
-                </td>
-                <td>
-                    <input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span id="Tip" style="color: red;"></span>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div style="text-align: center">
-        <button style="display: none" id="btn" onclick="submit();">提交</button>
+    <div id="dlg" class="easyui-dialog" style="width:420px;height:360px;padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">添加评论</div>
+        <form id="fm" action="/Admin/SubmitComment" class="easyui-form" method="post"
+              enctype="multipart/form-data" data-options="novalidate:true">
+            <%--<div style="display: none;">--%>
+            <%--<input name="busID" class="easyui-textbox" value="${busID}">--%>
+            <%--</div>--%>
+            <div class="fitem">
+                用户名:
+                <input id="userName" name="userName" class="easyui-validatebox textbox" maxlength="50"
+                       required="true">
+            </div>
+            <div class="fitem">
+                评论:
+                <textarea id="comment" name="comment" class="easyui-validatebox" maxlength="200"
+                       required="true">
+                </textarea>
+            </div>
+            <div class="fitem">
+                图片:
+                <input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">
+            </div>
+            <div class="fitem">
+                <span id="Tip" style="color: red;"></span>
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+           onclick="submit()" style="width:90px">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+           onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
     </div>
 </div>
 
@@ -119,13 +143,21 @@
     var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
     var selectIndex = undefined;
     function submit() {
-        $('#form').submit();
+        if($('#fm').form('enableValidation').form('validate')) {
+            $('#fm').submit();
+        }
     }
 
     $(document).ready(function () {
         $.messager.defaults = {ok: "确定", cancel: "取消"};
         refreshComment();
     });
+
+    //添加
+    function add(){
+        $('#dlg').dialog('open').dialog('setTitle', '添加评论');
+        $('#fm').form('clear');
+    }
 
     //刷新评论
     function refreshComment() {

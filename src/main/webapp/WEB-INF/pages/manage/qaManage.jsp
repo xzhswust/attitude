@@ -13,14 +13,28 @@
     <title>问题管理</title>
 </head>
 <body style="text-align: center">
-<div style="width: 100%">
-    <table>
-        <tr>
-            <td>
-                问题类型:
-            </td>
-            <td>
-                <input id="qaType" class="easyui-combobox" data-options="
+
+<div class="bodybox">
+    <div class="bodymain2">
+        <div class="usernav">
+            <h1>后台管理</h1>
+            <ul>
+                <li><a href="/Admin/UserMng">用户管理</a></li>
+                <li><a href="/Admin/CommentMng">评论管理</a></li>
+                <li><a href="/Admin/OrderMng">订单管理</a></li>
+                <li><a href="/Admin/ProductMng">产品管理</a></li>
+                <li class="on"><a href="/Admin/QAMng">问题管理</a></li>
+            </ul>
+        </div>
+        <div class="mainbox">
+            <div class="easyui-panel" title="类型管理" style="padding: 20px">
+                <table>
+                    <tr>
+                        <td>
+                            问题类型:
+                        </td>
+                        <td>
+                            <input id="qaType" class="easyui-combobox" data-options="
                     url:'/Admin/GetQATypeList',
                     method:'get',
                     valueField:'id',
@@ -29,24 +43,23 @@
                     panelHeight:'auto',
                     editable:false
                     ">
-                <button id="deleteBtn" onclick="deleteType()">删除类型</button>
-            </td>
-        </tr>
-        <tr>
-            <td>添加类型：</td>
-            <td>
-                类型ID<input id="typeID">
-                问题类型<input id="typeName">
-                <button id="addBtn" onclick="addType()">添加类型</button>
-            </td>
-        </tr>
-    </table>
-</div>
-<div style="width: 1200px;padding: 10px;margin-right: 10px">
-    <div class="easyui-panel" title="问题列表" style="padding: 20px">
-        <table id="qaTable" class="easyui-datagrid"
-               style="height:400px"
-               data-options="
+                            <button id="deleteBtn" onclick="deleteType()">删除类型</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>添加类型：</td>
+                        <td>
+                            类型ID<input id="typeID">
+                            问题类型<input id="typeName">
+                            <button id="addBtn" onclick="addType()">添加类型</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="easyui-panel" title="问题列表" style="padding: 10px">
+                <table id="qaTable" class="easyui-datagrid"
+                       style="height:300px"
+                       data-options="
                                     singleSelect: true,
                                     <%--rownumbers:true,--%>
                                     url: '',
@@ -58,53 +71,53 @@
                                     onClickRow: onClickRow,
                                     method: 'get'
                                     ">
-            <thead>
-            <tr>
-                <th data-options="field:'id',width:20,align:'center'">ID</th>
-                <th data-options="field:'question',width:150,align:'center',editor:{type: 'text', required: true}">问题
-                </th>
-                <th data-options="field:'answer',width:200,align:'center',editor:{type: 'text', required: true}">回答
-                </th>
-                <th data-options="field:'typeStr',width:150,align:'center'">问题类型
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div id="toolbar1" style="height:auto; text-align: left;">
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
-            &nbsp;&nbsp;
-            <a href="javascript:void(0)" class="easyui-linkbutton"
-               data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
-            &nbsp;&nbsp;
+                    <thead>
+                    <tr>
+                        <th data-options="field:'id',width:20,align:'center'">ID</th>
+                        <th data-options="field:'question',width:150,align:'center',editor:{type: 'text', required: true}">问题
+                        </th>
+                        <th data-options="field:'answer',width:200,align:'center',editor:{type: 'text', required: true}">回答
+                        </th>
+                        <th data-options="field:'typeStr',width:150,align:'center'">问题类型
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="toolbar1" style="height:auto; text-align: left;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-add',plain:true" onclick="add()">新建</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
+                    &nbsp;&nbsp;
 
+                </div>
+            </div>
         </div>
-
     </div>
-</div>
-<div style="width: 100%;">
-    <form action="/Admin/SubmitQA" id="form" method="post" enctype="multipart/form-data">
 
-        <table align="center">
-            <tr>
-                <td>
-                    添加问题
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    问题分类
-                </td>
-                <td>
-                    <input id="qaTypeInput" name="qaType" class="easyui-combobox" data-options="
+    <div id="dlg" class="easyui-dialog" style="width:300px;height:250px;padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">添加问题</div>
+        <form id="fm" action="/Admin/SubmitQA" class="easyui-form" method="post"
+              enctype="multipart/form-data" data-options="novalidate:true">
+            <%--<div style="display: none;">--%>
+            <%--<input name="busID" class="easyui-textbox" value="${busID}">--%>
+            <%--</div>--%>
+            <div class="fitem">
+                问题分类:
+                <input id="qaTypeInput" name="qaType" class="easyui-combobox easyui-validatebox" required="true" data-options="
                     url:'/Admin/GetQATypeList',
                     method:'get',
                     valueField:'id',
@@ -112,33 +125,125 @@
                     panelHeight:'auto',
                     editable:false
                     ">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    问题
-                </td>
-                <td>
-                    <input class="textbox" id="question" name="question">
+            </div>
+            <div class="fitem">
+                问题:
+                <input class="textbox easyui-validatebox" required="true" id="question" name="question">
+            </div>
+            <div class="fitem">
+                回答:
+                <textarea id="answer" name="answer" class="easyui-validatebox" required="true">
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    回答
-                </td>
-                <td>
-                    <textarea id="answer" name="answer">
-
-                    </textarea>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div style="text-align: center">
-        <button id="btn" onclick="submit();">提交</button>
+                </textarea>
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+           onclick="submit()" style="width:90px">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+           onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
     </div>
 </div>
+
+
+<%--<div style="width: 1200px;padding: 10px;margin-right: 10px">--%>
+    <%--<div class="easyui-panel" title="问题列表" style="padding: 20px">--%>
+        <%--<table id="qaTable" class="easyui-datagrid"--%>
+               <%--style="height:400px"--%>
+               <%--data-options="--%>
+                                    <%--singleSelect: true,--%>
+                                    <%--&lt;%&ndash;rownumbers:true,&ndash;%&gt;--%>
+                                    <%--url: '',--%>
+                                    <%--fitColumns:true,--%>
+                                    <%--toolbar: '#toolbar1',--%>
+                                    <%--pagination:true,--%>
+                                    <%--pageSize:50,--%>
+                                    <%--pageList: [50,100],--%>
+                                    <%--onClickRow: onClickRow,--%>
+                                    <%--method: 'get'--%>
+                                    <%--">--%>
+            <%--<thead>--%>
+            <%--<tr>--%>
+                <%--<th data-options="field:'id',width:20,align:'center'">ID</th>--%>
+                <%--<th data-options="field:'question',width:150,align:'center',editor:{type: 'text', required: true}">问题--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'answer',width:200,align:'center',editor:{type: 'text', required: true}">回答--%>
+                <%--</th>--%>
+                <%--<th data-options="field:'typeStr',width:150,align:'center'">问题类型--%>
+                <%--</th>--%>
+            <%--</tr>--%>
+            <%--</thead>--%>
+            <%--<tbody>--%>
+            <%--</tbody>--%>
+        <%--</table>--%>
+        <%--<div id="toolbar1" style="height:auto; text-align: left;">--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>--%>
+            <%--&nbsp;&nbsp;--%>
+            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
+               <%--data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>--%>
+            <%--&nbsp;&nbsp;--%>
+
+        <%--</div>--%>
+
+    <%--</div>--%>
+<%--</div>--%>
+<%--<div style="width: 100%;">--%>
+    <%--<form action="/Admin/SubmitQA" id="form" method="post" enctype="multipart/form-data">--%>
+
+        <%--<table align="center">--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--添加问题--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--问题分类--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input id="qaTypeInput" name="qaType" class="easyui-combobox" data-options="--%>
+                    <%--url:'/Admin/GetQATypeList',--%>
+                    <%--method:'get',--%>
+                    <%--valueField:'id',--%>
+                    <%--textField:'text',--%>
+                    <%--panelHeight:'auto',--%>
+                    <%--editable:false--%>
+                    <%--">--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--问题--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<input class="textbox" id="question" name="question">--%>
+
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--回答--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--<textarea id="answer" name="answer">--%>
+
+                    <%--</textarea>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+    <%--</form>--%>
+    <%--<div style="text-align: center">--%>
+        <%--<button id="btn" onclick="submit();">提交</button>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/icon.css">
@@ -150,7 +255,9 @@
     var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
     var selectIndex = undefined;
     function submit() {
-        $('#form').submit();
+        if($('#fm').form('enableValidation').form('validate')) {
+            $('#fm').submit();
+        }
     }
 
     $(document).ready(function () {
@@ -173,6 +280,12 @@
                 }
             }
         });
+    }
+
+    //添加
+    function add(){
+        $('#dlg').dialog('open').dialog('setTitle', '添加问题');
+        $('#fm').form('clear');
     }
 
     //删除评论
