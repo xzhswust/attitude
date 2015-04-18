@@ -7,6 +7,8 @@ public class UserComment {
 
     private String comment;
 
+    private String link;
+
     private byte[] pic;
 
     public Integer getId() {
@@ -31,6 +33,14 @@ public class UserComment {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link == null ? null : link.trim();
     }
 
     public byte[] getPic() {

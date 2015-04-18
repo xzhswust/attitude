@@ -75,12 +75,14 @@ public class AdminController {
         }
         String name = request.getParameter("userName");
         String comment = request.getParameter("comment");
+        String link = request.getParameter("link");
         MultipartFile file = pic[0];
         if (!name.isEmpty() && !comment.isEmpty() && file != null) {
             if (file.getSize() == 0) return "manage/commentManage";
             UserComment userComment = new UserComment();
             userComment.setUsername(name);
             userComment.setComment(comment);
+            userComment.setLink(link);
             try {
                 userComment.setPic(file.getBytes());
             } catch (IOException e) {
@@ -110,12 +112,14 @@ public class AdminController {
         String id = request.getParameter("id");
         String userName = request.getParameter("username");
         String comment = request.getParameter("comment");
+        String link = request.getParameter("link");
         UserCommentExample example = new UserCommentExample();
         example.createCriteria().andIdEqualTo(Integer.valueOf(id));
         UserComment userComment = new UserComment();
         userComment.setId(Integer.valueOf(id));
         userComment.setUsername(userName);
         userComment.setComment(comment);
+        userComment.setLink(link);
         int ret = userCommentMapper.updateByExampleSelective(userComment, example);
         if (ret == 1) {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response,

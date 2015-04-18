@@ -92,6 +92,7 @@
         $.ajax({
             url: '/Admin/GetCommentList',
             type: "get",
+            async: false,
             dataType: "json",
             success: function (data) {
                 //alert(JSON.stringify(data));
@@ -101,7 +102,7 @@
                 } else {
                     //$('#commentTable').datagrid('loadData', data);
                     for(var i=0;i<data.length;i++){
-                        html += '<div class=\"block\"><p><a><img src=\"/Admin/ViewCommentImg?id=' + data[i].id;
+                        html += '<div class=\"block\"><p><a href=\"#\" onclick=\"window.open(\'http://'+data[i].link+'\')\"><img src=\"/Admin/ViewCommentImg?id=' + data[i].id;
                         html += '\"/></a><div class=\"u_name\">' + data[i].username;
                         html += '</div><div class=\"u_cont\">' + data[i].comment;
                         html += '</div></p></div>';

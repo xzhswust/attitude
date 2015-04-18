@@ -26,7 +26,7 @@
         }
 
         .fitem {
-            margin-bottom: 5px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -63,9 +63,14 @@
                     <thead>
                     <tr>
                         <th data-options="field:'id',width:20,align:'center'">ID</th>
-                        <th data-options="field:'username',width:60,align:'center',editor:{type: 'text', required: true}">用户名
+                        <th data-options="field:'username',width:60,align:'center',editor:{type: 'text', required: true}">
+                            用户名
                         </th>
-                        <th data-options="field:'comment',width:200,align:'center',editor:{type: 'text', required: true}">评论
+                        <th data-options="field:'comment',width:200,align:'center',editor:{type: 'text', required: true}">
+                            评论
+                        </th>
+                        <th data-options="field:'link',width:200,align:'center',editor:{type: 'text', required: true}">
+                            链接
                         </th>
                         <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">
                             图片
@@ -97,7 +102,7 @@
         </div>
     </div>
 
-    <div id="dlg" class="easyui-dialog" style="width:420px;height:360px;padding:10px 20px"
+    <div id="dlg" class="easyui-dialog" style="width:440px;height:480px;padding:10px 20px"
          closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加评论</div>
         <form id="fm" action="/Admin/SubmitComment" class="easyui-form" method="post"
@@ -113,12 +118,18 @@
             <div class="fitem">
                 评论:
                 <textarea id="comment" name="comment" class="easyui-validatebox" maxlength="200"
-                       required="true">
+                          style="width: 300px;height: 150px"
+                          required="true">
                 </textarea>
             </div>
             <div class="fitem">
                 图片:
                 <input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">
+            </div>
+            <div class="fitem">
+                链接:
+                <input id="link" name="link" class="easyui-validatebox textbox" maxlength="200" style="width:250px;"
+                       required="true">
             </div>
             <div class="fitem">
                 <span id="Tip" style="color: red;"></span>
@@ -143,7 +154,7 @@
     var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
     var selectIndex = undefined;
     function submit() {
-        if($('#fm').form('enableValidation').form('validate')) {
+        if ($('#fm').form('enableValidation').form('validate')) {
             $('#fm').submit();
         }
     }
@@ -154,7 +165,7 @@
     });
 
     //添加
-    function add(){
+    function add() {
         $('#dlg').dialog('open').dialog('setTitle', '添加评论');
         $('#fm').form('clear');
     }

@@ -5,6 +5,7 @@
     <id column="Id" property="id" jdbcType="INTEGER" />
     <result column="UserName" property="username" jdbcType="VARCHAR" />
     <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="Link" property="link" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.attitude.dal.mybatis.entity.UserComment" extends="BaseResultMap" >
     <result column="Pic" property="pic" jdbcType="LONGVARBINARY" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Id, UserName, Comment
+    Id, UserName, Comment, Link
   </sql>
   <sql id="Blob_Column_List" >
     Pic
@@ -122,36 +123,36 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.UserComment" >
-    insert into t_comment (Id, UserName, Comment, 
-      Pic)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
-      #{pic,jdbcType=LONGVARBINARY})
+    insert into t_comment ( UserName, Comment,
+      Link, Pic)
+    values (#{username,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+      #{link,jdbcType=VARCHAR}, #{pic,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.UserComment" >
     insert into t_comment
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        Id,
-      </if>
+      <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="username != null" >
         UserName,
       </if>
       <if test="comment != null" >
         Comment,
       </if>
+      <if test="link != null" >
+        Link,
+      </if>
       <if test="pic != null" >
         Pic,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
       </if>
       <if test="pic != null" >
         #{pic,jdbcType=LONGVARBINARY},
@@ -166,15 +167,15 @@
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update t_comment
-    <set >
-      <if test="record.id != null" >
-        Id = #{record.id,jdbcType=INTEGER},
-      </if>
+      <set >
       <if test="record.username != null" >
         UserName = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null" >
         Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link != null" >
+        Link = #{record.link,jdbcType=VARCHAR},
       </if>
       <if test="record.pic != null" >
         Pic = #{record.pic,jdbcType=LONGVARBINARY},
@@ -186,9 +187,10 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update t_comment
-    set Id = #{record.id,jdbcType=INTEGER},
+    set
       UserName = #{record.username,jdbcType=VARCHAR},
       Comment = #{record.comment,jdbcType=VARCHAR},
+      Link = #{record.link,jdbcType=VARCHAR},
       Pic = #{record.pic,jdbcType=LONGVARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -196,9 +198,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_comment
-    set Id = #{record.id,jdbcType=INTEGER},
+    set
       UserName = #{record.username,jdbcType=VARCHAR},
-      Comment = #{record.comment,jdbcType=VARCHAR}
+      Comment = #{record.comment,jdbcType=VARCHAR},
+      Link = #{record.link,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,6 +215,9 @@
       <if test="comment != null" >
         Comment = #{comment,jdbcType=VARCHAR},
       </if>
+      <if test="link != null" >
+        Link = #{link,jdbcType=VARCHAR},
+      </if>
       <if test="pic != null" >
         Pic = #{pic,jdbcType=LONGVARBINARY},
       </if>
@@ -222,13 +228,15 @@
     update t_comment
     set UserName = #{username,jdbcType=VARCHAR},
       Comment = #{comment,jdbcType=VARCHAR},
+      Link = #{link,jdbcType=VARCHAR},
       Pic = #{pic,jdbcType=LONGVARBINARY}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.attitude.dal.mybatis.entity.UserComment" >
     update t_comment
     set UserName = #{username,jdbcType=VARCHAR},
-      Comment = #{comment,jdbcType=VARCHAR}
+      Comment = #{comment,jdbcType=VARCHAR},
+      Link = #{link,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
