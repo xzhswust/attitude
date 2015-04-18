@@ -431,6 +431,12 @@ border-right: 1px solid white;
 	margin: auto;
 	padding-bottom: 45px;
 }
+.adminmain {
+	width: 1000px;
+	height: 660px;
+	margin: auto;
+	padding-bottom: 65px;
+}
 .leftdesc {
 	width: 470px;
 	float: left;

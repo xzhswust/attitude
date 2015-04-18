@@ -15,7 +15,7 @@
 <body style="text-align: center">
 
 <div class="bodybox">
-    <div class="bodymain2">
+    <div class="adminmain">
         <div class="usernav">
             <h1>后台管理</h1>
             <ul>

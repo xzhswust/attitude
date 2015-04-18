@@ -99,10 +99,19 @@
         <property name="url" value="jdbc:mysql://127.0.0.1/db_attitude"/>
         <property name="username" value="root"/>
         <property name="password" value="111111"/>
-        <property name="initialSize" value="1" />
-        <property name="maxActive" value="6" />
-        <property name="maxIdle" value="6" />
-        <property name="poolPreparedStatements" value="true" />
+        <!--<property name="initialSize" value="1" />-->
+        <!--<property name="maxActive" value="6" />-->
+        <!--<property name="maxIdle" value="6" />-->
+        <!--<property name="poolPreparedStatements" value="true" />-->
+        <property name="maxWait" value="20000"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="3600000"/>
+        <property name="numTestsPerEvictionRun" value="50"/>
+        <property name="minEvictableIdleTimeMillis" value="120000"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="6000000"/>
     </bean>
 
     <!--把mybatis SqlSessionFactory的创建交由spring管理-->
