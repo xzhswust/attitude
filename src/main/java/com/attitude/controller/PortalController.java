@@ -1,19 +1,31 @@
 package com.attitude.controller;
 
+import com.attitude.common.utils.HttpResponseUtil;
+import com.attitude.common.utils.JsonUtil;
 import com.attitude.common.utils.ShiroUtil;
+import com.attitude.dal.mybatis.dao.ProductMapper;
+import com.attitude.dal.mybatis.entity.Product;
+import com.attitude.dal.mybatis.entity.ProductExample;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Smomo on 14-11-20.
  */
 @Controller
 public class PortalController {
+    @Autowired
+    private ProductMapper productMapper;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Portal(Model model, HttpServletRequest request) {
         ShiroUtil.setModelUserTitle(model);
@@ -85,6 +97,8 @@ public class PortalController {
     @RequestMapping(value = "/Order", method = RequestMethod.GET)
     public String Order(Model model, HttpServletRequest request) {
         ShiroUtil.setModelUserTitle(model);
+        String pid = request.getParameter("pid");
+        model.addAttribute("pid",pid);
         return "/product/order";
     }
 
@@ -98,6 +112,27 @@ public class PortalController {
     public String Customer(Model model, HttpServletRequest request) {
         ShiroUtil.setModelUserTitle(model);
         return "indexold";
+    }
+
+    @RequestMapping(value = "/GetProductList", method = RequestMethod.GET)
+    public ModelAndView GetProductList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        ProductExample example = new ProductExample();
+        example.setOrderByClause("ID ASC");
+        List<Product> list = productMapper.selectByExample(example);
+        HttpResponseUtil.writeTextToResponse(response, JsonUtil.toJson(list));
+        return null;
+    }
+
+    @RequestMapping(value = "/ViewProductImg", method = RequestMethod.GET)
+    public ModelAndView ViewProductImg(Model model, HttpServletRequest request, HttpServletResponse response) {
+        String pid = request.getParameter("pid");
+        ProductExample example = new ProductExample();
+        example.createCriteria().andIdEqualTo(Integer.valueOf(pid));
+        List<Product> list = productMapper.selectByExampleWithBLOBs(example);
+        if (null != list && list.size() > 0) {
+            HttpResponseUtil.writeImageToResponse(response, list.get(0).getPic());
+        }
+        return null;
     }
 
 }

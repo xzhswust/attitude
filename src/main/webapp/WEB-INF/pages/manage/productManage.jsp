@@ -11,6 +11,24 @@
 <html>
 <head>
     <title>产品管理</title>
+    <style>
+        .ftitle {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #fm {
+            margin: 0;
+            padding: 10px 30px;
+        }
+
+        .fitem {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body style="text-align: center">
 
@@ -87,7 +105,7 @@
         </div>
     </div>
 
-    <div id="dlg" class="easyui-dialog" style="width:320px;height:260px;padding:10px 20px"
+    <div id="dlg" class="easyui-dialog" style="width:460px;height:520px;padding:10px 20px"
          closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加商品</div>
         <form id="fm" action="/Admin/SubmitProduct" class="easyui-form" method="post"
@@ -103,6 +121,7 @@
             <div class="fitem">
                 说明:
                 <textarea id="description" name="description" class="easyui-validatebox" maxlength="200"
+                          style="width: 300px;height: 150px"
                           required="true">
                 </textarea>
             </div>
