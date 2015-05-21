@@ -129,13 +129,13 @@
          closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加问题</div>
         <form id="fm" action="/Admin/SubmitQA" class="easyui-form" method="post"
-              enctype="multipart/form-data" data-options="novalidate:true">
+               data-options="novalidate:true">
             <%--<div style="display: none;">--%>
             <%--<input name="busID" class="easyui-textbox" value="${busID}">--%>
             <%--</div>--%>
             <div class="fitem">
                 问题分类:
-                <input id="qaTypeInput" name="qaType" class="easyui-combobox easyui-validatebox" required="true"
+                <input id="qaTypeInput" name="qaType" class="easyui-combobox" required="true"
                        data-options="
                     url:'/Admin/GetQATypeList',
                     method:'get',
@@ -147,11 +147,12 @@
             </div>
             <div class="fitem">
                 问题:
-                <input class="textbox easyui-validatebox" required="true" id="question" name="question">
+                <input class="textbox easyui-validatebox" maxlength="100" required="true" id="question" name="question">
             </div>
             <div class="fitem">
                 回答:
-                <textarea style="width: 300px;height: 150px" id="answer" name="answer" class="easyui-validatebox" required="true">
+                <textarea style="width: 300px;height: 150px" id="answer" name="answer" class="easyui-validatebox"
+                          maxlength="200" required="true">
 
                 </textarea>
             </div>

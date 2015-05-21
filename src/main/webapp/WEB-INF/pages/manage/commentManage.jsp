@@ -63,16 +63,16 @@
                     <thead>
                     <tr>
                         <th data-options="field:'id',width:20,align:'center'">ID</th>
-                        <th data-options="field:'username',width:60,align:'center',editor:{type: 'text', required: true}">
+                        <th data-options="field:'username',width:80,align:'center',editor:{type: 'text', required: true}">
                             用户名
                         </th>
-                        <th data-options="field:'comment',width:200,align:'center',editor:{type: 'text', required: true}">
+                        <th data-options="field:'comment',width:300,align:'center',editor:{type: 'text', required: true}">
                             评论
                         </th>
                         <th data-options="field:'link',width:200,align:'center',editor:{type: 'text', required: true}">
                             链接
                         </th>
-                        <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img src=/Admin/ViewCommentImg?id='+row.id+' />';}">
+                        <th data-options="field:'pic',width:150,formatter:function(value,row){return '<img style=width:140px src=/Admin/ViewCommentImg?id='+row.id+' />';}">
                             图片
                         </th>
                     </tr>
