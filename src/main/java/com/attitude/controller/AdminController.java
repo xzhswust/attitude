@@ -179,6 +179,12 @@ public class AdminController {
             return null;
         }
         UserExample example = new UserExample();
+        String filter = request.getParameter("filter");//按照电话和用户名过滤
+        if(filter != null && !filter.isEmpty()){
+            example.createCriteria().andMobilePhoneLike("%"+filter+"%");
+            example.or().andRealNameLike("%" + filter+"%");
+        }
+
         example.setOrderByClause("Create_Date DESC");
         List<User> list = userMapper.selectByExample(example);
         if (list != null && list.size() > 0) {
@@ -240,7 +246,11 @@ public class AdminController {
         if(!validateAdmin()){
             return null;
         }
+        String uid = request.getParameter("uid");
         OrderExample example = new OrderExample();
+        if(uid != null && !uid.isEmpty()){
+            example.createCriteria().andUIdEqualTo(Integer.valueOf(uid));
+        }
         example.setOrderByClause("Create_Date Desc");
         List<Order> list = orderMapper.selectByExample(example);
         StaticService staticService = CommonUtil.GetStaticService();
@@ -424,13 +434,18 @@ public class AdminController {
             return null;
         }
         String id = request.getParameter("id");
-        int ret = productMapper.deleteByPrimaryKey(Integer.valueOf(id));
-        if (ret == 1) {
+        try {
+            int ret = productMapper.deleteByPrimaryKey(Integer.valueOf(id));
+            if (ret == 1) {
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(true, "删除产品信息成功。"));
+            } else {
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(false, "删除产品信息失败。"));
+            }
+        }catch (Exception e){
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
-                    new AsyncResponseJson(true, "删除产品信息成功。"));
-        } else {
-            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
-                    new AsyncResponseJson(false, "删除产品信息失败。"));
+                    new AsyncResponseJson(false, e.getMessage()));
         }
         return null;
     }
