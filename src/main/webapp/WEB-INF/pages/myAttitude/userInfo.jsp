@@ -41,6 +41,9 @@
                     <!--头像遮罩-->
                     <img src="/static/portal/images/userdemo.png" width="157" height="210"/><!--头像位置&&头像demo图像-->
                 </div>
+                <div style="display: none;">
+                    <input id="account" value="${mobile}">
+                </div>
                 <div class="userinfo">
                     <ul>
                         <li>姓名：${realName}</li>
@@ -51,6 +54,8 @@
                     <div class="save">
                         <a type="submit" class="greenbtn" style="font-size:11px;color:black;"
                            href="/Customer/FindPwd">修改密码</a>
+                        <a id="adminBtn" type="button" class="greenbtn" style="font-size:11px;color:black;display: none"
+                           href="/Admin">系统管理</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -61,6 +66,12 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        if($('#account').val()=='admin'){
+            $('#adminBtn').show();
+        }
+    });
+
     function logout(){
         window.location.href = '/Customer/Logout';
     }
