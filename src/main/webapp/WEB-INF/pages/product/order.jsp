@@ -164,8 +164,8 @@
                                                      style="margin-left:40px;width:370px"/>
                             </td>
                             <td>
-                                <a id="submit" href="javascript:void(0);" class="greenbtn"
-                                   onclick="submit()">提交订单</a>
+                                <a href="javascript:void(0);" class="greenbtn"
+                                   onclick="submitOrder()">提交订单</a>
                             </td>
                         </tr>
 
@@ -286,7 +286,7 @@
         closeWindow();
     }
 
-    function submit() {
+    function submitOrder() {
         if (!validate()) return;
         $.alerts.dialogClass = "style_2";
         jConfirm('您确定提交订单?', '确认', function (r) {
