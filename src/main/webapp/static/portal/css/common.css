@@ -880,10 +880,23 @@ border-right: 1px solid white;
 	margin: auto;
 	position: relative;
 }
-.toponebox {
+/*.toponebox {*/
+	/*position: relative;*/
+	/*margin: auto;*/
+/*}*/
+.toponebox{
+	/*margin: 0 auto;*/
+	width:1200px;
+	height:710px; overflow:hidden;
 	position: relative;
-	margin: auto;
+	/*position:absolute;*/
+	/*top:50%;*/
+	/*left: 50%;*/
+	/*margin-top: -355px;*/
+	/*margin-left: -600px;*/
 }
+/*.toponebox .bd ul{ overflow:hidden; zoom:1; }*/
+/*.toponebox .bd ul li{ text-align:center; zoom:1; }*/
 .toponebox h1 {
 	font-size: 31px;
 	color: #A9CE2C;
