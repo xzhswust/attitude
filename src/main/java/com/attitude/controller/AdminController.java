@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -378,6 +379,7 @@ public class AdminController {
             product.setpName(pName);
             product.setDescription(description);
             product.setPrice(BigDecimal.valueOf(Double.valueOf(price)));
+            product.setIsonshelves(false);
             if (!memberPrice.isEmpty()) {
                 product.setMemberPrice(BigDecimal.valueOf(Double.valueOf(memberPrice)));
             }
@@ -447,6 +449,124 @@ public class AdminController {
             HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
                     new AsyncResponseJson(false, e.getMessage()));
         }
+        return null;
+    }
+
+    //产品上架
+    @RequestMapping(value = "/OnShelves", method = RequestMethod.POST)
+    public ModelAndView OnShelves(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
+        String id = request.getParameter("id");
+        try {
+            Product product = productMapper.selectByPrimaryKey(Integer.valueOf(id));
+            if (product != null) {
+                if(product.getIsonshelves()){
+                    HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                            new AsyncResponseJson(false, "该产品已经上架。"));
+                }else{
+                    product.setIsonshelves(true);
+                    int ret = productMapper.updateByPrimaryKey(product);
+                    if(ret == 1){
+                        HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                                new AsyncResponseJson(true, "产品上架成功。"));
+                    }else{
+                        HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                                new AsyncResponseJson(false, "产品上架失败。"));
+                    }
+                }
+
+
+            } else {
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(false, "该产品不存在。"));
+            }
+        }catch (Exception e){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, e.getMessage()));
+        }
+        return null;
+    }
+
+    //产品下架
+    @RequestMapping(value = "/OffShelves", method = RequestMethod.POST)
+    public ModelAndView OffShelves(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
+        String id = request.getParameter("id");
+        try {
+            Product product = productMapper.selectByPrimaryKey(Integer.valueOf(id));
+            if (product != null) {
+                if(!product.getIsonshelves()){
+                    HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                            new AsyncResponseJson(false, "该产品已经下架。"));
+                }else{
+                    product.setIsonshelves(false);
+                    int ret = productMapper.updateByPrimaryKey(product);
+                    if(ret == 1){
+                        HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                                new AsyncResponseJson(true, "产品下架成功。"));
+                    }else{
+                        HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                                new AsyncResponseJson(false, "产品下架失败。"));
+                    }
+                }
+
+
+            } else {
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(false, "该产品不存在。"));
+            }
+        }catch (Exception e){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, e.getMessage()));
+        }
+        return null;
+    }
+
+    //修改产品图片
+    @RequestMapping(value = "/UpdateProductPic", method = RequestMethod.POST)
+    public ModelAndView UpdateProductPic(HttpServletRequest request, HttpServletResponse response) {
+        if(!validateAdmin()){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "无系统管理权限。"));
+            return null;
+        }
+        String f = request.getParameter("file");
+        String id = request.getParameter("id");
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        // 获得文件：
+        MultipartFile file = multipartRequest.getFile(f);
+        if(file.isEmpty()||"".equals(file.getOriginalFilename()))
+        {
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response, new AsyncResponseJson(false, "上传文件失败，请重新提交。"));
+            return null;
+        }
+        Product product = productMapper.selectByPrimaryKey(Integer.valueOf(id));
+        ProductExample example = new ProductExample();
+        example.createCriteria().andIdEqualTo(Integer.valueOf(id));
+        try {
+            product.setPic(file.getBytes());
+            int ret = productMapper.updateByExampleWithBLOBs(product, example);
+            if(ret == 1){
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(true, "商品图片修改成功。" ));
+            }else{
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(false, "商品图片修改失败。" ));
+            }
+        }
+        catch (IOException e){
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "文件上传失败：" + e.getMessage()));
+        }
+
         return null;
     }
 

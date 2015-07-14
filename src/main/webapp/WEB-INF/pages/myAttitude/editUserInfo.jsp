@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,9 +39,9 @@
                 <div class="userheader">
                     <div class="userhdshade"></div>
                     <!--头像遮罩-->
-                    <img src="/static/portal/images/userdemo.png" width="157" height="210"/><!--头像位置&&头像demo图像-->
-                    <a href="#">上传头像</a>
-                    <a href="#">修改头像</a>
+                    <img src="/Customer/ViewUserHead" width="157" height="210"/><!--头像位置&&头像demo图像-->
+                    <input id="headUpload" name="headUpload" type="file" style="display: block;margin-top: 13px;font-size: 11px;">
+                    <%--<a id="updateHead" href="javascript:$('#headUpload').uploadify('upload', '*')">上传头像</a>--%>
                 </div>
                 <div class="userinfo infosmall">
                     <form id="userForm">
@@ -82,12 +84,16 @@
     </div>
 </div>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/uploadify/uploadify.css">
+
+<script type="text/javascript" src="${ctx}/static/easyui/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/easyui/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/uploadify/jquery.uploadify.min.js"></script>
+
 <script>
     $(document).ready(function () {
-        if($('#userTitle').text() != ''){
-            $('#login_state').show();
-            $('#un_login_state').hide();
-        }
         if($('#sexHidden').text() == '男'){
             $('#male').attr('checked',true);
         }
@@ -160,6 +166,25 @@
             }
         });
     }
+
+    $(function() {
+        //添加界面的附件管理
+        $("#headUpload").uploadify({
+            'height'        : 25,
+            'width'         : 80,
+            'buttonText'    : '上传头像',
+            'swf'           : '${ctx}/static/uploadify/uploadify.swf',
+            'uploader'      : '/Customer/UploadHead',
+            'multi'    : false,
+            'method'   :'post',
+            'fileTypeExts'  : '*.jpg;*.png;*.gif',
+            'fileObjName'   : 'head',                     //是否完成后移除序列，默认为true
+            'fileSizeLimit': '1MB',                       //单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
+            'onUploadSuccess':function(file, data, response){
+                window.location.reload();
+            }
+        });
+    });
 </script>
 </body>
 </html>

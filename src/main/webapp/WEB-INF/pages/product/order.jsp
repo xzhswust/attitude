@@ -71,6 +71,9 @@
             </div>
             <div class="boxcenter xiedingdan">
                 <form id="orderForm" method="post">
+                    <div style="display: none">
+                        <input name="pid" value="${pid}">
+                    </div>
                     <div id="sel3">
                         <div name="province" type="selectbox" style="margin-right: 5px;">
                             <div class="opts"></div>

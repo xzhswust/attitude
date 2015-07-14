@@ -685,6 +685,66 @@ public class ProductExample {
             addCriterion("Update_Date not between", value1, value2, "updateDate");
             return (Criteria) this;
         }
+
+        public Criteria andIsonshelvesIsNull() {
+            addCriterion("IsOnShelves is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesIsNotNull() {
+            addCriterion("IsOnShelves is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesEqualTo(Boolean value) {
+            addCriterion("IsOnShelves =", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesNotEqualTo(Boolean value) {
+            addCriterion("IsOnShelves <>", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesGreaterThan(Boolean value) {
+            addCriterion("IsOnShelves >", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("IsOnShelves >=", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesLessThan(Boolean value) {
+            addCriterion("IsOnShelves <", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesLessThanOrEqualTo(Boolean value) {
+            addCriterion("IsOnShelves <=", value, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesIn(List<Boolean> values) {
+            addCriterion("IsOnShelves in", values, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesNotIn(List<Boolean> values) {
+            addCriterion("IsOnShelves not in", values, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesBetween(Boolean value1, Boolean value2) {
+            addCriterion("IsOnShelves between", value1, value2, "isonshelves");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsonshelvesNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("IsOnShelves not between", value1, value2, "isonshelves");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

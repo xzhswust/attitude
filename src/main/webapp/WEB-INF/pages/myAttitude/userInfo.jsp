@@ -39,7 +39,7 @@
                 <div class="userheader">
                     <div class="userhdshade"></div>
                     <!--头像遮罩-->
-                    <img src="/static/portal/images/userdemo.png" width="157" height="210"/><!--头像位置&&头像demo图像-->
+                    <img src="/Customer/ViewUserHead" width="157" height="210"/><!--头像位置&&头像demo图像-->
                 </div>
                 <div style="display: none;">
                     <input id="account" value="${mobile}">

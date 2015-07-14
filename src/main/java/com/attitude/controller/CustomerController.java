@@ -15,12 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -301,6 +306,90 @@ public class CustomerController {
             return null;
         }
 
+        return null;
+    }
+
+    //提交用户头像
+    @RequestMapping(value = "/UploadHead", method = RequestMethod.POST)
+    public ModelAndView UploadHead(HttpServletRequest request, HttpServletResponse response){
+        String id = ShiroUtil.getCurrLoginUserID();
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        // 获得文件：
+        MultipartFile file = multipartRequest.getFile("head");
+        if(file.isEmpty()||"".equals(file.getOriginalFilename()))
+        {
+            HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                    new AsyncResponseJson(false, "上传文件失败，请重新提交。"));
+            return null;
+        }
+        User user = MapperServiceUtil.getUserMapperService().selectByPrimaryKey(Integer.valueOf(id));
+        if(user != null){
+            try {
+                UserExample example = new UserExample();
+                example.createCriteria().andIdEqualTo(Integer.valueOf(id));
+                user.setPicture(file.getBytes());
+                int ret = MapperServiceUtil.getUserMapperService().updateByExampleWithBLOBs(user, example);
+                if(ret == 1){
+                    HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                            new AsyncResponseJson(true, "用户头像上传成功。"));
+                }else{
+                    HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                            new AsyncResponseJson(false, "用户头像上传失败。"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                HttpResponseUtil.writeAsyncResponseJsonToResponse(response,
+                        new AsyncResponseJson(false, "用户头像上传失败:" + e.getMessage()));
+            }
+        }
+        return null;
+    }
+
+    //获取用户头像
+    @RequestMapping(value = "/ViewUserHead", method = RequestMethod.GET)
+    public ModelAndView ViewUserHead(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        if(id == null || id.isEmpty()){
+            id = ShiroUtil.getCurrLoginUserID();
+        }
+        UserExample example = new UserExample();
+        example.createCriteria().andIdEqualTo(Integer.valueOf(id));
+        List<User> list = MapperServiceUtil.getUserMapperService().selectByExampleWithBLOBs(example);
+        if (null != list && list.size() > 0) {
+            if(list.get(0).getPicture() == null || list.get(0).getPicture().length == 0){
+                String path = request.getSession().getServletContext().getRealPath("/static/portal/images");
+                if(list.get(0).getSex().equals("女")){
+                    path += "/default_female.jpg";
+                }else{
+                    path += "/default_male.jpg";
+                }
+                File file = new File(path);
+                if(file.exists()){
+                    try {
+                        long fileLen = file.length();
+                        FileInputStream fi = new FileInputStream(file);
+                        byte[] buffer = new byte[(int) fileLen];
+                        int offset = 0;
+                        int numRead = 0;
+                        while (offset < buffer.length
+                                && (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
+                            offset += numRead;
+                        }
+                        // 确保所有数据均被读取
+                        if (offset != buffer.length) {
+                            throw new IOException("读取本地文件不完全："
+                                    + file.getName());
+                        }
+                        fi.close();
+                        HttpResponseUtil.writeImageToResponse(response, buffer);
+                    }catch (IOException e){
+                        e.getStackTrace();
+                    }
+                }
+            }else {
+                HttpResponseUtil.writeImageToResponse(response, list.get(0).getPicture());
+            }
+        }
         return null;
     }
 

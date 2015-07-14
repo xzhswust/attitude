@@ -81,7 +81,7 @@ public class HttpResponseUtil {
             response.setCharacterEncoding("UTF-8");
             StringBuilder builder = new StringBuilder();
             builder.append("<html>");
-            builder.append("<head>");
+            builder.append("<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head>");//一定要加上head的字符集设置！！！2015-6-19 by smomo
             builder.append("<body>");
             builder.append(html);
             builder.append("</body>");

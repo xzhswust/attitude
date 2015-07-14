@@ -75,8 +75,11 @@
                         <th data-options="field:'memberPrice',width:100,align:'center',editor:{type: 'numberbox',options:{precision:2}}">
                             会员价格
                         </th>
-                        <th data-options="field:'pic',width:400,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">
+                        <th data-options="field:'pic',width:300,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">
                             产品图片
+                        </th>
+                        <th data-options="field:'isonshelves',width:100,formatter: thelvesStatusFormattor">
+                            上架状态
                         </th>
                     </tr>
                     </thead>
@@ -92,12 +95,21 @@
                     &nbsp;&nbsp;
                     <a href="javascript:void(0)" class="easyui-linkbutton"
                        data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>
+                    &nbsp;&nbsp
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
                     &nbsp;&nbsp;
                     <a href="javascript:void(0)" class="easyui-linkbutton"
                        data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>
                     &nbsp;&nbsp;
                     <a href="javascript:void(0)" class="easyui-linkbutton"
-                       data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>
+                       data-options="iconCls:'icon_easyui-chevron-up',plain:true" onclick="onShelves()">上架</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon_easyui-chevron-down',plain:true" onclick="offShelves()">下架</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-large-picture',plain:true" onclick="editPic()">编辑产品图片</a>
                     &nbsp;&nbsp;
 
                 </div>
@@ -150,139 +162,42 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
            onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
     </div>
+
+    <%--编辑图片--%>
+    <div id="editPicDlg" class="easyui-dialog" style="width:460px;height:220px;padding:10px 20px" closed="true"
+         buttons="#editPicDlg-buttons">
+        <div class="ftitle">编辑图片</div>
+        <div>
+            <div class="fitem">
+                产品图片:
+                <input type="file" id="picEdit" name="picEdit"
+                       onchange="uploadImgChange(this,$('#editTip'),$('#editPicBtn'))">
+            </div>
+            <div id="editTip">
+
+            </div>
+        </div>
+    </div>
+    <div id="editPicDlg-buttons">
+        <a href="javascript:void(0)" id="editPicBtn" class="easyui-linkbutton" iconCls="icon-ok"
+           onclick="return editProductPic();" style="width:90px">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+           onclick="javascript:$('#editPicDlg').dialog('close')" style="width:90px">取消</a>
+    </div>
 </div>
-
-
-<%--<div style="width: 1200px;padding: 10px;margin-right: 10px">--%>
-    <%--<div class="easyui-panel" title="产品列表" style="padding: 20px">--%>
-        <%--<table id="productTable" class="easyui-datagrid"--%>
-               <%--style="height:400px"--%>
-               <%--data-options="--%>
-                                    <%--singleSelect: true,--%>
-                                    <%--&lt;%&ndash;rownumbers:true,&ndash;%&gt;--%>
-                                    <%--url: '',--%>
-                                    <%--fitColumns:true,--%>
-                                    <%--toolbar: '#toolbar1',--%>
-                                    <%--pagination:true,--%>
-                                    <%--pageSize:50,--%>
-                                    <%--pageList: [50,100],--%>
-                                    <%--onClickRow: onClickRow,--%>
-                                    <%--method: 'get'--%>
-                                    <%--">--%>
-            <%--<thead>--%>
-            <%--<tr>--%>
-                <%--<th data-options="field:'id',width:20,align:'center'">ID</th>--%>
-                <%--<th data-options="field:'pName',width:150,align:'center',editor:{type: 'text', required: true}">产品名称--%>
-                <%--</th>--%>
-                <%--<th data-options="field:'description',width:200,align:'center',editor:{type: 'text', required: true}">--%>
-                    <%--产品描述--%>
-                <%--</th>--%>
-                <%--<th data-options="field:'price',width:100,align:'center',editor:{type: 'numberbox', required: true,options:{precision:2}}">--%>
-                    <%--价格--%>
-                <%--</th>--%>
-                <%--<th data-options="field:'memberPrice',width:100,align:'center',editor:{type: 'numberbox',options:{precision:2}}">--%>
-                    <%--会员价格--%>
-                <%--</th>--%>
-                <%--<th data-options="field:'pic',width:400,formatter:function(value,row){return '<img width=\'120px\' heeight=\'70px\' src=/Admin/ViewProductImg?id='+row.id+' />';}">--%>
-                    <%--产品图片--%>
-                <%--</th>--%>
-            <%--</tr>--%>
-            <%--</thead>--%>
-            <%--<tbody>--%>
-            <%--</tbody>--%>
-        <%--</table>--%>
-        <%--<div id="toolbar1" style="height:auto; text-align: left;">--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-               <%--data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>--%>
-            <%--&nbsp;&nbsp;--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-               <%--data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</a>--%>
-            <%--&nbsp;&nbsp;--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-               <%--data-options="iconCls:'icon-reload',plain:true" onclick="refreshList()">刷新</a>--%>
-            <%--&nbsp;&nbsp;--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton"--%>
-               <%--data-options="iconCls:'icon-ok',plain:true" onclick="update()">确认修改</a>--%>
-            <%--&nbsp;&nbsp;--%>
-
-        <%--</div>--%>
-
-    <%--</div>--%>
-<%--</div>--%>
-<%--<div style="width: 100%;">--%>
-    <%--<form action="/Admin/SubmitProduct" id="form" method="post" enctype="multipart/form-data">--%>
-
-        <%--<table align="center">--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--添加产品--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--产品名--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input id="pName" name="pName">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--说明--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<textarea id="description" name="description">--%>
-
-                    <%--</textarea>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--单价--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input id="price" name="price" class="easyui-numberbox" precision="2">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--会员价--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input id="memberPrice" name="memberPrice" class="easyui-numberbox" precision="2">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--产品图片--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input type="file" id="pic" name="pic" onchange="uploadImgChange(this,$('#Tip'),$('#btn'))">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--<span id="Tip" style="color: red;"></span>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-        <%--</table>--%>
-    <%--</form>--%>
-    <%--<div style="text-align: center">--%>
-        <%--<button style="display: none" id="btn" onclick="submit();">提交</button>--%>
-    <%--</div>--%>
-<%--</div>--%>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/css/icon.css">
 
 <script type="text/javascript" src="${ctx}/static/easyui/js/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/easyui/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/AjaxFileUploader/ajaxfileupload.js"></script>
 
 <script>
     var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
     var selectIndex = undefined;
     function submit() {
-        if($('#fm').form('enableValidation').form('validate')) {
+        if ($('#fm').form('enableValidation').form('validate')) {
             $('#fm').submit();
         }
     }
@@ -292,7 +207,7 @@
         refreshList();
     });
 
-    //刷新评论
+    //刷新产品列表
     function refreshList() {
         $.ajax({
             url: '/Admin/GetProductList',
@@ -310,7 +225,7 @@
     }
 
     //添加
-    function add(){
+    function add() {
         $('#dlg').dialog('open').dialog('setTitle', '添加商品');
         $('#fm').form('clear');
     }
@@ -318,13 +233,13 @@
     //删除
     function del() {
         if ($('#productTable').datagrid('getSelected') == null) {
-            $.messager.alert('提示', '请选择一条票据信息。');
+            $.messager.alert('提示', '请选择一条产品信息。');
             return;
         }
         var row = $('#productTable').datagrid('getSelected');
         $.messager.confirm(
                 '确认',
-                '您确定要删除选中票据信息？',
+                '您确定要删除选中产品信息？',
                 function (r) {
                     if (r) {
                         $.ajax({
@@ -388,6 +303,112 @@
                 });
     }
 
+    //上架
+    function onShelves() {
+        if ($('#productTable').datagrid('getSelected') == null) {
+            $.messager.alert('提示', '请选择一条产品信息。');
+            return;
+        }
+        var row = $('#productTable').datagrid('getSelected');
+        $.messager.confirm(
+                '确认',
+                '您确定要将选中产品上架？',
+                function (r) {
+                    if (r) {
+                        $.ajax({
+                            url: '/Admin/OnShelves?id=' + row.id,
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.success) {
+                                    $.messager.alert('提示', data.message);
+                                    refreshList();
+                                }
+                                else {
+                                    $.messager.alert('提示', data.message, 'error');
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    //下架
+    function offShelves() {
+        if ($('#productTable').datagrid('getSelected') == null) {
+            $.messager.alert('提示', '请选择一条产品信息。');
+            return;
+        }
+        var row = $('#productTable').datagrid('getSelected');
+        $.messager.confirm(
+                '确认',
+                '您确定要将选中产品下架？',
+                function (r) {
+                    if (r) {
+                        $.ajax({
+                            url: '/Admin/OffShelves?id=' + row.id,
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.success) {
+                                    $.messager.alert('提示', data.message);
+                                    refreshList();
+                                }
+                                else {
+                                    $.messager.alert('提示', data.message, 'error');
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    function thelvesStatusFormattor(value, row) {
+        if (value == true) {
+            return '已上架';
+        } else {
+            return '未上架';
+        }
+    }
+
+    //编辑产品图片
+    function editPic() {
+        if ($('#productTable').datagrid('getSelected') == null) {
+            $.messager.alert('提示', '请选择一条产品信息。');
+            return;
+        }
+        $('#editPicDlg').dialog('open').dialog('setTitle', '编辑产品图片');
+    }
+
+    function editProductPic() {
+        if ($('#picEdit').val() == '') {
+            alert('请选择上传图片。');
+            return;
+        }
+        var row = $('#productTable').datagrid('getSelected');
+        $.ajaxFileUpload
+        (
+                {
+                    url: '/Admin/UpdateProductPic',
+                    secureuri: false,
+                    fileElementId: 'picEdit',
+                    data: {id: row.id, file: 'picEdit'},
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data.message);
+                        if (data.success == true) {
+                            $('#editPicDlg').dialog('close');
+                            window.location.reload();
+                        }
+                        return;
+                    },
+                    error: function (data, status, e) {
+                        alert(e);
+                    }
+                }
+        )
+        return false;
+    }
 
     function onClickRow(index) {
         if (selectIndex != index) {

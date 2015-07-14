@@ -93,6 +93,7 @@
                 </div>
                 <div class="orderinfo">
                     <div class="ct">
+                        <div id="status" style="display: none">${status}</div>
                         <table width="100%">
                             <tr>
                                 <td width="411">订单编号：<span id="busID">${busID}</span></td>
@@ -139,6 +140,12 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        if($('#status').text() == '已支付'){
+            $('#submit').hide();
+        }
+    });
+
     var codeCopy = function() {
         var code = $('#shareLink').val();
         try {

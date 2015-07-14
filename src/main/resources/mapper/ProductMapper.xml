@@ -11,6 +11,7 @@
     <result column="Member_Price" property="memberPrice" jdbcType="DECIMAL" />
     <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="Update_Date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="IsOnShelves" property="isonshelves" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.attitude.dal.mybatis.entity.Product" extends="BaseResultMap" >
     <result column="Pic" property="pic" jdbcType="LONGVARBINARY" />
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     ID, P_Name, Product_Type_Code, Summary, Description, Price, Member_Price, Create_Date, 
-    Update_Date
+    Update_Date, IsOnShelves
   </sql>
   <sql id="Blob_Column_List" >
     Pic
@@ -129,21 +130,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.attitude.dal.mybatis.entity.Product" >
-    insert into t_product (ID, P_Name, Product_Type_Code, 
+    insert into t_product ( P_Name, Product_Type_Code,
       Summary, Description, Price, 
       Member_Price, Create_Date, Update_Date, 
-      Pic)
-    values (#{id,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{productTypeCode,jdbcType=VARCHAR}, 
+      IsOnShelves, Pic)
+    values ( #{pName,jdbcType=VARCHAR}, #{productTypeCode,jdbcType=VARCHAR},
       #{summary,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{memberPrice,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{pic,jdbcType=LONGVARBINARY})
+      #{isonshelves,jdbcType=BIT}, #{pic,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.attitude.dal.mybatis.entity.Product" >
     insert into t_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
+
       <if test="pName != null" >
         P_Name,
       </if>
@@ -168,14 +167,15 @@
       <if test="updateDate != null" >
         Update_Date,
       </if>
+      <if test="isonshelves != null" >
+        IsOnShelves,
+      </if>
       <if test="pic != null" >
         Pic,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+
       <if test="pName != null" >
         #{pName,jdbcType=VARCHAR},
       </if>
@@ -200,6 +200,9 @@
       <if test="updateDate != null" >
         #{updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="isonshelves != null" >
+        #{isonshelves,jdbcType=BIT},
+      </if>
       <if test="pic != null" >
         #{pic,jdbcType=LONGVARBINARY},
       </if>
@@ -214,9 +217,7 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update t_product
     <set >
-      <if test="record.id != null" >
-        ID = #{record.id,jdbcType=INTEGER},
-      </if>
+
       <if test="record.pName != null" >
         P_Name = #{record.pName,jdbcType=VARCHAR},
       </if>
@@ -241,6 +242,9 @@
       <if test="record.updateDate != null" >
         Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.isonshelves != null" >
+        IsOnShelves = #{record.isonshelves,jdbcType=BIT},
+      </if>
       <if test="record.pic != null" >
         Pic = #{record.pic,jdbcType=LONGVARBINARY},
       </if>
@@ -251,7 +255,7 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update t_product
-    set ID = #{record.id,jdbcType=INTEGER},
+    set
       P_Name = #{record.pName,jdbcType=VARCHAR},
       Product_Type_Code = #{record.productTypeCode,jdbcType=VARCHAR},
       Summary = #{record.summary,jdbcType=VARCHAR},
@@ -260,6 +264,7 @@
       Member_Price = #{record.memberPrice,jdbcType=DECIMAL},
       Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
       Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      IsOnShelves = #{record.isonshelves,jdbcType=BIT},
       Pic = #{record.pic,jdbcType=LONGVARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -267,7 +272,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_product
-    set ID = #{record.id,jdbcType=INTEGER},
+    set
       P_Name = #{record.pName,jdbcType=VARCHAR},
       Product_Type_Code = #{record.productTypeCode,jdbcType=VARCHAR},
       Summary = #{record.summary,jdbcType=VARCHAR},
@@ -275,7 +280,8 @@
       Price = #{record.price,jdbcType=DECIMAL},
       Member_Price = #{record.memberPrice,jdbcType=DECIMAL},
       Create_Date = #{record.createDate,jdbcType=TIMESTAMP},
-      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP}
+      Update_Date = #{record.updateDate,jdbcType=TIMESTAMP},
+      IsOnShelves = #{record.isonshelves,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -307,6 +313,9 @@
       <if test="updateDate != null" >
         Update_Date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="isonshelves != null" >
+        IsOnShelves = #{isonshelves,jdbcType=BIT},
+      </if>
       <if test="pic != null" >
         Pic = #{pic,jdbcType=LONGVARBINARY},
       </if>
@@ -323,6 +332,7 @@
       Member_Price = #{memberPrice,jdbcType=DECIMAL},
       Create_Date = #{createDate,jdbcType=TIMESTAMP},
       Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      IsOnShelves = #{isonshelves,jdbcType=BIT},
       Pic = #{pic,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -335,7 +345,8 @@
       Price = #{price,jdbcType=DECIMAL},
       Member_Price = #{memberPrice,jdbcType=DECIMAL},
       Create_Date = #{createDate,jdbcType=TIMESTAMP},
-      Update_Date = #{updateDate,jdbcType=TIMESTAMP}
+      Update_Date = #{updateDate,jdbcType=TIMESTAMP},
+      IsOnShelves = #{isonshelves,jdbcType=BIT}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -75,8 +76,8 @@ public class OrderController {
             order.setAmount(bg);
             order.setCreateDate(new Date());
             order.setRemark(request.getParameter("remark"));
-            order.setState("0");
-            order.setpId(1);
+            order.setState("1");
+            order.setpId(Integer.valueOf(request.getParameter("pid")));
             int ret = orderMapper.insert(order);
             if (ret == 1) {
                 OrderExample example = new OrderExample();
@@ -114,7 +115,7 @@ public class OrderController {
         model.addAttribute("remain", DateTimeUtils.convertToDateTimeString(calendar.getTime()));
         model.addAttribute("busID", order.getId());
         model.addAttribute("createDate", DateTimeUtils.convertToDateTimeString(order.getCreateDate()));
-        if (order.getState().equals("1")) {
+        if (order.getState().equals("2")) {
             model.addAttribute("status", "已支付");
         } else if (order.getState().equals("9")) {
             model.addAttribute("status", "已完成");
@@ -141,25 +142,35 @@ public class OrderController {
             String seller_id = AlipayConfig.partner;
             //必填，不能修改
             //服务器异步通知页面路径
-            String notify_url = "http://www.yitaidiet.com/Order/OrderNotifyCallback";
+            //String notify_url = "http://www.yitaidiet.com/Order/OrderNotifyCallback";
             //需http://格式的完整路径，不能加?id=123这类自定义参数		//页面跳转同步通知页面路径
-            String return_url = "http://www.yitaidiet.com/Order/OrderCallback";
-            String error_notify_url = "http://www.yitaidiet.com/Order/OrderErrorCallback";
+            //String return_url = "http://www.yitaidiet.com/Order/OrderCallback";
+            //String error_notify_url = "http://www.yitaidiet.com/Order/OrderErrorCallback";
+
+            //花生壳测试路径
+            String notify_url = "http://fqq2005q.xicp.net/Order/OrderNotifyCallback";
+            String return_url = "http://fqq2005q.xicp.net/Order/OrderCallback";
+            String error_notify_url = "http://fqq2005q.xicp.net/Order/OrderErrorCallback";
+            String show_url = "http://fqq2005q.xicp.net/Product";
+
             //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/		//卖家支付宝帐户
             //String seller_email = new String(request.getParameter("WIDseller_email").getBytes("ISO-8859-1"), "UTF-8");
-            String seller_email = AlipayConfig.sellerEmail;
+            //String seller_email = AlipayConfig.sellerEmail;
+            String seller_email = new String(AlipayConfig.sellerEmail.getBytes("ISO-8859-1"),"utf-8");
             Order order = orderMapper.selectByPrimaryKey(Integer.valueOf(request.getParameter("busID")));
             //必填		//商户订单号
-            String out_trade_no = new String(request.getParameter("busID").getBytes("ISO-8859-1"), "UTF-8");
+            String out_trade_no = new String(request.getParameter("busID").getBytes("ISO-8859-1"), "utf-8");
             //商户网站订单系统中唯一订单号，必填		//订单名称
             String subject = productMapper.selectByPrimaryKey(order.getpId()).getpName();
+//            subject = new String(subject.getBytes("utf-8"),"utf-8");
             //必填		//付款金额
             //String total_fee = order.getAmount().toString();
             String total_fee = "0.01";
+            total_fee = new String(total_fee.getBytes("ISO-8859-1"),"utf-8");
             //必填		//订单描述		String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
             //商品展示地址
             //String show_url = new String(request.getParameter("WIDshow_url").getBytes("ISO-8859-1"), "UTF-8");
-            String show_url = "http://www.yitaidiet.com/Product";
+            //String show_url = "http://www.yitaidiet.com/Product";
             //需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html		//防钓鱼时间戳
             String anti_phishing_key = "";
             //若要使用请调用类文件submit中的query_timestamp函数		//客户端的IP地址
@@ -217,6 +228,13 @@ public class OrderController {
             String valueStr = "";
             for (int i = 0; i < values.length; i++) {
                 valueStr = (i == values.length - 1) ? valueStr + values[i]: valueStr + values[i] + ",";
+            }
+            //乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+            //add by smomo 2015-6-21 !!!!
+            try {
+                valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
             params.put(name, valueStr);
         }

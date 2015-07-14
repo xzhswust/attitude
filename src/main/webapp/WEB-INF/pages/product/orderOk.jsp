@@ -64,28 +64,24 @@
 <div class="bodybox">
   <div class="bodymain2">
     <div class="usernav">
-      <h1>我的壹态</h1>
+      <h1>支付成功</h1>
       <ul>
-        <li><a href="#">我的资料</a></li>
-        <li><a href="#">管理收货地址</a></li>
-        <li class="on"><a href="#">查询订单</a></li>
-        <li><a href="#">我的抵用金</a></li>
+        <li><a href="/Product">选择套餐</a></li>
+        <li class="on"><a>填写订单</a></li>
+        <li><a>提交并支付</a></li>
       </ul>
     </div>
     <div class="mainbox">
-      <div class="boxtop">
-        <div class="fl"><a href="#" class="usermenu"><img src="/static/portal/images/usermenu.png" alt=""
-                                                          style="vertical-align: middle;"/>查看订单</a></div>
-        <div class="fr">
-          <a class="readall" href="#">
-            <img src="/static/portal/images/readall.png" alt="" style="vertical-align: middle;"/>查看全部
-          </a>
-        </div>
+      <div class="boxtop lv">
+        <div class="fl"><a href="#" class="usermenu"><img src="/static/portal/images/dingdantu.png" alt=""
+                                                          style="vertical-align: middle;"/>支付结果</a></div>
       </div>
       <div class="boxcenter dingdan">
-        <h1>您的订单下单成功</h1>
+        <h1>您的订单支付成功</h1>
 
-        <p>如有疑问请与在线客服联系或直接致电我们（联系电话：8888888）</p>
+        <p>如有疑问请与在线客服联系或直接致电我们（联系电话：4000-160-167）</p>
+
+        <a href="/Customer/MyOrder" class="greenbtn" style="float:right">查看订单</a>
       </div>
       <div class="boxbottom"></div>
     </div>

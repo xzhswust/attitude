@@ -22,6 +22,8 @@ public class Product {
 
     private Date updateDate;
 
+    private Boolean isonshelves;
+
     private byte[] pic;
 
     public Integer getId() {
@@ -94,6 +96,14 @@ public class Product {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Boolean getIsonshelves() {
+        return isonshelves;
+    }
+
+    public void setIsonshelves(Boolean isonshelves) {
+        this.isonshelves = isonshelves;
     }
 
     public byte[] getPic() {
